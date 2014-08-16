@@ -1,3 +1,15 @@
 <template name="navigation">
-    <h1>this is navigation</h1>
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="navbar-inner">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Enterprise</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="{{ isActiveRoute 'home' }}"><a href="{{pathFor 'home'}}">Home</a></li>
+                <li class="{{ isActiveRoute 'warehouse' }}"><a href="{{pathFor 'warehouse'}}">Warehouse</a></li>
+                <li class="{{ isActiveRoute 'sales' }}"><a href="{{pathFor 'sales'}}">Sales</a></li>
+                <li class="{{ isActiveRoute 'report' }}"><a href="{{pathFor 'report'}}">Report</a></li>
+            </ul>
+        </div>
+    </div>
 </template>

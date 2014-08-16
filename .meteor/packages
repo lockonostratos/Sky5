@@ -10,3 +10,8 @@ less
 less-bootstrap-3
 font-awesome-4-less
 coffeescript
+accounts-password
+accounts-ui
+iron-router
+iron-router-active
+iron-router-progress
