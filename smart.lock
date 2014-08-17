@@ -6,7 +6,8 @@
       "font-awesome-4-less": {},
       "iron-router": {},
       "iron-router-active": {},
-      "iron-router-progress": {}
+      "iron-router-progress": {},
+      "jade": {}
     },
     "packages": {
       "less-bootstrap-3": {
@@ -33,6 +34,11 @@
         "git": "https://github.com/Multiply/iron-router-progress.git",
         "tag": "v0.4.1",
         "commit": "496fcda9a6ec352b4733725f60c6f280250c3541"
+      },
+      "jade": {
+        "git": "https://github.com/mquandalle/meteor-jade.git",
+        "tag": "v0.2.6",
+        "commit": "ab1edd68dccae6f5e946d9a84547043816d57864"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",
