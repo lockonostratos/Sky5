@@ -1,4 +1,7 @@
 template(name="layout")
-	+navigation
-	+sidebar
-	+yield
+    +navigation
+    .wrapper
+        .left-side()
+            +sidebar
+        .right-side()
+            +yield

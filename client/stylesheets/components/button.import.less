@@ -1,0 +1,55 @@
+.btn { .border-radius(3px); }
+
+.btn {
+  color: #fff; a {color: #fff !important;}
+
+  .makeButtonColors(@i: length(@colors)) when (@i > 0){
+    @color: escape(extract(@colors, @i));
+    &.@{color} {
+      background-color: @@color;
+      border-color: darken(@@color, 3);
+//      box-shadow: 0 4px 0 darken(@@color, 5);
+      .box-shadow(inset 0 0 0 1px lighten(@@color, 5));
+      &.d3 {
+        border-bottom: 3px solid darken(@@color, 5);
+      }
+
+      & when(lightness(@@color) > 80) {
+        color: #f05b41; i, a { color: #f05b41; };
+        border-color: #c3c3c3;
+      }
+      & when(lightness(@@color) <= 20) {
+        color: #fff; a { color: #333; }
+      }
+
+      &:hover {
+        background-color: darken(@@color, 5);
+        color: #f05b41;
+        & when(lightness(@@color) < 80) {
+          border-color: darken(@@color, 10);
+          color: #fff;
+        }
+      }
+    }
+    .makeButtonColors((@i - 1));
+  }
+
+  .makeButtonColors();
+}
+
+.btn-labeled {
+  padding: 0 12px;
+  .btn-label {
+    position: relative;
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(0,0,0,0.05);
+
+    &.left {
+      left: -13px;
+    }
+    &.right {
+      right: -13px;
+    }
+  }
+}

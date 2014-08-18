@@ -1,11 +1,34 @@
-// Import Vendors
-// mrt add less-bootstrap-3
-@import "variables.bootstrap.import.less";
+@import "systems.import.less";
 @import "../../packages/less-bootstrap-3/lib/less/bootstrap.import.less";
 @import "../../packages/font-awesome-4-less/font-awesome.import.less";
+@import "components.import.less";
 
-// Components
-@import "components/a_component.import.less";
-
-// Sites
 @import "sites/home.import.less";
+
+.collapse-transition { .transition(all 0.25s ease); }
+.navbar-fixed-top {
+  .navbar-header {
+    width: @left-pane-size;
+  }
+}
+
+.wrapper { width: 100%; padding-top: 51px; }
+
+.left-side {
+  position: fixed;
+  width: @left-pane-size;
+  min-height: 100%;
+
+  .user-info {
+
+  }
+}
+
+.right-side {
+  margin-left: @left-pane-size;
+  .content {
+    padding: 15px;
+  }
+}
+
+

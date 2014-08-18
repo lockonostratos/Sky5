@@ -1,0 +1,1 @@
+Merchant = new Meteor.Collection 'merchants'

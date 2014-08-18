@@ -1,30 +1,25 @@
 template(name="navigation")
-    nav(role="navigation").navbar.navbar-default
+    nav(role="navigation").navbar.navbar-default.navbar-fixed-top
         .navbar-header
-            button(type="button", data-toggle="collapse", data-target=".navbar-ex1-collapse").navbar-toggle
-                span.sr-only Toggle navigation
-                span.icon-bar
-                span.icon-bar
-                span.icon-bar
             a(href="/" ).navbar-brand Enterprise
-        .collapse.navbar-collapse.navbar-ex1-collapse
-            ul.nav.navbar-nav 
-                li: a(href="{{pathFor 'home'}}" class="{{isActiveRoute 'home'}}") Home
-                li: a(href="{{pathFor 'warehouse'}}" class="{{isActiveRoute 'warehouse'}}") Warehouse
-                li: a(href="{{pathFor 'sales'}}" class="{{isActiveRoute 'sales'}}") Sales
-                li: a(href="{{pathFor 'report'}}" class="{{isActiveRoute 'report'}}") Report
-            form(role="search").navbar-form.navbar-left
-                .form-group 
-                    input(type="text", placeholder="Search").form-control
-                button(type="submit").btn.btn-default Submit
-            ul.nav.navbar-nav.navbar-right
-                li
-                    +loginButtons
-                li: a(href="#") Link
-                li.dropdown
-                    a(href="#", data-toggle="dropdown").dropdown-toggle Dropdown <b class="caret"></b>
-                    ul.dropdown-menu
-                        li: a(href="#") Action
-                        li: a(href="#") Another action
-                        li: a(href="#") Something else here
-                        li: a(href="#") Separated link
+
+        ul.nav.navbar-nav
+            li: a(href="{{pathFor 'home'}}" class="{{isActiveRoute 'home'}}") Home
+            li: a(href="{{pathFor 'warehouse'}}" class="{{isActiveRoute 'warehouse'}}") Warehouse
+            li: a(href="{{pathFor 'sales'}}" class="{{isActiveRoute 'sales'}}") Sales
+            li: a(href="{{pathFor 'report'}}" class="{{isActiveRoute 'report'}}") Report
+        form(role="search").navbar-form.navbar-left
+            .form-group
+                input(type="text", placeholder="Search").form-control
+            button(type="submit").btn.btn-default Submit
+        ul.nav.navbar-nav.navbar-right
+            li
+                +loginButtons
+            li: a(href="#") Link
+            li.dropdown
+                a(href="#", data-toggle="dropdown").dropdown-toggle Dropdown <b class="caret"></b>
+                ul.dropdown-menu
+                    li: a(href="#") Action
+                    li: a(href="#") Another action
+                    li: a(href="#") Something else here
+                    li: a(href="#") Separated link

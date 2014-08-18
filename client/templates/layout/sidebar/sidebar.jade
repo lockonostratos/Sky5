@@ -1,2 +1,14 @@
 template(name="sidebar")
-	h1 This is sidebar!
+    .user-info()
+        .avatar()
+            img()
+        .info()
+            h4.welcome
+                small.color-lime Quản lý <br />
+                | Ngoc Son
+        .commands: a.pumpkin.btn(href="/logout"): i.fa.fa-power-off
+    ul.sidebar-menu
+        //li(ng-class="{{isActiveRoute 'home'}}", ng-repeat="item in application.navs")
+        //    a(href="#{{item.url}}")
+        //        i(ng-class="item.icon")
+        //        span {{item.title}}
