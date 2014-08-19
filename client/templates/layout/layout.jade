@@ -1,7 +1,10 @@
 template(name="layout")
-    +navigation
-    .wrapper
-        .left-side()
-            +sidebar
-        .right-side()
-            +yield
+	header
+		.branding
+			a(href="/" ) Enterprise
+		+navigation
+	.wrapper
+		.left-side()
+			+sidebar
+		.right-side()
+			+yield

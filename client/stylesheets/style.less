@@ -6,9 +6,38 @@
 @import "sites/home.import.less";
 
 .collapse-transition { .transition(all 0.25s ease); }
-.navbar-fixed-top {
-  .navbar-header {
+
+header {
+  .branding {
     width: @left-pane-size;
+//    height: 70px;
+//    background-color: #3E3E3E;
+//    position: fixed;
+  }
+
+  .navbar-fixed-top {
+    margin-left: @left-pane-size;
+    background-color: #FFF;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
+    border-radius: 0;
+
+//    a { color: #fff; }
+
+    .navbar-header {
+      width: @left-pane-size;
+    }
+
+//    &:after {
+//      content: "";
+//      background-color: #fff;
+//      .border-top-radius(3px);
+//      height: 40px;
+//      margin: 0 10px;
+//      display: block;
+//      border: 1px solid #d5d5d5;
+//      border-bottom-color: #e6e6e6;
+//      box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
+//    }
   }
 }
 
@@ -27,7 +56,7 @@
 .right-side {
   margin-left: @left-pane-size;
   .content {
-    padding: 15px;
+    padding: 10px;
   }
 }
 
