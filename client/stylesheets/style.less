@@ -11,15 +11,28 @@ header {
   .branding {
     width: @left-pane-size;
 //    height: 70px;
-//    background-color: #3E3E3E;
-//    position: fixed;
+    background-color: #2E2C2B;
+    position: fixed;
+    height: 51px;
+
+    .collapse-toggle {
+      position: absolute;
+      right: 0;
+      font-size: 18px;
+      color: #cecece;
+      padding: 12px;
+      &:hover {
+        color: #fff;
+      }
+    }
   }
 
-  .navbar-fixed-top {
+  nav.main {
     margin-left: @left-pane-size;
     background-color: #FFF;
-    box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 0 4px 0 rgba(0,0,0,0.6);
     border-radius: 0;
+    z-index: 999;
 
 //    a { color: #fff; }
 
@@ -39,15 +52,57 @@ header {
 //      box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
 //    }
   }
+
+  nav.secondary {
+    margin-left: @left-pane-size;
+    margin-top: 51px;
+    background-color: #149FBE;
+    z-index: 998;
+  }
 }
 
 .wrapper { width: 100%; padding-top: 51px; }
 
+@caption-background: #171615;
 .left-side {
   position: fixed;
   width: @left-pane-size;
   min-height: 100%;
+  background-color: @left-pane-background;
 
+  ul.sidebar-nav {
+    .clearfix;
+    list-style: none;
+    margin: 0; padding: 0;
+    a > i { color: #4D4748; }
+
+    li {
+      float: left;
+      margin-bottom: -1px;
+      a {
+        line-height: 51px;
+        padding: 0 32px;
+        i { font-size: 16px; }
+      }
+
+      &.active {
+        background-color: @caption-background;
+        border-left: solid 1px #1D1D1D;
+        border-right: solid 1px #1D1D1D;
+        a > i { color: #fff; }
+      }
+    }
+  }
+  .sidebar-caption {
+    height: 50px;
+    background-color: @caption-background;
+    border-top: solid 1px #2C2C2C;
+    border-bottom: solid 1px #070707;
+    color: #fff;
+    font-size: 25px; font-weight: 300;
+    line-height: 50px;
+    padding-left: 20px;
+  }
   .user-info {
 
   }
@@ -56,7 +111,24 @@ header {
 .right-side {
   margin-left: @left-pane-size;
   .content {
-    padding: 10px;
+    .content-heading {
+      background-color: #10A1BE;
+      a { line-height: 50px; }
+    }
+
+    .content-sub-heading {
+      background-color: #F3F3F3;
+      border-bottom: solid 1px #E9E9E9;
+      a { line-height: 50px; }
+    }
+
+    .content-body {
+
+    }
+
+    .content-footer {
+
+    }
   }
 }
 
