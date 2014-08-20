@@ -1,0 +1,9 @@
+sc.exe create MongoDB binPath= "\"d:\Softwares\mongodb\bin\mongod.exe\" --service --config=\"d:\Softwares\mongodb\mongod.cfg\"" DisplayName= "MongoDB 2.6 Standard" start= "auto"
+net start MongoDB
+net stop MongoDB
+sc.exe delete MongoDB
+
+echo %MONGO_URL%
+set MONGO_URL=mongodb://127.0.0.1:27017/eds
+
+meteor --settings ./settings.json
