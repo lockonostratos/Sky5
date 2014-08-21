@@ -1,31 +1,27 @@
-Schema.Merchant = new Meteor.Collection 'merchants',
-  transform: (document) -> new Merchant document
+class Model.Merchant
+  @Create: (name) ->
+    Schema.Merchant.insert {name: name}
 
-Schema2.Merchant = new SimpleSchema
-  parent:
-    type: String
-    optional: true
+  @FindById: (id) ->
+    found = Schema.Merchant.findOne(_id: id)
+    return new @(found) if found
+    return undefined
 
-  owner:
-    type: String
-    optional: true
+  @Find: (condition) ->
+    found = Schema.Merchant.findOne(condition)
+    return new @(found) if found
+    return undefined
 
-  name:
-    type: String
+  constructor: (@data) -> @id = @data._id
 
-  location:
-    type: [String]
-    optional: true
+  addBranch: (obj) =>
+    obj.parent = @id
+    Schema.Merchant.insert obj
 
-  area:
-    type: [String]
-    optional: true
+  addWarehouse: (obj) =>
+    obj.parentMerchant = @id
+    Schema.Warehouse.insert obj
 
-  version: { type: Schema.Version }
-
-Schema.Merchant.attachSchema(Schema2.Merchant)
-
-class Merchant extends Document
-  @Meta
-    name: 'Merchant'
-  getDisplayName: => "#{@name}!"
+  addProvider: (obj) ->
+    obj.parentMerchant = @id
+    Schema.Provider.insert obj

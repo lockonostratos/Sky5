@@ -1,6 +1,7 @@
 root = global ? window
 root.Schema = {}
 root.Schema2 = {}
+root.Model = {}
 
 Schema.Version = new SimpleSchema
   createdAt:
@@ -21,3 +22,11 @@ Schema.Version = new SimpleSchema
     denyInsert: true
     optional: true
 
+Schema.Location = new SimpleSchema
+  address:
+    type: [String]
+    optional: true
+
+  areas:
+    type: [String]
+    optional: true

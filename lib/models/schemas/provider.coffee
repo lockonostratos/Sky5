@@ -1,12 +1,13 @@
 Schema.Provider = new Meteor.Collection 'providers'
 
 Schema2.Provider = new SimpleSchema(
-  merchant:
+  parentMerchant:
     type: String
 
   name:
     type: String
 
+  location: { type: Schema.Location, optional: true }
   version: { type: Schema.Version }
 )
 
