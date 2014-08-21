@@ -8,6 +8,7 @@ Meteor.startup ->
   Books.remove({})
   Lists.remove({})
   Todos.remove({})
+  timestamp = (new Date()).getTime()
   if Lists.find().count() is 0
     data = [
       {
@@ -128,13 +129,10 @@ Meteor.startup ->
       }
     ]
 
-    timestamp = (new Date()).getTime()
     i = 0
-
     while i < data.length
       list_id = Lists.insert(name: data[i].name)
       j = 0
-
       while j < data[i].contents.length
         info = data[i].contents[j]
         Todos.insert
@@ -146,6 +144,35 @@ Meteor.startup ->
         timestamp += 1
         j++
       i++
+
+
+  if Merchants.find().count() is 0
+    mer_id = Merchants.insert
+                name: 'Nhà Phân Phối Huỳnh Châu'
+                createdAt: timestamp
+                updatedAt: timestamp
+    ware_id = Warehouses.insert
+                merchantId: mer_id
+                name: 'Chi Nhanh Tân Bình'
+                location: '32 - Ni Sư Huỳnh Liên, P.10, Q.Tân Bình, Tp-HCM'
+                createdAt: timestamp
+                updatedAt: timestamp
+  if Skulls.find().count() is 0
+      Skulls.insert
+        merchantId: mer_id
+        skull_01: ['Lon', 'Thùng']
+        skull_02: ['0.12L','0.7L', '0.8L', '1L', '4L' ]
+
+  if Providers.find().count() is 0
+    Providers.insert
+              merchantId: mer_id
+              name: 'Dầu Nhớt BP'
+              createdAt: timestamp
+              updatedAt: timestamp
+
+
+
+
 
 
   return
