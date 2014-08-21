@@ -1,7 +1,10 @@
 Schema.Warehouse = new Meteor.Collection 'warehouses'
 
 Schema2.Warehouse = new SimpleSchema
-  parentMerchant:
+  merchant:
+    type: String
+
+  creator:
     type: String
 
   name:

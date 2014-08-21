@@ -1,7 +1,10 @@
 Schema.Provider = new Meteor.Collection 'providers'
 
 Schema2.Provider = new SimpleSchema(
-  parentMerchant:
+  merchant:
+    type: String
+
+  creator:
     type: String
 
   name:

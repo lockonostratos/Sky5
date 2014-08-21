@@ -5,6 +5,10 @@ Schema2.Merchant = new SimpleSchema
     type: String
     optional: true
 
+  creator:
+    type: String
+    optional: true
+
   owner:
     type: String
     optional: true

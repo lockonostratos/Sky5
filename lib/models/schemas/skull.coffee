@@ -4,12 +4,11 @@ Schema2.Skull = new SimpleSchema
   merchant:
     type: String
 
-  name:
+  creator:
     type: String
 
-  skulls:
-    type: [String]
-    optional: true
+  name:
+    type: String
 
   version: { type: Schema.Version }
 

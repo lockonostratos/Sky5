@@ -1,6 +1,7 @@
 class Model.Merchant
-  @Create: (name) ->
-    Schema.Merchant.insert {name: name}
+  @Create: (obj, creator) ->
+    obj.creator = creator
+    Schema.Merchant.insert obj
 
   @FindById: (id) ->
     found = Schema.Merchant.findOne(_id: id)
@@ -14,14 +15,28 @@ class Model.Merchant
 
   constructor: (@data) -> @id = @data._id
 
-  addBranch: (obj) =>
+  addAccount: (obj, creator, currentWarehouse = null) =>
+    obj.merchant = @id
+    obj.creator = creator
+    obj.currentWarehouse = currentWarehouse if currentWarehouse
+    Accounts.createUser obj
+
+  addBranch: (obj, creator) =>
     obj.parent = @id
+    obj.creator = creator
     Schema.Merchant.insert obj
 
-  addWarehouse: (obj) =>
-    obj.parentMerchant = @id
+  addWarehouse: (obj, creator) =>
+    obj.merchant = @id
+    obj.creator = creator
     Schema.Warehouse.insert obj
 
-  addProvider: (obj) ->
-    obj.parentMerchant = @id
+  addProvider: (obj, creator) ->
+    obj.merchant = @id
+    obj.creator = creator
     Schema.Provider.insert obj
+
+  addSkull: (obj, creator) ->
+    obj.merchant = @id
+    obj.creator = creator
+    Schema.Skull.insert obj
