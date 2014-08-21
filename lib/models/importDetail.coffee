@@ -1,4 +1,6 @@
-root = global ? window
-root.ImportDetails     = new Meteor.Collection 'import_details'
+Schema.ImportDetail = new Meteor.Collection 'importDetails'
 
+Schema2.Importdetail = new SimpleSchema
+  version: { type: Schema.Version }
 
+Schema.ImportDetail.attachSchema(Schema2.ImportDetail)

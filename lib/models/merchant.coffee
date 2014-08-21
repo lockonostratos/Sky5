@@ -1,23 +1,31 @@
-root = global ? window
-root.Merchants = new Meteor.Collection 'merchants'
+Schema.Merchant = new Meteor.Collection 'merchants',
+  transform: (document) -> new Merchant document
 
-Schemas = {}
+Schema2.Merchant = new SimpleSchema
+  parent:
+    type: String
+    optional: true
 
+  owner:
+    type: String
+    optional: true
 
-Schemas.Merchant = new SimpleSchema(
-    parent:
-      type: String
-      optional: true
-    owner:
-      type: String
-      optional: true
-    name:
-      type: String
-    createdAt:
-      type: Date
-      optional: true
-    updatedAt:
-      type: Date
-      optional: true
-)
-root.Merchants.attachSchema(Schemas.Merchant)
+  name:
+    type: String
+
+  location:
+    type: [String]
+    optional: true
+
+  area:
+    type: [String]
+    optional: true
+
+  version: { type: Schema.Version }
+
+Schema.Merchant.attachSchema(Schema2.Merchant)
+
+class Merchant extends Document
+  @Meta
+    name: 'Merchant'
+  getDisplayName: => "#{@name}!"

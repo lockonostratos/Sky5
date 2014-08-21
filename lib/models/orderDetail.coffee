@@ -1,29 +1,33 @@
-root = global ? window
-root.OrderDetails      = new Meteor.Collection 'order_details'
+Schema.OrderDetail = new Meteor.Collection 'orderDetails'
 
-Schemas = {}
-Schemas.OrderDetail = new SimpleSchema(
-  orderId:
+Schema2.OrderDetail = new SimpleSchema
+  order:
     type: String
-  productId:
+
+  product:
     type: String
+
   quality:
     type: Number
+
   returnQuality:
     type: String
+
   price:
     type: Number
+
   discountCash:
     type: Number
+
   discountPercent:
     type: Number
+
   finalPrice:
     type: Number
+
   status:
     type: Number
-  createdAt:
-    type: Date
-  updatedAt:
-    type: Date
-)
-root.OrderDetails.attachSchema(Schemas.OrderDetail)
+
+  version: { type: Schema.Version }
+
+Schema.OrderDetail.attachSchema(Schema2.OrderDetail)

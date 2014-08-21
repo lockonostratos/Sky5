@@ -1,33 +1,39 @@
-root = global ? window
-root.Returns = new Meteor.Collection 'returns'
+Schema.Return = new Meteor.Collection 'returns'
 
-Schemas = {}
-Schemas.Return = new SimpleSchema(
-  merchantId:
+Schema2.Return = new SimpleSchema
+  merchant:
     type: String
-  warehouseId:
+
+  warehouse:
     type: String
-  orderId:
+
+  order:
     type: String
-  creatorId:
+
+  creator:
     type: String
+
   submitReturn:
     type: String
+
   name:
     type: String
+
   productSale:
     type: Number
+
   productQuality:
     type: Number
+
   totalPrice:
     type: Number
+
   comment:
     type: String
+
   status:
     type: Number
-  createdAt:
-    type: Date
-  updatedAt:
-    type: Date
-)
-root.Returns.attachSchema(Schemas.Return)
+
+  version: { type: Schema.Version }
+
+Schema.Return.attachSchema(Schema2.Return)

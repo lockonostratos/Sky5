@@ -1,0 +1,41 @@
+header {
+  .branding {
+    width: @left-pane-size;
+    background-color: #2E2C2B;
+    position: fixed;
+    height: 51px;
+
+    .collapse-toggle {
+      position: absolute;
+      right: 0;
+      font-size: 18px;
+      color: @left-pane-font;
+      padding: 12px 14px;
+      &:hover { color: @left-pane-font-light; }
+    }
+  }
+
+  nav.main {
+    margin-left: @left-pane-size;
+    background-color: #FFF;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,0.6);
+    border-radius: 0;
+    z-index: 999;
+
+    .navbar-header {
+      width: @left-pane-size;
+    }
+
+    a.home {
+      font-size: 40px;
+      padding: 5px 5px 5px 10px;
+    }
+  }
+
+  nav.secondary {
+    margin-left: @left-pane-size;
+    margin-top: 51px;
+    background-color: #149FBE;
+    z-index: 998;
+  }
+}

@@ -1,17 +1,13 @@
-root = global ? window
-root.Providers         = new Meteor.Collection 'providers'
+Schema.Provider = new Meteor.Collection 'providers'
 
-Schemas = {}
-Schemas.Provider = new SimpleSchema(
-  merchantId:
+Schema2.Provider = new SimpleSchema(
+  merchant:
     type: String
+
   name:
     type: String
-  createdAt:
-    type: Date
-  updatedAt:
-    type: Date
+
+  version: { type: Schema.Version }
 )
-root.Providers.attachSchema(Schemas.Provider)
 
-
+Schema.Provider.attachSchema(Schema2.Provider)

@@ -146,29 +146,29 @@ Meteor.startup ->
       i++
 
 
-  if Merchants.find().count() is 0
-    mer_id = Merchants.insert
-                name: 'Nhà Phân Phối Huỳnh Châu'
-                createdAt: timestamp
-                updatedAt: timestamp
-    ware_id = Warehouses.insert
-                merchantId: mer_id
-                name: 'Chi Nhanh Tân Bình'
-                location: '32 - Ni Sư Huỳnh Liên, P.10, Q.Tân Bình, Tp-HCM'
-                createdAt: timestamp
-                updatedAt: timestamp
-  if Skulls.find().count() is 0
-      Skulls.insert
-        merchantId: mer_id
-        skull_01: ['Lon', 'Thùng']
-        skull_02: ['0.12L','0.7L', '0.8L', '1L', '4L' ]
-
-  if Providers.find().count() is 0
-    Providers.insert
-              merchantId: mer_id
-              name: 'Dầu Nhớt BP'
-              createdAt: timestamp
-              updatedAt: timestamp
+#  if Merchants.find().count() is 0
+#    mer_id = Merchants.insert
+#                name: 'Nhà Phân Phối Huỳnh Châu'
+#                createdAt: timestamp
+#                updatedAt: timestamp
+#    ware_id = Warehouses.insert
+#                merchantId: mer_id
+#                name: 'Chi Nhanh Tân Bình'
+#                location: '32 - Ni Sư Huỳnh Liên, P.10, Q.Tân Bình, Tp-HCM'
+#                createdAt: timestamp
+#                updatedAt: timestamp
+#  if Skulls.find().count() is 0
+#      Skulls.insert
+#        merchantId: mer_id
+#        skull_01: ['Lon', 'Thùng']
+#        skull_02: ['0.12L','0.7L', '0.8L', '1L', '4L' ]
+#
+#  if Providers.find().count() is 0
+#    Providers.insert
+#              merchantId: mer_id
+#              name: 'Dầu Nhớt BP'
+#              createdAt: timestamp
+#              updatedAt: timestamp
 
 
 

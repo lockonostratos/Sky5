@@ -1,0 +1,19 @@
+{
+  "name": "peerdb",
+  "description": "Reactive database layer with references, generators, triggers, migrations, etc.",
+  "homepage": "https://github.com/peerlibrary/meteor-peerdb",
+  "author": "The PeerLibrary Project",
+  "version": "0.12.4",
+  "git": "https://github.com/peerlibrary/meteor-peerdb.git",
+  "packages": {
+    "util": {},
+    "assert": {},
+    "moment": {},
+    "stacktrace": {},
+    "directcollection": {}
+  },
+  "meteor": {
+    "branch": "peerlibrary",
+    "git": "https://github.com/peerlibrary/meteor.git"
+  }
+}

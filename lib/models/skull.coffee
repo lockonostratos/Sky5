@@ -1,27 +1,16 @@
-root = global ? window
-root.Skulls            = new Meteor.Collection 'skulls'
+Schema.Skull = new Meteor.Collection 'skulls'
 
-Schemas = {}
-Schemas.SkullName = new SimpleSchema(
+Schema2.Skull = new SimpleSchema
+  merchant:
+    type: String
+
   name:
     type: String
-  value:
-    type: Number
-)
 
-Schemas.Skull = new SimpleSchema(
-  merchantId:
-    type: String
-#  unit:
-#    type: String
-#  unit_quality:
-#    type: String
   skulls:
     type: [String]
     optional: true
-  createdAt:
-    type: Date
-  updatedAt:
-    type: Date
-)
-root.Skulls.attachSchema(Schemas.Skull)
+
+  version: { type: Schema.Version }
+
+Schema.Skull.attachSchema(Schema2.Skull)

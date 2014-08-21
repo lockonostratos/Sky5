@@ -1,27 +1,34 @@
-root = global ? window
-root.ReturnDetails = new Meteor.Collection 'return_details'
+Schema.ReturnDetail = new Meteor.Collection 'returnDetails'
 
-Schemas = {}
-Schemas.ReturnDetail  = new SimpleSchema(
-  orderId:
+Schema2.ReturnDetail  = new SimpleSchema
+  order:
     type: String
-  returnId:
+
+  return:
     type: String
-  productId:
+
+  product:
     type: String
+
   quality:
     type: String
+
   price:
     type: Number
+
   discountCash:
     type: Number
+
   finalPrice:
     type: Number
+
   submited:
     type: Boolean
+
   createdAt:
     type: Date
+
   updatedAt:
     type: Date
-)
-root.ReturnDetails.attachSchema(Schemas.ReturnDetail)
+
+Schema.ReturnDetail.attachSchema(Schema2.ReturnDetail)

@@ -1,17 +1,19 @@
-root = global ? window
-root.Warehouses        = new Meteor.Collection 'warehouses'
+Schema.Warehouse = new Meteor.Collection 'warehouses'
 
-Schemas = {}
-Schemas.Warehouse = new SimpleSchema(
-  merchantId:
+Schema2.Warehouse = new SimpleSchema
+  merchant:
     type: String
+
   name:
     type: String
+
   location:
+    type: [String]
+    optional: true
+
+  area:
     type: String
-  createdAt:
-    type: Date
-  updatedAt:
-    type: Date
-)
-root.Warehouses.attachSchema(Schemas.Warehouse)
+
+  version: { type: Schema.Version }
+
+Schema.Warehouse.attachSchema(Schema2.Warehouse)

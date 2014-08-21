@@ -1,7 +1,7 @@
 template(name="navigation")
 	nav(role="navigation").navbar.main.navbar-fixed-top
 		ul.nav.navbar-nav
-			li(class="{{isActiveRoute 'home'}}"): a(href="{{pathFor 'home'}}"): i.fa.fa-arrow-circle-o-left
+			li(class="{{isActiveRoute 'home'}}"): a.home(href="{{pathFor 'home'}}"): i.fa.fa-arrow-circle-o-left
 			li(class="{{isActiveRoute 'warehouse'}}"): a(href="{{pathFor 'warehouse'}}") Warehouse
 			li(class="{{isActiveRoute 'sales'}}"): a(href="{{pathFor 'sales'}}") Sales
 			li(class="{{isActiveRoute 'report'}}"): a(href="{{pathFor 'report'}}") Report

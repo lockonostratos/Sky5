@@ -1,24 +1,24 @@
-root = global ? window
-root.ProductSummaries  = new Meteor.Collection 'product_summaries'
+Schema.ProductSummary = new Meteor.Collection 'productSummaries'
 
-Schemas = {}
-Schemas.ProductSummary = new SimpleSchema(
-  warehouseId:
+Schema2.ProductSummary = new SimpleSchema
+  warehouse:
     type: String
+
   productCode:
     type: String
-  skullId:
+
+  skull:
     type: String
+
   name:
     type: String
+
   quality:
     type: Number
+
   price:
     type: Number
-  createdAt:
-    type: Date
-  updatedAt:
-    type: Date
-)
-root.ProductSummaries.attachSchema(Schemas.ProductSummary)
 
+  version: { type: Schema.Version }
+
+Schema.ProductSummary.attachSchema(Schema2.ProductSummary)

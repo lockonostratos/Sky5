@@ -22,7 +22,7 @@ Schema2.Transaction = new SimpleSchema
   receivable:
     type: String
 
-  due_day:
+  dueDay:
     type: Date
 
   status:

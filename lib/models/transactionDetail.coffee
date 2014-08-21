@@ -19,7 +19,7 @@ Schema2.TransactionDetail = new SimpleSchema
   debtCash:
     type: Number
 
-  decription:
+  description:
     type: String
     optional: true
 

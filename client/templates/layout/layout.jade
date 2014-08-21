@@ -1,11 +1,12 @@
 template(name="layout")
-	header
-		.branding
-			a(href="/" ) Enterprise
-			a.collapse-toggle: i.fa.fa-list
-		+navigation
-	.wrapper
-		.left-side()
-			+sidebar
-		.right-side()
-			+yield
+	.application(class="#{collapse}")
+		header
+			.branding
+				a(href="/" ) Enterprise #{collapse} ??
+				a.collapse-toggle: i.fa.fa-list
+			+navigation
+		.wrapper
+			.left-side
+				+sidebar
+			.right-side()
+				+yield
