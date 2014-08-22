@@ -1,4 +1,5 @@
 Schema.OrderDetail = new Meteor.Collection 'orderDetails'
+Schema.registerDictionary Schema.OrderDetail, 'orderDetails'
 
 Schema2.OrderDetail = new SimpleSchema
   order:

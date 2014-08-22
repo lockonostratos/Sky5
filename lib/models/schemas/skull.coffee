@@ -1,4 +1,5 @@
 Schema.Skull = new Meteor.Collection 'skulls'
+Schema.registerDictionary Schema.Skull, 'skulls'
 
 Schema2.Skull = new SimpleSchema
   merchant:

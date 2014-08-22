@@ -1,4 +1,5 @@
 Schema.TransactionDetail = new Meteor.Collection 'transactionDetails'
+Schema.registerDictionary Schema.TransactionDetail, 'transactionDetails'
 
 Schema2.TransactionDetail = new SimpleSchema
   merchant:

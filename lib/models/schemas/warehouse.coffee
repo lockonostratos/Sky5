@@ -1,4 +1,5 @@
 Schema.Warehouse = new Meteor.Collection 'warehouses'
+Schema.registerDictionary Schema.Warehouse, 'warehouses'
 
 Schema2.Warehouse = new SimpleSchema
   merchant:

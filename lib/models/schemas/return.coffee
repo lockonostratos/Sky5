@@ -1,4 +1,5 @@
 Schema.Return = new Meteor.Collection 'returns'
+Schema.registerDictionary Schema.Return, 'returns'
 
 Schema2.Return = new SimpleSchema
   merchant:

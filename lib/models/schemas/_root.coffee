@@ -1,7 +1,17 @@
 root = global ? window
-root.Schema = {}
+root.Schema =
+  Dictionary: []
+  registerDictionary: (ref, key) -> Schema.Dictionary.push { value: ref, key: key }
+  find: (key) ->
+    found = _.findWhere Schema.Dictionary, { key: key }
+    return found?.value
+
 root.Schema2 = {}
 root.Model = {}
+root.System = {}
+
+Schema.SystemTransaction = new SimpleSchema
+
 
 Schema.Version = new SimpleSchema
   createdAt:
@@ -30,3 +40,11 @@ Schema.Location = new SimpleSchema
   areas:
     type: [String]
     optional: true
+
+
+Schema.ChildProduct = new SimpleSchema
+  product:
+    type: String
+
+  quality:
+    type: Number

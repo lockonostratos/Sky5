@@ -1,4 +1,5 @@
 Schema.Provider = new Meteor.Collection 'providers'
+Schema.registerDictionary Schema.Provider, 'providers'
 
 Schema2.Provider = new SimpleSchema(
   merchant:

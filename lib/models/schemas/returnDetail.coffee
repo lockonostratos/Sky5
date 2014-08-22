@@ -1,4 +1,5 @@
 Schema.ReturnDetail = new Meteor.Collection 'returnDetails'
+Schema.registerDictionary Schema.ReturnDetail, 'returnDetails'
 
 Schema2.ReturnDetail  = new SimpleSchema
   order:

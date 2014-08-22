@@ -1,4 +1,5 @@
 Schema.Delivery = new Meteor.Collection 'deliveries'
+Schema.registerDictionary Schema.Delivery, 'deliveries'
 
 Schema2.Delivery = new SimpleSchema
   warehouse:
