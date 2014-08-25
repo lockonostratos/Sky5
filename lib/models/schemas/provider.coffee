@@ -1,6 +1,3 @@
-Schema.providers = new Meteor.Collection 'providers'
-Schema.registerDictionary Schema.providers, 'providers'
-
 Schema2.providers = new SimpleSchema(
   merchant:
     type: String
@@ -15,4 +12,4 @@ Schema2.providers = new SimpleSchema(
   version: { type: Schema.Version }
 )
 
-Schema.providers.attachSchema(Schema2.providers)
+Schema.add 'providers'

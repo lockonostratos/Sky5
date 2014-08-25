@@ -1,6 +1,3 @@
-Schema.returnDetails = new Meteor.Collection 'returnDetails'
-Schema.registerDictionary Schema.returnDetails, 'returnDetails'
-
 Schema2.returnDetails  = new SimpleSchema
   order:
     type: String
@@ -32,4 +29,4 @@ Schema2.returnDetails  = new SimpleSchema
   updatedAt:
     type: Date
 
-Schema.returnDetails.attachSchema(Schema2.returnDetails)
+Schema.add 'returnDetails'

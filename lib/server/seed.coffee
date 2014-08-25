@@ -2,10 +2,10 @@ Meteor.startup ->
   resetDatabase()
   if Schema.merchants.find().count() is 0
     creator = Accounts.createUser(email: 'lehaoson@gmail.com', password: '123456')
-    huynhChauId = Model.merchants.Create { name: 'Huynh Chau', creator: creator }
-    Model.merchants.Create { name: 'Euro Windows', creator: creator }
+    huynhChauId = Merchant.create { name: 'Huynh Chau', creator: creator }
+    Merchant.create { name: 'Euro Windows', creator: creator }
 
-    merchant = Model.merchants.FindById huynhChauId
+    merchant = Merchant.findOne huynhChauId
     merchant.addBranch { name: 'Huynh Chau HA NOI', creator: creator }
     warehouse = merchant.addWarehouse { name: 'Kho Chính', creator: creator }
     seedProvidersFor merchant, creator

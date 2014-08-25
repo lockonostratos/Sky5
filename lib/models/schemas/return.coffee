@@ -1,6 +1,3 @@
-Schema.returns = new Meteor.Collection 'returns'
-Schema.registerDictionary Schema.returns, 'returns'
-
 Schema2.returns = new SimpleSchema
   merchant:
     type: String
@@ -37,4 +34,4 @@ Schema2.returns = new SimpleSchema
 
   version: { type: Schema.Version }
 
-Schema.returns.attachSchema(Schema2.returns)
+Schema.add 'returns'

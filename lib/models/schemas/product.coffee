@@ -1,6 +1,3 @@
-Schema.products = new Meteor.Collection 'products'
-Schema.registerDictionary Schema.products, 'products'
-
 Schema2.products = new SimpleSchema
   creator:
     type: String
@@ -40,4 +37,5 @@ Schema2.products = new SimpleSchema
 
   version: { type: Schema.Version }
 
-Schema.products.attachSchema(Schema2.products)
+Schema.add 'products'
+console.log Model.merchants

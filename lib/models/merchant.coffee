@@ -1,29 +1,15 @@
-class Model.merchants
-  @Create: (option) -> Schema.merchants.insert option
-
-  @FindById: (id) ->
-    found = Schema.merchants.findOne(_id: id)
-    return new @(found) if found
-    return undefined
-
-  @Find: (condition) ->
-    found = Schema.merchants.findOne(condition)
-    return new @(found) if found
-    return undefined
-
-  constructor: (@data) -> @id = @data._id
-
-  addAccount: (option, creator, currentWarehouse = null) =>
+Schema.add 'merchants', class Merchant
+  addAccount: (option, creator, currentWarehouse = null) ->
     option.merchant = @id
     option.creator = creator
     option.currentWarehouse = currentWarehouse if currentWarehouse
     Accounts.createUser option
 
-  addBranch: (option) =>
+  addBranch: (option) ->
     option.parent = @id
     Schema.merchants.insert option
 
-  addWarehouse: (option) =>
+  addWarehouse: (option) ->
     option.merchant = @id
     Schema.warehouses.insert option
 
@@ -42,7 +28,7 @@ class Model.merchants
 
   #option: warehouse, creator, description
   #productDetails: product, importQuality, importPrice, provider?, exprire?
-  import: (option, productDetails) =>
+  import: (option, productDetails) ->
     transaction = new System.Transaction ["productDetails", "imports"]
 
     option.merchant = @id
@@ -71,4 +57,3 @@ class Model.merchants
   updateProductQualities: (detail) ->
     product = Schema.products.findOne detail.product
     #TODO: implement this section
-

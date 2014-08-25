@@ -1,6 +1,3 @@
-Schema.orderDetails = new Meteor.Collection 'orderDetails'
-Schema.registerDictionary Schema.orderDetails, 'orderDetails'
-
 Schema2.orderDetails = new SimpleSchema
   order:
     type: String
@@ -31,4 +28,4 @@ Schema2.orderDetails = new SimpleSchema
 
   version: { type: Schema.Version }
 
-Schema.orderDetails.attachSchema(Schema2.orderDetails)
+Schema.add 'orderDetails'

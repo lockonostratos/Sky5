@@ -1,6 +1,3 @@
-Schema.merchants = new Meteor.Collection 'merchants'
-Schema.registerDictionary Schema.merchants, 'merchants'
-
 Schema2.merchants = new SimpleSchema
   parent:
     type: String
@@ -26,5 +23,3 @@ Schema2.merchants = new SimpleSchema
     optional: true
 
   version: { type: Schema.Version }
-
-Schema.merchants.attachSchema(Schema2.merchants)
