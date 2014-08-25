@@ -1,6 +1,6 @@
-Schema.MetroSummary = new Meteor.Collection 'metroSummaries'
-Schema.registerDictionary Schema.MetroSummary, 'metroSummaries'
+Schema.metroSummaries = new Meteor.Collection 'metroSummaries'
+Schema.registerDictionary Schema.metroSummaries, 'metroSummaries'
 
-Schema2.MetroSummary = new SimpleSchema()
+Schema2.metroSummaries = new SimpleSchema()
 
-Schema.MetroSummary.attachSchema(Schema2.MetroSummary)
+Schema.metroSummaries.attachSchema(Schema2.metroSummaries)

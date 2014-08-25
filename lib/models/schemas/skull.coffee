@@ -1,7 +1,7 @@
-Schema.Skull = new Meteor.Collection 'skulls'
-Schema.registerDictionary Schema.Skull, 'skulls'
+Schema.skulls = new Meteor.Collection 'skulls'
+Schema.registerDictionary Schema.skulls, 'skulls'
 
-Schema2.Skull = new SimpleSchema
+Schema2.skulls = new SimpleSchema
   merchant:
     type: String
 
@@ -13,4 +13,4 @@ Schema2.Skull = new SimpleSchema
 
   version: { type: Schema.Version }
 
-Schema.Skull.attachSchema(Schema2.Skull)
+Schema.skulls.attachSchema(Schema2.skulls)

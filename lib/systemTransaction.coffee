@@ -3,7 +3,7 @@ class System.Transaction
 
   rollBack: ->
     for document in @documents
-      collection = Schema.find document
+      collection = Schema[document]
       continue if collection is undefined
       collection.remove { systemTransaction: @id }
 

@@ -1,7 +1,7 @@
-Schema.TransactionDetail = new Meteor.Collection 'transactionDetails'
-Schema.registerDictionary Schema.TransactionDetail, 'transactionDetails'
+Schema.transactionDetails = new Meteor.Collection 'transactionDetails'
+Schema.registerDictionary Schema.transactionDetails, 'transactionDetails'
 
-Schema2.TransactionDetail = new SimpleSchema
+Schema2.transactionDetails = new SimpleSchema
   merchant:
     type: String
 
@@ -26,7 +26,7 @@ Schema2.TransactionDetail = new SimpleSchema
 
   version: {type: Schema.Version}
 
-Schema.TransactionDetail.attachSchema(Schema2.TransactionDetail)
+Schema.transactionDetails.attachSchema(Schema2.transactionDetails)
 
 
 

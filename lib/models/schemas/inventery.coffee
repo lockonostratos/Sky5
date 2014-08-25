@@ -1,7 +1,7 @@
-Schema.Inventory = new Meteor.Collection 'inventories'
-Schema.registerDictionary Schema.Inventory, 'inventories'
+Schema.inventories = new Meteor.Collection 'inventories'
+Schema.registerDictionary Schema.inventories, 'inventories'
 
-Schema2.Inventory = new SimpleSchema
+Schema2.inventories = new SimpleSchema
   version: { type: Schema.Version }
 
-Schema.Inventory.attachSchema(Schema2.Inventory)
+Schema.inventories.attachSchema(Schema2.inventories)

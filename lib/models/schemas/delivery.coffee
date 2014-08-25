@@ -1,7 +1,7 @@
-Schema.Delivery = new Meteor.Collection 'deliveries'
-Schema.registerDictionary Schema.Delivery, 'deliveries'
+Schema.deliveries = new Meteor.Collection 'deliveries'
+Schema.registerDictionary Schema.deliveries, 'deliveries'
 
-Schema2.Delivery = new SimpleSchema
+Schema2.deliveries = new SimpleSchema
   warehouse:
     type: String
 
@@ -52,4 +52,4 @@ Schema2.Delivery = new SimpleSchema
 
   version: { type: Schema.Version }
 
-Schema.Delivery.attachSchema(Schema2.Delivery)
+Schema.deliveries.attachSchema(Schema2.deliveries)

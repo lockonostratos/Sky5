@@ -1,7 +1,7 @@
-Schema.Provider = new Meteor.Collection 'providers'
-Schema.registerDictionary Schema.Provider, 'providers'
+Schema.providers = new Meteor.Collection 'providers'
+Schema.registerDictionary Schema.providers, 'providers'
 
-Schema2.Provider = new SimpleSchema(
+Schema2.providers = new SimpleSchema(
   merchant:
     type: String
 
@@ -15,4 +15,4 @@ Schema2.Provider = new SimpleSchema(
   version: { type: Schema.Version }
 )
 
-Schema.Provider.attachSchema(Schema2.Provider)
+Schema.providers.attachSchema(Schema2.providers)

@@ -1,7 +1,7 @@
-Schema.Merchant = new Meteor.Collection 'merchants'
-Schema.registerDictionary Schema.Merchant, 'merchants'
+Schema.merchants = new Meteor.Collection 'merchants'
+Schema.registerDictionary Schema.merchants, 'merchants'
 
-Schema2.Merchant = new SimpleSchema
+Schema2.merchants = new SimpleSchema
   parent:
     type: String
     optional: true
@@ -27,4 +27,4 @@ Schema2.Merchant = new SimpleSchema
 
   version: { type: Schema.Version }
 
-Schema.Merchant.attachSchema(Schema2.Merchant)
+Schema.merchants.attachSchema(Schema2.merchants)

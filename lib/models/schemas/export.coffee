@@ -1,7 +1,7 @@
-Schema.Export = new Meteor.Collection 'exports'
-Schema.registerDictionary Schema.Export, 'exports'
+Schema.exports = new Meteor.Collection 'exports'
+Schema.registerDictionary Schema.exports, 'exports'
 
-Schema2.Export = new SimpleSchema
+Schema2.exports = new SimpleSchema
   version: { type: Schema.Version }
 
-Schema.Export.attachSchema(Schema2.Export)
+Schema.exports.attachSchema(Schema2.exports)

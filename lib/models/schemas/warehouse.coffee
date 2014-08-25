@@ -1,7 +1,7 @@
-Schema.Warehouse = new Meteor.Collection 'warehouses'
-Schema.registerDictionary Schema.Warehouse, 'warehouses'
+Schema.warehouses = new Meteor.Collection 'warehouses'
+Schema.registerDictionary Schema.warehouses, 'warehouses'
 
-Schema2.Warehouse = new SimpleSchema
+Schema2.warehouses = new SimpleSchema
   merchant:
     type: String
 
@@ -14,4 +14,4 @@ Schema2.Warehouse = new SimpleSchema
   location: { type: Schema.Location, optional: true }
   version: { type: Schema.Version }
 
-Schema.Warehouse.attachSchema(Schema2.Warehouse)
+Schema.warehouses.attachSchema(Schema2.warehouses)

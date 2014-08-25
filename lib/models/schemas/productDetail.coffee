@@ -1,7 +1,7 @@
-Schema.ProductDetail = new Meteor.Collection 'productDetails'
-Schema.registerDictionary Schema.ProductDetail, 'productDetails'
+Schema.productDetails = new Meteor.Collection 'productDetails'
+Schema.registerDictionary Schema.productDetails, 'productDetails'
 
-Schema2.ProductDetail = new SimpleSchema
+Schema2.productDetails = new SimpleSchema
   import:
     type: String
 
@@ -40,4 +40,4 @@ Schema2.ProductDetail = new SimpleSchema
 
   version: { type: Schema.Version }
 
-Schema.ProductDetail.attachSchema Schema2.ProductDetail
+Schema.productDetails.attachSchema Schema2.productDetails

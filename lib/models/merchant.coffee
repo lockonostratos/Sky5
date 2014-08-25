@@ -1,13 +1,13 @@
-class Model.Merchant
-  @Create: (option) -> Schema.Merchant.insert option
+class Model.merchants
+  @Create: (option) -> Schema.merchants.insert option
 
   @FindById: (id) ->
-    found = Schema.Merchant.findOne(_id: id)
+    found = Schema.merchants.findOne(_id: id)
     return new @(found) if found
     return undefined
 
   @Find: (condition) ->
-    found = Schema.Merchant.findOne(condition)
+    found = Schema.merchants.findOne(condition)
     return new @(found) if found
     return undefined
 
@@ -21,24 +21,24 @@ class Model.Merchant
 
   addBranch: (option) =>
     option.parent = @id
-    Schema.Merchant.insert option
+    Schema.merchants.insert option
 
   addWarehouse: (option) =>
     option.merchant = @id
-    Schema.Warehouse.insert option
+    Schema.warehouses.insert option
 
   addProvider: (option) ->
     option.merchant = @id
-    Schema.Provider.insert option
+    Schema.providers.insert option
 
   addSkull: (option) ->
     option.merchant = @id
-    Schema.Skull.insert option
+    Schema.skulls.insert option
 
   addProduct: (option) ->
     option.merchant = @id
     option.quality = 0
-    Schema.Product.insert option
+    Schema.products.insert option
 
   #option: warehouse, creator, description
   #productDetails: product, importQuality, importPrice, provider?, exprire?
@@ -47,10 +47,10 @@ class Model.Merchant
 
     option.merchant = @id
     option.systemTransaction = transaction.id
-    newImport = Schema.Import.insert option
+    newImport = Schema.imports.insert option
 
     for productDetail in productDetails
-      product = Schema.Product.findOne productDetail.product
+      product = Schema.products.findOne productDetail.product
       if !product then transaction.rollBack(); return
 
       productDetail.import = newImport
@@ -61,7 +61,7 @@ class Model.Merchant
       productDetail.instockQuality = productDetail.importQuality
       productDetail.systemTransaction = transaction.id
 
-      Schema.ProductDetail.insert productDetail, (error, result) ->
+      Schema.productDetails.insert productDetail, (error, result) ->
         if error then transaction.rollBack(); return
 
       #@updateProductQualities productDetail
@@ -69,6 +69,6 @@ class Model.Merchant
 
   #PRIVATES------------------------------------
   updateProductQualities: (detail) ->
-    product = Schema.Product.findOne detail.product
+    product = Schema.products.findOne detail.product
     #TODO: implement this section
 

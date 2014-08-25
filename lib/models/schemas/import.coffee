@@ -1,7 +1,7 @@
-Schema.Import = new Meteor.Collection 'imports'
-Schema.registerDictionary Schema.Import, 'imports'
+Schema.imports = new Meteor.Collection 'imports'
+Schema.registerDictionary Schema.imports, 'imports'
 
-Schema2.Import = new SimpleSchema
+Schema2.imports = new SimpleSchema
   creator:
     type: String
 
@@ -20,4 +20,4 @@ Schema2.Import = new SimpleSchema
 
   version: { type: Schema.Version }
 
-Schema.Import.attachSchema(Schema2.Import)
+Schema.imports.attachSchema(Schema2.imports)

@@ -1,11 +1,11 @@
 Meteor.startup ->
   resetDatabase()
-  if Schema.Merchant.find().count() is 0
+  if Schema.merchants.find().count() is 0
     creator = Accounts.createUser(email: 'lehaoson@gmail.com', password: '123456')
-    huynhChauId = Model.Merchant.Create { name: 'Huynh Chau', creator: creator }
-    Model.Merchant.Create { name: 'Euro Windows', creator: creator }
+    huynhChauId = Model.merchants.Create { name: 'Huynh Chau', creator: creator }
+    Model.merchants.Create { name: 'Euro Windows', creator: creator }
 
-    merchant = Model.Merchant.FindById huynhChauId
+    merchant = Model.merchants.FindById huynhChauId
     merchant.addBranch { name: 'Huynh Chau HA NOI', creator: creator }
     warehouse = merchant.addWarehouse { name: 'Kho Chính', creator: creator }
     seedProvidersFor merchant, creator
@@ -14,13 +14,13 @@ Meteor.startup ->
 
 resetDatabase = ->
   Meteor.users.remove({})
-  Schema.Merchant.remove({})
-  Schema.Warehouse.remove({})
-  Schema.Provider.remove({})
-  Schema.Skull.remove({})
-  Schema.Import.remove({})
-  Schema.Product.remove({})
-  Schema.ProductDetail.remove({})
+  Schema.merchants.remove({})
+  Schema.warehouses.remove({})
+  Schema.providers.remove({})
+  Schema.skulls.remove({})
+  Schema.imports.remove({})
+  Schema.products.remove({})
+  Schema.productDetails.remove({})
 
 seedAccountsFor = (merchant) ->
   merchant.addAccount
@@ -98,7 +98,7 @@ seedProductsFor = (merchant, creator, warehouse) ->
   importDetails.push
     product: pro
     importQuality: 100
-#    importPrice: 1200000
+    importPrice: 1200000
 
   imprt = merchant.import {
     creator: creator

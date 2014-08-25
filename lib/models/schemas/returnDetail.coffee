@@ -1,7 +1,7 @@
-Schema.ReturnDetail = new Meteor.Collection 'returnDetails'
-Schema.registerDictionary Schema.ReturnDetail, 'returnDetails'
+Schema.returnDetails = new Meteor.Collection 'returnDetails'
+Schema.registerDictionary Schema.returnDetails, 'returnDetails'
 
-Schema2.ReturnDetail  = new SimpleSchema
+Schema2.returnDetails  = new SimpleSchema
   order:
     type: String
 
@@ -32,4 +32,4 @@ Schema2.ReturnDetail  = new SimpleSchema
   updatedAt:
     type: Date
 
-Schema.ReturnDetail.attachSchema(Schema2.ReturnDetail)
+Schema.returnDetails.attachSchema(Schema2.returnDetails)
