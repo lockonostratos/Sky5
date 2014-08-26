@@ -1,0 +1,34 @@
+template(name="import")
+    .content
+        .content-heading
+            button.btn.btn-default(type='submit') Thêm Sản Phẩm
+            button.btn.btn-default(type='submit') Thêm Dòng Sản Phẩm
+            button.btn.btn-default(type='submit') Hoàn Tất
+        .content-sub-heading
+            .row
+                .col-lg-3
+                    .input-group
+                        span.input-group-addon Tìm kiếm Sản Phẩm:
+                        input.form-control(type='text')
+                .col-lg-2
+                    .input-group
+                        span.input-group-addon Số lượng:
+                        input.form-control.importQuality(type='text' value='0')
+                .col-lg-2
+                    .input-group
+                        span.input-group-addon Giá nhập:
+                        input.form-control.importPrice(type='text' value='0')
+                .col-lg-3
+                    .input-group
+                        span.input-group-addon Ngày Hết Hạn:
+                        input.form-control(type='text')
+                .col-lg-2
+                    button.btn.btn-default.save(type='submit') Lưu
+                    button.btn.btn-default.remove(type='submit') Xóa
+
+        .content-body
+            +reactiveTable(collection=importDetailCollection)
+
+        .content-footer footer
+
+

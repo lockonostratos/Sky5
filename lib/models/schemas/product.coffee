@@ -29,7 +29,13 @@ Schema2.products = new SimpleSchema
     type: Schema.ChildProduct
     optional: true
 
-  quality:
+  totalQuality:
+    type: Number
+
+  availableQuality:
+    type: Number
+
+  instockQuality:
     type: Number
 
   price:

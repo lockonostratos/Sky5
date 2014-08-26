@@ -23,33 +23,39 @@ Schema.add 'merchants', class Merchant
 
   addProduct: (option) ->
     option.merchant = @id
-    option.quality = 0
+    option.totalQuality = 0
+    option.availableQuality = 0
+    option.instockQuality = 0
     Schema.products.insert option
 
   #option: warehouse, creator, description
   #productDetails: product, importQuality, importPrice, provider?, exprire?
   import: (option, productDetails) ->
-    transaction = new System.Transaction ["productDetails", "imports"]
+    try
+      transaction = new System.Transaction ["productDetails", "imports"]
 
-    option.merchant = @id
-    option.systemTransaction = transaction.id
-    newImport = Schema.imports.insert option
+      option.merchant = @id
+      option.systemTransaction = transaction.id
+      newImport = Schema.imports.insert option
 
-    for productDetail in productDetails
-      product = Schema.products.findOne productDetail.product
-      if !product then transaction.rollBack(); return
+      for productDetail in productDetails
+        product = Schema.products.findOne productDetail.product
+        if !product then throw 'Không tìm thấy Product'
 
-      productDetail.import = newImport
-      productDetail.merchant = @id
-      productDetail.warehouse = option.warehouse
-      productDetail.creator = option.creator
-      productDetail.availableQuality = productDetail.importQuality
-      productDetail.instockQuality = productDetail.importQuality
-      productDetail.systemTransaction = transaction.id
 
-      Schema.productDetails.insert productDetail, (error, result) ->
-        if error then transaction.rollBack(); return
+        productDetail.import = newImport
+        productDetail.merchant = @id
+        productDetail.warehouse = option.warehouse
+        productDetail.creator = option.creator
+        productDetail.availableQuality = productDetail.importQuality
+        productDetail.instockQuality = productDetail.importQuality
+        productDetail.systemTransaction = transaction.id
 
+        Schema.productDetails.insert productDetail, (error, result) ->
+          if error then throw 'Sai thông tin sản phẩm'
+    catch e
+      transaction.rollBack()
+      console.log e
       #@updateProductQualities productDetail
 
 
