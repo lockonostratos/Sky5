@@ -1,0 +1,80 @@
+<!-- Input field for a search -->
+<template name="esInput">
+    <input type="text" id="{{id}}" placeholder="{{placeholder}}" class="{{classes}}" />
+</template>
+
+<!-- Loop through the search results -->
+<template name="esEach">
+    {{#each elasticSearchDoc}}
+        {{> UI.contentBlock this }}
+    {{/each}}
+</template>
+
+<!-- Is currently being searched -->
+<template name="ifEsIsSearching">
+    {{#if isSearching}}
+        {{> UI.contentBlock}}
+    {{else}}
+        {{#if UI.elseBlock}}
+            {{> UI.elseBlock}}
+        {{/if}}
+    {{/if}}
+</template>
+
+<!-- Has not found any results -->
+<template name="ifEsHasNoResults">
+    {{#if hasNoResults}}
+        {{> UI.contentBlock}}
+    {{else}}
+        {{#if UI.elseBlock}}
+            {{> UI.elseBlock}}
+        {{/if}}
+    {{/if}}
+</template>
+
+<!-- Load more button -->
+<template name="esLoadMoreButton">
+    {{#if hasMoreResults}}
+        <button id="{{id}}" class="{{classes}}">{{content}}</button>
+    {{/if}}
+</template>
+
+<!-- Fully self working autosuggest -->
+<template name="esAutosuggest">
+    <div class="es-autosuggest-wrapper" data-id="{{id}}" data-index="{{index}}"> 
+        <div class="selected values">
+            {{#each selectedValue}}
+                <span class="value">
+                    <a href="#" class="remove">X</a>
+                    {{value}}
+                </span>
+            {{/each}}
+        </div>
+        
+        {{> esInput index=index id=id placeholder=placeholder timeout=timeout classes=classes }}
+
+        <ul class="suggestions {{isHidden}}">
+            {{#ifEsHasNoResults index=index id=id }}
+                <li>No results found!</li>
+            {{else}}
+                {{#esEach index=index id=id options=options }}
+                    {{#if ../renderSuggestion}}
+                        {{#with snippets .. ../.. }}
+                            <li class="{{selected}}">
+                                {{> ../../../renderSuggestion this }}
+                            </li>
+                        {{/with}}
+                    {{else}}
+                        {{#with snippets .. ../.. }}
+                            <li class="{{selected}}">
+                                <a href="#" class="suggestion">
+                                    {{pre}}<span class="found">{{found}}</span>{{post}}
+                                </a>
+                            </li>
+                        {{/with}}
+                    {{/if}}
+                {{/esEach}}
+            {{/ifEsHasNoResults}}
+        </ul>
+    </div>
+</template>

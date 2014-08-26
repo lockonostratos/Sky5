@@ -1,0 +1,40 @@
+{
+  "format": "unipackage-slice-pre1",
+  "packageVariables": [
+    {
+      "name": "EasySearch",
+      "export": true
+    }
+  ],
+  "uses": [
+    {
+      "package": "underscore"
+    },
+    {
+      "package": "livedata"
+    },
+    {
+      "package": "mongo-livedata"
+    },
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "standard-app-packages"
+    },
+    {
+      "package": "less"
+    }
+  ],
+  "node_modules": "npm/node_modules",
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "os/packages/easy-search.js",
+      "length": 65012,
+      "offset": 0,
+      "servePath": "/packages/easy-search.js",
+      "sourceMap": "os/packages/easy-search.js.map"
+    }
+  ]
+}

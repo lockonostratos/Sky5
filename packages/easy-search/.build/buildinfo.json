@@ -1,0 +1,70 @@
+{
+  "builtBy": "meteor/10",
+  "sliceDependencies": {
+    "browser.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\easy-search\\package.js": "cdaad82833c8559dc266690af30d70269c3d9f45",
+        "D:\\Projects\\Sky5\\packages\\easy-search\\lib\\easy-search-client.js": "f7d6085cfe3a6ca00373ba97b232e731d6a406ef",
+        "D:\\Projects\\Sky5\\packages\\easy-search\\lib\\components\\easy-search-components.html": "25ebc665d1c8d60f32b09a3c1e6ec4a9ed5c9ad7",
+        "D:\\Projects\\Sky5\\packages\\easy-search\\lib\\components\\easy-search-components.js": "5bd9c7506bbefd9db8e4b99d4bde36d137e947ca",
+        "D:\\Projects\\Sky5\\packages\\easy-search\\lib\\components\\easy-search-components.less": "0162d37c5cb291123f497d8f4d4ba1333eb9cca1",
+        "D:\\Projects\\Sky5\\packages\\easy-search\\lib\\easy-search-convenience.js": "2cf12b9e254a8dfa713c6ced0af21c012891e943"
+      },
+      "directories": []
+    },
+    "os.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\easy-search\\package.js": "cdaad82833c8559dc266690af30d70269c3d9f45",
+        "D:\\Projects\\Sky5\\packages\\easy-search\\.npm\\package\\npm-shrinkwrap.json": "65e59318ce88af4de65bfc46f6cf5ba5de126d02",
+        "D:\\Projects\\Sky5\\packages\\easy-search\\lib\\easy-search-server.js": "d5b99da9dd0eb030b2a5b8ea9d94bb9dafa10c33",
+        "D:\\Projects\\Sky5\\packages\\easy-search\\lib\\easy-search-convenience.js": "2cf12b9e254a8dfa713c6ced0af21c012891e943"
+      },
+      "directories": []
+    },
+    "tests.browser.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\easy-search\\package.js": "cdaad82833c8559dc266690af30d70269c3d9f45",
+        "D:\\Projects\\Sky5\\packages\\easy-search\\tests\\easy-search-tests.js": "d29664efec89602704ec5a2a31697a48bc3cd5a7"
+      },
+      "directories": []
+    },
+    "tests.os.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\easy-search\\package.js": "cdaad82833c8559dc266690af30d70269c3d9f45",
+        "D:\\Projects\\Sky5\\packages\\easy-search\\.npm\\package\\npm-shrinkwrap.json": "65e59318ce88af4de65bfc46f6cf5ba5de126d02",
+        "D:\\Projects\\Sky5\\packages\\easy-search\\tests\\easy-search-tests.js": "d29664efec89602704ec5a2a31697a48bc3cd5a7"
+      },
+      "directories": []
+    }
+  },
+  "pluginDependencies": {
+    "files": {
+      "D:\\Projects\\Sky5\\packages\\easy-search\\package.js": "cdaad82833c8559dc266690af30d70269c3d9f45"
+    },
+    "directories": []
+  },
+  "pluginProviderPackages": {
+    "easy-search": "D:\\Projects\\Sky5\\packages\\easy-search",
+    "underscore": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\underscore\\385ecbfa96",
+    "livedata": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\livedata\\23a2b54017",
+    "mongo-livedata": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\mongo-livedata\\55d2226ca1",
+    "meteor": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\meteor\\9b5817e6fc",
+    "standard-app-packages": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\standard-app-packages\\af76bf6136",
+    "less": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\less\\8fa2fb9f39",
+    "templating": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\templating\\87e177c246",
+    "ui": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\ui\\a38db31163",
+    "jquery": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\jquery\\66913f6876",
+    "webapp": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\webapp\\e7a71ea423",
+    "logging": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\logging\\4a1ff80ee5",
+    "deps": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\deps\\31b1a023c3",
+    "session": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\session\\eb9fcf4948",
+    "spacebars": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\spacebars\\e6a01917db",
+    "check": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\check\\c78ee6b80e",
+    "random": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\random\\044885b58f",
+    "ejson": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\ejson\\630cb4225c",
+    "htmljs": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\htmljs\\f4a0c2a411",
+    "blaze": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\blaze\\6abc4392e0",
+    "tinytest": "C:\\Users\\cloud.Administrator\\AppData\\Local\\.meteor\\packages\\tinytest\\7121f0b2a7"
+  },
+  "source": "D:\\Projects\\Sky5\\packages\\easy-search"
+}

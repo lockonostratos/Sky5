@@ -1,0 +1,26 @@
+{
+  "format": "unipackage-slice-pre1",
+  "noExports": true,
+  "packageVariables": [],
+  "uses": [
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "tinytest"
+    },
+    {
+      "package": "easy-search"
+    }
+  ],
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "tests.browser/packages/easy-searchtests.js",
+      "length": 16625,
+      "offset": 0,
+      "servePath": "/packages/easy-search:tests.js",
+      "sourceMap": "tests.browser/packages/easy-searchtests.js.map"
+    }
+  ]
+}
