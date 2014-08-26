@@ -19,6 +19,7 @@ resetDatabase = ->
   Schema.providers.remove({})
   Schema.skulls.remove({})
   Schema.imports.remove({})
+  Schema.importDetails.remove({})
   Schema.products.remove({})
   Schema.productDetails.remove({})
 
@@ -109,4 +110,25 @@ seedProductsFor = (merchant, creator, warehouse) ->
     creator: creator
     description: "Nhập tồn đầu kỳ 2014"
     warehouse: warehouse
+    finish: true
   }, importDetails
+
+  tempImprt = Schema.imports.insert
+    creator: creator
+    description: "Nhập tạm 2014"
+    merchant: merchant.id
+    warehouse: warehouse
+    finish: false
+
+  tempPro = Schema.products.findOne({})
+
+  Schema.importDetails.insert
+    import: tempImprt
+    product: tempPro._id
+    importQuality: 20
+    importPrice: 5000
+
+
+
+
+

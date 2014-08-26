@@ -40,7 +40,7 @@ Schema.add 'merchants', class Merchant
 
       for productDetail in productDetails
         product = Schema.products.findOne productDetail.product
-        if !product then throw 'Không tìm thấy Prduct'
+        if !product then throw 'Không tìm thấy Product'
 
 
         productDetail.import = newImport

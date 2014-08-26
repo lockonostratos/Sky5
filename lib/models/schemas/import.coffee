@@ -11,10 +11,13 @@ Schema2.imports = new SimpleSchema
   description:
     type: String
 
+  finish:
+    type: Boolean
+
   systemTransaction:
     type: String
     optional: true
 
+
   version: { type: Schema.Version }
 
-Schema.add 'imports'
