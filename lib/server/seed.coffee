@@ -1,7 +1,8 @@
 Meteor.startup ->
+  return
   resetDatabase()
   if Schema.merchants.find().count() is 0
-    creator = Accounts.createUser(email: 'lehaoson@gmail.com', password: '123456')
+    creator = Accounts.createUser(email: 'lehaoson@gmail.com', password: 'Ultimate5')
     huynhChauId = Merchant.create { name: 'Huynh Chau', creator: creator }
     Merchant.create { name: 'Euro Windows', creator: creator }
 

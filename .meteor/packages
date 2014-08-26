@@ -10,6 +10,7 @@ less
 less-bootstrap-3
 coffeescript
 accounts-password
+accounts-entry
 accounts-ui
 iron-router
 iron-router-active
@@ -19,3 +20,5 @@ font-awesome-4-less
 collection2
 collection-hooks
 easy-search
+reactive-table
+select2
