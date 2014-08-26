@@ -100,6 +100,11 @@ seedProductsFor = (merchant, creator, warehouse) ->
     importQuality: 100
     importPrice: 1200000
 
+  importDetails.push
+    product: pro
+    importQuality: 50
+    importPrice: 1000000
+
   imprt = merchant.import {
     creator: creator
     description: "Nhập tồn đầu kỳ 2014"
