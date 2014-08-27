@@ -5,8 +5,12 @@ template(name="layout")
 				a(href="/" ) Enterprise #{collapse} ??
 				a.collapse-toggle: i.fa.fa-list
 			+navigation
-		.wrapper
-			.left-side
-				+sidebar
-			.right-side()
-				+yield
+		if currentUser
+			.wrapper
+				.left-side
+					+sidebar
+				.right-side()
+					+yield
+		else
+			.wrapper
+				.left-side: +yield
