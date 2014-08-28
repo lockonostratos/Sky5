@@ -1,15 +1,15 @@
 template(name="warehouse")
 	.page-header
 		h1 Warehouse <small>Page</small>
+		.sl2(style="margin-left: 10px; width: 250px;")
+		.metro.clearfix
+			.tiles
+				.tile
+				.tile.double.double-vertical
+				.tile.double
+				.tile.selected
+				.tile.triple.double-vertical
 
-		+esInput(index="products" id="search" placeholder="tìm sản phẩm")
-		+ifEsIsSearching(index="products" id="search" logic="OR")
-			div Searching...
-
-		+esEach(index="products" id="search")
-			+productSearch
-
-		.sl2(style="width: 250px;")
 
 template(name="productSearch")
 	h4 #{name} (#{productCode})

@@ -1,0 +1,8 @@
+{
+    "name": "metro-ui",
+    "description": "Metro UI CSS a set of styles to create a site with an interface similar to Windows 8.",
+    "homepage": "https://github.com/lockonostratos/meteor-metro-ui",
+    "author": "Cloud Le",
+    "version": "2.0",
+    "git": "https://github.com/lockonostratos/meteor-metro-ui.git"
+}

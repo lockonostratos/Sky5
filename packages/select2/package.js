@@ -6,7 +6,8 @@ Package.on_use(function (api) {
     api.use("jquery", "client");
 
     api.add_files([
-        "lib/select2/select2.js"
+        "lib/select2/select2.js",
+        "lib/select2/select2_locale_vi.js"
     ], "client", {bare: true});
 
     api.add_files([

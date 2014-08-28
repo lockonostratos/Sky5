@@ -7,7 +7,6 @@ _.extend Template.warehouse,
   rendered: ->
     $(@find '.sl2').select2
       placeholder: 'chọn sản phẩm'
-#      data: {results: Template.warehouse.productList, text: 'name'}
       query: (query) -> query.callback
         results: _.filter Template.warehouse.productList, (item) ->
           item.name.indexOf(query.term) > -1 || item.productCode.indexOf(query.term) > -1
