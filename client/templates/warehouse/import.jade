@@ -1,34 +1,60 @@
 template(name="import")
     .content
         .content-heading
-            button.btn.btn-default(type='submit') Thêm Sản Phẩm
-            button.btn.btn-default(type='submit') Thêm Dòng Sản Phẩm
-            button.btn.btn-default(type='submit') Hoàn Tất
+            if showCreateImport
+                +createImport
+            if showAddImportDetail
+                +addImportDetail
         .content-sub-heading
-            .row
-                .col-lg-3
-                    .input-group
-                        span.input-group-addon Tìm kiếm Sản Phẩm:
-                        input.form-control(type='text')
-                .col-lg-2
-                    .input-group
-                        span.input-group-addon Số lượng:
-                        input.form-control.importQuality(type='text' value='0')
-                .col-lg-2
-                    .input-group
-                        span.input-group-addon Giá nhập:
-                        input.form-control.importPrice(type='text' value='0')
-                .col-lg-3
-                    .input-group
-                        span.input-group-addon Ngày Hết Hạn:
-                        input.form-control(type='text')
-                .col-lg-2
-                    button.btn.btn-default.save(type='submit') Lưu
-                    button.btn.btn-default.remove(type='submit') Xóa
+            +addImportDetails
 
         .content-body
-            +reactiveTable(collection=importDetailCollection)
+            if showAllImport
+                +reactiveTable(collection=importCollection)
+            if showImportDetail
+                +reactiveTable(collection=importDetailCollection)
 
         .content-footer footer
 
 
+
+template(name='createImport')
+    .row
+        .col-lg-3
+            .input-group
+                span.input-group-addon Decription:
+                input.form-control.createImport-description(type='text')
+        .col-lg-2
+            button.btn.btn-default.createImport(type='submit') Tạo
+
+template(name='addImportDetail')
+    button.btn.btn-default.create-import(type='submit') Loại Mới
+    button.btn.btn-default.add-import-detail(type='submit') Thêm SP Nhập Kho
+
+
+template(name='addImportDetails')
+    .row
+        .col-lg-3
+            .input-group
+                span.input-group-addon Tên Sản Phẩm:
+                input.form-control(type='text')
+        .col-lg-2
+            .input-group
+                span.input-group-addon Số lượng:
+                input.form-control.importQuality(type='text' value='0')
+        .col-lg-2
+            .input-group
+                span.input-group-addon Giá nhập:
+                input.form-control.importPrice(type='text' value='0')
+        .col-lg-3
+            .input-group
+                span.input-group-addon Ngày Hết Hạn:
+                input.form-control(type='text')
+        .col-lg-2
+            button.btn.btn-default.save(type='submit') Tạo
+            button.btn.btn-default.remove(type='submit') Xóa
+            button.btn.btn-default.finish(type='submit') Hoàn Tất
+
+
+template(name='removeItem')
+    button.btn.btn-default.removeItem(type='submit') Xóa
