@@ -1,18 +1,32 @@
 template(name="import")
     .content
         .content-heading
+            button.btn.btn-default.create-import(type='submit') Xem Phiếu Nhập Hàng
+            button.btn.btn-default.add-import-detail(type='submit') Xem Sản Phẩm Của Phiếu
+            button.btn.btn-default.create-product(type='submit') Thêm Dòng Sản Phẩm Mới
+
+        .content-sub-heading
             if showCreateImport
                 +createImport
+            if showCreateProduct
+                +createProduct
             if showAddImportDetail
                 +addImportDetail
-        .content-sub-heading
-            +addImportDetails
 
         .content-body
-            if showAllImport
-                +reactiveTable(collection=importCollection)
-            if showImportDetail
-                +reactiveTable(collection=importDetailCollection)
+            if showCreateImport
+                h2 #{showCurrentImport._id}
+                |Xem Import
+                +showImport
+            if showCreateProduct
+                |Xem Product
+                +showProduct
+            if showAddImportDetail
+                if showCurrentImport
+                    |Xem ImportDetail
+                    +showCurrentImportDetail
+                else
+                    h2 Chưa Chọn Import
 
         .content-footer footer
 
@@ -27,17 +41,31 @@ template(name='createImport')
         .col-lg-2
             button.btn.btn-default.createImport(type='submit') Tạo
 
-template(name='addImportDetail')
-    button.btn.btn-default.create-import(type='submit') Loại Mới
-    button.btn.btn-default.add-import-detail(type='submit') Thêm SP Nhập Kho
-
-
-template(name='addImportDetails')
+template(name='createProduct')
     .row
         .col-lg-3
             .input-group
                 span.input-group-addon Tên Sản Phẩm:
-                input.form-control(type='text')
+                input.form-control.createProduct-name(type='text')
+        .col-lg-2
+            .input-group
+                span.input-group-addon ProductCode:
+                input.form-control.createProduct-productCode(type='text')
+        .col-lg-2
+            .input-group
+                span.input-group-addon Skull:
+                input.form-control.createProduct-skull(type='text')
+        .col-lg-2
+            .input-group
+                span.input-group-addon Giá Bán:
+                input.form-control.createProduct-price(type='text')
+        .col-lg-2
+            button.btn.btn-default.createProduct(type='submit') Tạo
+
+template(name='addImportDetail')
+    .row
+        .col-lg-2
+            .sl2(style="width: 250px;")
         .col-lg-2
             .input-group
                 span.input-group-addon Số lượng:
@@ -50,11 +78,17 @@ template(name='addImportDetails')
             .input-group
                 span.input-group-addon Ngày Hết Hạn:
                 input.form-control(type='text')
-        .col-lg-2
-            button.btn.btn-default.save(type='submit') Tạo
-            button.btn.btn-default.remove(type='submit') Xóa
-            button.btn.btn-default.finish(type='submit') Hoàn Tất
+        .col-lg-3
+            button.btn.btn-default.addImportDetail(type='submit') Create
+            button.btn.btn-default.resetImportDetail(type='submit') Reset
+            button.btn.btn-default.finish(type='submit') Finish
 
 
-template(name='removeItem')
-    button.btn.btn-default.removeItem(type='submit') Xóa
+template(name='showImport')
+    +reactiveTable(collection=importCollection)
+template(name='showProduct')
+    +reactiveTable(collection=productCollection)
+template(name='showCurrentImportDetail')
+    +reactiveTable(collection=importDetailCollection)
+
+

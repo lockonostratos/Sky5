@@ -12,8 +12,8 @@ Meteor.startup ->
       Session.set "currentWarehouse", Schema.warehouses.findOne({merchant: root.currentMerchant._id})
       root.currentWarehouse = Session.get "currentWarehouse"
 
-    if root.currentWarehouse
-      Session.set "currentImport", Schema.imports.findOne {merchant: root.currentMerchant._id, warehouse: root.currentWarehouse._id, finish: false}
-      root.currentImport = Session.get "currentImport"
-
-    if root.currentImport then Session.set 'showCreateImport', false else Session.set 'showCreateImport', true
+#    if root.currentWarehouse
+#      Session.set "currentImport", Schema.imports.findOne {merchant: root.currentMerchant._id, warehouse: root.currentWarehouse._id, finish: false}
+#      root.currentImport = Session.get "currentImport"
+#
+#    Session.set 'showCreateImport', true
