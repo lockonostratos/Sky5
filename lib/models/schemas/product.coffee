@@ -44,4 +44,3 @@ Schema2.products = new SimpleSchema
   version: { type: Schema.Version }
 
 Schema.add 'products'
-console.log Model.merchants

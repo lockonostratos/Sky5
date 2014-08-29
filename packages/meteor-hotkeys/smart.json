@@ -1,0 +1,8 @@
+{
+    "name": "meteor-hotkeys",
+    "description": "Meteor-Hotkeys lets you watch for keyboard events anywhere in your code supporting almost any key combination.",
+    "homepage": "https://github.com/lockonostratos/meteor-hotkeys",
+    "author": "Cloud Le",
+    "version": "1.0",
+    "git": "https://github.com/lockonostratos/meteor-hotkeys.git"
+}

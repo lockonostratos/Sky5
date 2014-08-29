@@ -12,6 +12,9 @@ Package.on_use(function (api) {
     api.add_files([
         "lib/metro-ui/iconFont.min.css",
         "lib/metro-ui/metro-bootstrap.min.css",
-        "lib/metro-ui/metro-bootstrap-responsive.min.css"
+        "lib/metro-ui/metro-bootstrap-responsive.min.css",
+        "lib/fonts/metroSysIcons.svg",
+        "lib/fonts/metroSysIcons.woff",
+        "lib/fonts/metroSysIcons.ttf"
     ], "client");
 });

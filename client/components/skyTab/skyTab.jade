@@ -1,0 +1,9 @@
+template(name="skyTab")
+	ul.sky-tab
+		each option.tabs
+			li(class="#{class}")
+				a(href="#") #{caption}
+				span.fa.fa-trash-o
+		li.new-button
+			a(href="#") &nbsp;
+			span.fa.fa-plus
