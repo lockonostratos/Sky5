@@ -3,9 +3,26 @@ Deps.autorun ->
 
 _.extend Template.warehouse,
   currentProduct: {}
+  tabOption:
+    tabs: [{caption: "tab 1", class: "active"}, {caption: "tab 2"}, {caption: "tab 3"}]
+    createAction: =>
+      Template.warehouse.tabOption.tabs.push { caption: "new" }
+      console.log Template.warehouse.tabOption.tabs
+
+  selectNewProduct: ->
+    Template.warehouse.ui.selectBox.select2("open")
+  addNewProduct: ->
+    console.log 'adding new product..'
+
   formatSearch: (item) -> "#{item.name} [#{item.skulls}]"
+
   rendered: ->
-    $(@find '.sl2').select2
+    Template.warehouse.ui = {}
+    Template.warehouse.ui.selectBox = $(@find '.sl2')
+    $(document).bind 'keyup', 'return', Template.warehouse.selectNewProduct
+    Template.warehouse.ui.selectBox.bind 'keyup', 'ctrl+return', Template.warehouse.addNewProduct
+
+    Template.warehouse.ui.selectBox.select2
       placeholder: 'chọn sản phẩm'
       query: (query) -> query.callback
         results: _.filter Template.warehouse.productList, (item) ->
@@ -18,4 +35,9 @@ _.extend Template.warehouse,
       formatResult: Template.warehouse.formatSearch
     .on "change", (e) ->
       Template.warehouse.currentProduct = e.added
-    $(@find '.sl2').select2 "val", Template.warehouse.currentProduct
+      console.log e.val
+    Template.warehouse.ui.selectBox.select2 "val", Template.warehouse.currentProduct
+
+  destroyed: ->
+    $(document).unbind 'keyup', Template.warehouse.selectNewProduct
+    $(document).unbind 'keyup', Template.warehouse.addNewProduct
