@@ -4,11 +4,17 @@ Deps.autorun ->
 _.extend Template.warehouse,
   currentProduct: {}
   tabOption:
+    name: "Default"
     tabs: [{caption: "tab 1", class: "active"}, {caption: "tab 2"}, {caption: "tab 3"}]
     createAction: =>
       Template.warehouse.tabOption.tabs.push { caption: "new" }
       console.log Template.warehouse.tabOption.tabs
-
+  tabOption2:
+    name: "Noo"
+    tabs: [{caption: "tab 1", class: "active"}]
+    createAction: =>
+      Template.warehouse.tabOption.tabs.push { caption: "new" }
+      console.log Template.warehouse.tabOption.tabs
   selectNewProduct: ->
     Template.warehouse.ui.selectBox.select2("open")
   addNewProduct: ->

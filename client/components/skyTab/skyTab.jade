@@ -1,9 +1,13 @@
 template(name="skyTab")
+	h1 #{hTest}
 	ul.sky-tab
-		each option.tabs
-			li(class="#{class}")
-				a(href="#") #{caption}
-				span.fa.fa-trash-o
+		each getTabs
+			+childSkyTab
 		li.new-button
 			a(href="#") &nbsp;
 			span.fa.fa-plus
+
+template(name="childSkyTab")
+	li(class="#{class}")
+		a(href="#") #{caption}
+		span.fa.fa-trash-o

@@ -1,4 +1,10 @@
 root = global ? window
+root.food = "apple"
+root.foodDep = new Deps.Dependency
+root.getFood = -> root.foodDep.depend(); root.food
+root.setFood = (val) ->
+  foodDep.changed() if val isnt root.food
+  root.food = val
 
 Meteor.startup ->
   Deps.autorun ->
@@ -17,3 +23,5 @@ Meteor.startup ->
 #      root.currentImport = Session.get "currentImport"
 #
 #    Session.set 'showCreateImport', true
+  Deps.autorun ->
+    console.log "Your food is #{root.getFood()}"
