@@ -1,70 +1,39 @@
 root = global ? window
 Deps.autorun ->
-  Template.import.productList = Schema.products.find({}).fetch()
+  Template.addImportDetail.productList = Schema.products.find({}).fetch()
 
+#---- Import --------------------------------------------------------------->
 _.extend Template.import,
   showCreateImport: -> Session.get 'showCreateImport'
-  showCreateProduct: -> Session.get 'showCreateProduct'
   showAddImportDetail: -> Session.get 'showAddImportDetail'
-  showCurrentImport: -> Session.get 'currentImport'
+  showCreateProduct: -> Session.get 'showCreateProduct'
+  showOrder: -> Session.get 'showOrder'
 
-  currentProduct: {}
-  formatSearch: (item) -> "#{item.name} [#{item.skulls}]"
+  showCurrentImport: -> Session.get 'currentImport'
+  showCurrentOrder: -> Session.get 'currentOrder'
+
+
+
 
   events:
     'click .create-import':     -> change('showCreateImport')
-    'click .create-product':    -> change('showCreateProduct')
     'click .add-import-detail': -> change('showAddImportDetail')
+    'click .create-product':    -> change('showCreateProduct')
+    'click .sale-product': -> change('showOrder')
 
-    'click .createImport':  (event, template)-> insertImport(template)
-    'click .createProduct': (event, template)-> insertProduct(template)
-    'click .addImportDetail':   (event, template)-> insertImportDetail(template)
-
-
-    'click .resetImportDetail': (event, template)-> resetImportDetail(template)
-    'click .finish': (event, template)->
-      insertImportDetails(template)
-      change('showCreateImport')
-      Session.set 'currentImport'
-#    'click .removeItemTable': -> Schema.importDetails.remove(@_id)
-
-
-#------------------------------------------------------------------------------------>
-_.extend Template.addImportDetail,
-  temp: null
-  rendered: ->
-    $(@find '.sl2').select2
-      placeholder: 'chọn sản phẩm'
-#      data: {results: Template.addImportDetail.productList, text: 'name'}
-      query: (query) -> query.callback
-        results: _.filter Template.import.productList, (item) ->
-          item.name.indexOf(query.term) > -1 || item.productCode.indexOf(query.term) > -1
-        text: 'name'
-      initSelection: (element, callback) -> callback(Template.import.currentProduct);
-
-      id: '_id'
-      formatSelection: Template.import.formatSearch
-      formatResult: Template.import.formatSearch
-    .on "change", (e) ->
-      Template.import.currentProduct = e.added
-    $(@find '.sl2').select2 "val", {_id: Template.import.currentProduct.id}
-
-
-#----------------Events&&Option-ImportTable-------------------------------------------------------------->
-_.extend Template.showImport,
+# ---- showCreateImport  -------------------------------------------------------------->
+_.extend Template.createImport,
   importCollection: Schema.imports.find({finish: false})
   optionImport: -> return {}
   events:
+    'click .createImport':  (event, template)-> insertImport(template)
     'dblclick .reactive-table tr': ->
+      console.log @
       Session.set 'currentImport', @
       change('showAddImportDetail')
 
-#Events && Option - ProductTable                -------------------------------------------------->
-_.extend Template.showProduct,
-  productCollection: Schema.products.find({})
-
-#Events && Option - ImportDetailTable         ------------------------------------------------------->
-_.extend Template.showCurrentImportDetail,
+# ---- showAddImportDetail -------------------------------------------------------------------------------->
+_.extend Template.addImportDetail,
   importDetailCollection: -> Schema.importDetails.find({import: (Session.get 'currentImport')._id})
   optionImportDetail: -> return {
     useFontAwesome: true
@@ -74,6 +43,60 @@ _.extend Template.showCurrentImportDetail,
       { key: '', label: 'Xóa', tmpl: Template.removeItem }
     ]
   }
+  currentProduct: {}
+  formatSearch: (item) -> "#{item.name} [#{item.skulls}]"
+
+  events:
+    'click .addImportDetail':   (event, template)-> insertImportDetail(template)
+
+    'click .finish': (event, template)->
+      insertImportDetails(template)
+      change('showCreateImport')
+      Session.set 'currentImport'
+
+    'dblclick .reactive-table tr': ->
+      Template.addImportDetail.currentProduct = Schema.products.findOne(@product)
+      Template.addImportDetail.ui.selectBox.select2 "val", Template.addImportDetail.currentProduct
+#    'click .resetImportDetail': (event, template)-> resetImportDetail(template)
+#    'click .removeItemTable': -> Schema.importDetails.remove(@_id)
+
+  rendered: ->
+    Template.addImportDetail.ui = {}
+    Template.addImportDetail.ui.selectBox = $(@find '.sl2')
+    $(@find '.sl2').select2
+      placeholder: 'chọn sản phẩm'
+      query: (query) -> query.callback
+        results: _.filter Template.addImportDetail.productList, (item) ->
+          item.name.indexOf(query.term) > -1 || item.productCode.indexOf(query.term) > -1
+        text: 'name'
+      initSelection: (element, callback) -> callback(Template.addImportDetail.currentProduct)
+      allowClear: true
+
+      id: '_id'
+      formatSelection: Template.addImportDetail.formatSearch
+      formatResult: Template.addImportDetail.formatSearch
+    .on "change", (e) ->
+      Template.addImportDetail.currentProduct = e.added
+    $(@find '.sl2').select2 "val", Template.addImportDetail.currentProduct
+
+# ----Show-Product-------------------------------------------------------------------->
+_.extend Template.createProduct, productCollection: Schema.products.find({})
+
+
+# ----Show-Order--------------------------------------------------------------------->
+_.extend Template.createOrder,
+  orderCollection: Schema.orders.find({})
+  orderDetailCollection: Schema.orderDetails.find({})
+  events:
+    'click .createOrder': -> console.log 'order'
+
+
+
+
+
+
+    'click .createOrderDetail': -> console.log 'orderDetail'
+
 
 
 
@@ -82,7 +105,6 @@ _.extend Template.showCurrentImportDetail,
 resetImportDetail = (template)->
   template.find(".importQuality").value = 0
   template.find(".importPrice").value = 0
-
 
 insertImport = (template)->
   if template.find(".createImport-description").value
@@ -114,7 +136,7 @@ insertImportDetail = (template)->
   if chekValueImportDetail(template)
     Schema.importDetails.insert
       import: (Session.get 'currentImport')._id
-      product: Template.import.currentProduct._id
+      product: Template.addImportDetail.currentProduct._id
       importQuality: template.find(".importQuality").value
       importPrice: template.find(".importPrice").value
   else
@@ -124,25 +146,6 @@ insertImportDetails = ->
   currentImport = Import.findOne(Session.get('currentImport')._id)
   currentImport.addImportDetails()
 
-change = (val)->
-  if val == 'showCreateImport'
-    if Session.get 'showCreateImport' then val = false else val = true
-    Session.set 'showCreateImport', val
-    Session.set 'showCreateProduct', false
-    Session.set 'showAddImportDetail', false
-
-  if val == 'showCreateProduct'
-    if Session.get 'showCreateProduct' then val = false else val = true
-    Session.set 'showCreateImport', false
-    Session.set 'showCreateProduct', val
-    Session.set 'showAddImportDetail', false
-
-  if val == 'showAddImportDetail'
-    if Session.get 'showAddImportDetail' then val = false else val = true
-    Session.set 'showCreateImport', false
-    Session.set 'showCreateProduct', false
-    Session.set 'showAddImportDetail', val
-
 checkValueProduct = (template)->
  if template.find(".createProduct-name").value.length > 0 and
     template.find(".createProduct-productCode").value.length > 0 and
@@ -151,4 +154,34 @@ checkValueProduct = (template)->
    return true
 
 chekValueImportDetail = (template)->
-  if template.find(".importQuality").value > 0 and template.find(".importPrice").value > 0 then return true
+  if template.find(".importQuality").value > 0 and template.find(".importPrice").value > 0
+    return true
+
+change = (val)->
+  if val == 'showCreateImport'
+    if Session.get 'showCreateImport' then val = false else val = true
+    Session.set 'showCreateImport', val
+    Session.set 'showCreateProduct', false
+    Session.set 'showAddImportDetail', false
+    Session.set 'showOrder', false
+
+  if val == 'showCreateProduct'
+    if Session.get 'showCreateProduct' then val = false else val = true
+    Session.set 'showCreateImport', false
+    Session.set 'showCreateProduct', val
+    Session.set 'showAddImportDetail', false
+    Session.set 'showOrder', false
+
+  if val == 'showAddImportDetail'
+    if Session.get 'showAddImportDetail' then val = false else val = true
+    Session.set 'showCreateImport', false
+    Session.set 'showCreateProduct', false
+    Session.set 'showAddImportDetail', val
+    Session.set 'showSaleProduct', false
+
+  if val == 'showOrder'
+    if Session.get 'showOrder' then val = false else val = true
+    Session.set 'showCreateImport', false
+    Session.set 'showCreateProduct', false
+    Session.set 'showAddImportDetail', false
+    Session.set 'showOrder', val
