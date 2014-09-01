@@ -1,0 +1,18 @@
+Nhap Kho 					[Ok]
+Product REST				[reCheck]
+Huy nhap kho				[]
+Chuyen kho					[]
+Kiem khi					  	[]
+Ban hang 					[70%]
+Tra hang 					[]
+Giao hang					[]
+Bao cao						[]
+Khach hang REST			[]
+Nhan vien REST			[]
+Kho REST					[]
+
+System
+finish layout parts			[...]
+Phan quyen					[]
+Options						[...]
+Aside widget				[Done]
