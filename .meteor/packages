@@ -17,9 +17,10 @@ iron-router-active
 iron-router-progress
 jade
 font-awesome-4-less
+metro-ui2
 collection2
 collection-hooks
 reactive-table
 select2
-metro-ui
-meteor-hotkeys
+jquery-hotkeys
+sky

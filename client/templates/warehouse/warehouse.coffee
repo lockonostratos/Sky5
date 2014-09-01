@@ -32,7 +32,10 @@ _.extend Template.warehouse,
       placeholder: 'chọn sản phẩm'
       query: (query) -> query.callback
         results: _.filter Template.warehouse.productList, (item) ->
-          item.name.indexOf(query.term) > -1 || item.productCode.indexOf(query.term) > -1
+          unsignedTerm = Sky.helpers.removeVnSigns query.term
+          unsignedName = Sky.helpers.removeVnSigns item.name
+
+          unsignedName.indexOf(unsignedTerm) > -1 || item.productCode.indexOf(unsignedTerm) > -1
         text: 'name'
       initSelection: (element, callback) -> callback(Template.warehouse.currentProduct);
 

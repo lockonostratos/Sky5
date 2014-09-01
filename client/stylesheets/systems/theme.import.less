@@ -3,12 +3,21 @@
 .makeColors(@pre: color, @i: length(@colors)) when (@i > 0){
   @color: escape(extract(@colors, @i));
   &.@{pre}-@{color}{
-    color: @@color;
+    color: @@color !important;
   }
   .makeColors(@pre, (@i - 1));
 }
 
+.makeBackgrounds(@pre: background, @i: length(@colors)) when (@i > 0){
+  @color: escape(extract(@colors, @i));
+  &.@{pre}-@{color}{
+    background-color: @@color !important;
+  }
+  .makeBackgrounds(@pre, (@i - 1));
+}
+
 .makeColors();
+.makeBackgrounds();
 
 @green: #393;
 @light-green: #1CBB9B;

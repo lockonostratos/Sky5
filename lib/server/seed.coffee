@@ -84,6 +84,7 @@ seedProductsFor = (merchant, creator, warehouse) ->
     { name: "Rimula R1", productCode: "123456789006", skulls: ["209L", "THÙNG"], price: 10287000 }
     { name: "Gadus S2 V100", productCode: "123456789007", skulls: ["180K", "THÙNG"], price: 18219000 }
     { name: "Tellus S2 M100", productCode: "123456789008", skulls: ["209L", "THÙNG"], price: 18219000 }
+    { name: "DẦU NHỚT VIỆT NAM M02", productCode: "123456789009", skulls: ["209L", "THÙNG"], price: 18219000 }
   ]
 
   importDetails = []
