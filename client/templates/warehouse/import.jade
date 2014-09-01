@@ -125,15 +125,18 @@ template(name='createOrder')
                     input.form-control.orderDetail-finalPrice(type='text')
             .col-lg-2
                 button.btn.btn-default.createOrderDetail(type='submit') Create
+                button.btn.btn-default.createOrderDetail(type='submit') Finish
 
     .content-body
         .row.order
-            h3 Order #{currentOrder}
+            h3 Order
             +reactiveTable(collection=orderCollection)
-
+        .row
+            h3 #{currentOrderDetails}
         .row.orderDetail
             h3 OrderDetail
             +reactiveTable(collection=orderDetailCollection)
+
 
 
 
