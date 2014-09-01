@@ -1,6 +1,7 @@
 root = global ? window
 Deps.autorun ->
   Template.addImportDetail.productList = Schema.products.find({}).fetch()
+  if Session.get('currentOrder') then Session.set 'currentOrderDetails', Schema.orderDetails.find({order: Session.get('currentOrder')._id }).fetch()
 
 #---- Import --------------------------------------------------------------->
 _.extend Template.import,
@@ -77,18 +78,24 @@ _.extend Template.addImportDetail,
     $(@find '.sl2').select2 "val", Template.addImportDetail.currentProduct
 
 # ----Show-Product-------------------------------------------------------------------->
-_.extend Template.createProduct, productCollection: Schema.products.find({})
+_.extend Template.createProduct,
+  productCollection: Schema.products.find({})
+  events:
+    'click .createProduct': (event, template)->
+      console.log 'xx'
+      insertProduct(template)
 
 
 # ----Show-Order--------------------------------------------------------------------->
 _.extend Template.createOrder,
   orderCollection: Schema.orders.find({})
   orderDetailCollection: Schema.orderDetails.find({})
-
+  currentOrderDetails: -> Session.get 'currentOrderDetails'
   currentProduct: {}
   formatSearch: (item) -> "#{item.name} [#{item.skulls}]"
 
   events:
+  #-------Tao Moi Order----------------------------
     'click .createOrder': (event, template)->
       if checkValueOrder(template)
         Schema.orders.insert
@@ -98,23 +105,19 @@ _.extend Template.createOrder,
           seller: template.find(".orderSeller").value
           buyer: template.find(".orderBuyer").value
           orderCode: template.find(".orderCode").value
-          billDiscount: 0
+          billDiscount: false
           status: 1
       else
         console.log 'sai thong tin'
+
+  #-------Chon Order------------------------------
     'dblclick .order .reactive-table tr': -> Session.set 'currentOrder', @
 
+  #-------Tao OrderDetail--------------------------
     'click .createOrderDetail': (event, template)->
       if checkValueOrderDetails(template)
         calculationOrderDetail(template, Session.get('currentOrder'))
-        Schema.orderDetails.insert
-          order           : Session.get('currentOrder')._id
-          product         : Template.createOrder.currentProduct._id
-          price           : template.find(".orderDetailPrice").value
-          quality         : template.find(".orderDetailQuality").value
-          discountCash    : template.find(".orderDetail-discountCash").value
-          discountPercent : template.find(".orderDetail-discountPercent").value
-          finalPrice      : template.find(".orderDetail-finalPrice").value
+        addOrderDetail(template, Template.createOrder.currentOrderDetails())
       else
         console.log 'Sai thong tin'
 
@@ -159,9 +162,7 @@ insertImport = (template)->
 
 insertProduct = (template)->
   if checkValueProduct(template)
-    console.log '1'
     merchant = Merchant.findOne(root.currentMerchant._id)
-    console.log template.find(".createProduct-skull").value
     merchant.addProduct
       creator: 'Sang'
       warehouse: root.currentWarehouse._id
@@ -269,9 +270,38 @@ calculationOrderDetail = (template, currentOrder)->
     template.find(".orderDetail-discountPercent").value = discountCash/(totalPrice/100)
     template.find(".orderDetail-finalPrice").value = totalPrice - discountCash
 
+addOrderDetail = (template, orderDetails) ->
+  temp = true
+  for detail in orderDetails
+    if Template.createOrder.currentProduct._id == detail.product
+      if parseFloat(template.find(".orderDetail-discountPercent").value) == detail.discountPercent
+        if parseInt(template.find(".orderDetailPrice").value) == detail.price
+          quality = detail.quality + parseInt(template.find(".orderDetailQuality").value)
+          totalPrice = quality * detail.price
+          discountCash = totalPrice*detail.discountPercent/100
+          finalPrice = totalPrice - discountCash
+          Schema.orderDetails.update detail._id,
+            $set:
+              quality: quality
+              discountCash: discountCash
+              finalPrice: finalPrice
+          temp = false
+  if temp
+    Schema.orderDetails.insert
+      order           : Session.get('currentOrder')._id
+      product         : Template.createOrder.currentProduct._id
+      price           : template.find(".orderDetailPrice").value
+      quality         : template.find(".orderDetailQuality").value
+      discountCash    : template.find(".orderDetail-discountCash").value
+      discountPercent : template.find(".orderDetail-discountPercent").value
+      finalPrice      : template.find(".orderDetail-finalPrice").value
 
-#
-#calculation_tempOrderDetail = (item, boolean)->
+
+
+
+#checkInputValueOrderDetail = (template, item)->
+
+
 #  item.quality = calculation_item_range_min_max(item.quality, 0, calculation_max_sale_product())
 #  item.total_price =  item.quality * item.price
 #  item.discount_cash = calculation_item_range_min_max(item.discount_cash, 0, item.total_price)
@@ -287,12 +317,12 @@ calculationOrderDetail = (template, currentOrder)->
 #  item.total_amount = item.total_price - item.discount_cash
 #
 #
-#calculation_max_sale_product = (productlist)->
-#  temp = 0
-#  for product in me.tempOrderDetails
-#    if product.productSummaryId == me.currentProduct.id then temp += product.quality
-#  temp = me.currentProduct.quality - temp
-#  return temp
+calculation_max_sale_product = (product, productlist)->
+  temp = 0
+  for item in productlist
+    if item.product == product._id then temp += item.quality
+  temp = product.availableQuality - temp
+  return temp
 #
 #
 #
