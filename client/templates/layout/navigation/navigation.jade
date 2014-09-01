@@ -1,21 +1,25 @@
 template(name="navigation")
 	nav(role="navigation").navbar.main.navbar-fixed-top
-		ul.nav.navbar-nav
-			li(class="{{isActiveRoute 'home'}}"): a.home(href="{{pathFor 'home'}}"): i.fa.fa-arrow-circle-o-left
-			li(class="{{isActiveRoute 'warehouse'}}"): a(href="{{pathFor 'warehouse'}}") Warehouse
-			li(class="{{isActiveRoute 'import'}}"): a(href="{{pathFor 'import'}}") Import
-			li(class="{{isActiveRoute 'sales'}}"): a(href="{{pathFor 'sales'}}") Sales
-			li(class="{{isActiveRoute 'report'}}"): a(href="{{pathFor 'report'}}") Report
-		form(role="search").navbar-form.navbar-left
-			.form-group
-				input(type="text", placeholder="Search").form-control
-			button(type="submit").btn.btn-default Submit
-		ul.nav.navbar-nav.navbar-right
-			li: a(href="/sign-out") ĐĂNG XUẤT
-			//li.dropdown
-			//	a(href="#", data-toggle="dropdown").dropdown-toggle Dropdown <b class="caret"></b>
-			//	ul.dropdown-menu
-			//		li: a(href="#") Action
-			//		li: a(href="#") Another action
-			//		li: a(href="#") Something else here
-			//		li: a(href="#") Separated link
+		.wrapper
+			.branding
+				a(href="/" ) Enterprise #{collapse} ??
+				a.collapse-toggle: i.fa.fa-list
+			ul.nav.navbar-nav
+				li(class="{{isActiveRoute 'sales'}}"): a(href="{{pathFor 'sales'}}") Sales
+				li.home(class="{{isActiveRoute 'metroHome'}}"): a(href="{{pathFor 'metroHome'}}"): i.fa.fa-home
+				li(class="{{isActiveRoute 'warehouse'}}"): a(href="{{pathFor 'warehouse'}}") Warehouse
+				li(class="{{isActiveRoute 'import'}}"): a(href="{{pathFor 'import'}}") Import
+
+			form(role="search").navbar-form.navbar-left
+				.form-group
+					input(type="text", placeholder="Search").form-control
+				button(type="submit").btn.btn-default Submit
+			ul.nav.navbar-nav.navbar-right
+				li: a(href="/sign-out") ĐĂNG XUẤT
+				//li.dropdown
+				//	a(href="#", data-toggle="dropdown").dropdown-toggle Dropdown <b class="caret"></b>
+				//	ul.dropdown-menu
+				//		li: a(href="#") Action
+				//		li: a(href="#") Another action
+				//		li: a(href="#") Something else here
+				//		li: a(href="#") Separated link
