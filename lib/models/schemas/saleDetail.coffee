@@ -1,32 +1,29 @@
-Schema2.orderDetails = new SimpleSchema
-  order:
+Schema2.saleDetails = new SimpleSchema
+  sale:
     type: String
-    optional: true
 
   product:
     type: String
-    optional: true
 
   quality:
     type: Number
-    optional: true
+
+  returnQuality:
+    type: String
 
   price:
     type: Number
-    optional: true
 
   discountCash:
     type: Number
-    optional: true
 
   discountPercent:
     type: Number
-    optional: true
 
   finalPrice:
     type: Number
-    optional: true
+
 
   version: { type: Schema.Version }
 
-Schema.add 'orderDetails'
+Schema.add 'saleDetails'

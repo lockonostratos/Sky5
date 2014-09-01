@@ -1,14 +1,17 @@
 Schema2.deliveries = new SimpleSchema
-  warehouse:
+  merchant:
     type: String
+
+  warehouse:
+      type: String
+
+  creator:
+      type: String
 
   order:
     type: String
 
-  creator:
-    type: String
-
-  deliveryAddress:
+deliveryAddress:
     type: String
 
   contactName:

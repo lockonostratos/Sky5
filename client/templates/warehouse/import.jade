@@ -88,45 +88,52 @@ template(name='createOrder')
             .col-lg-2
                 .input-group
                     span.input-group-addon Người Bán:
-                    input.form-control.importQuality(type='text' value='0')
+                    input.form-control.orderSeller(type='text')
             .col-lg-2
                 .input-group
                     span.input-group-addon Người Mua:
-                    input.form-control.importPrice(type='text' value='0')
+                    input.form-control.orderBuyer(type='text')
             .col-lg-3
                 .input-group
                     span.input-group-addon orderCode:
-                    input.form-control(type='text')
+                    input.form-control.orderCode(type='text')
             .col-lg-3
-                button.btn.btn-default.create-order(type='submit') Create
+                button.btn.btn-default.createOrder(type='submit') Create
 
         .row
             .col-lg-2
+                .sl2(style="width: 250px; height: 20px;")
+            .col-lg-2
                 .input-group
-                    span.input-group-addon Giá:
-                    input.form-control.importPrice(type='text' value='0')
+                    span.input-group-addon Giá Bán:
+                    input.form-control.orderDetailPrice(type='text')
             .col-lg-1
                 .input-group
                     span.input-group-addon SL:
-                    input.form-control.importQuality(type='text' value='0')
+                    input.form-control.orderDetailQuality(type='text')
             .col-lg-2
                 .input-group
                     span.input-group-addon Giảm Giá TM:
-                    input.form-control(type='text')
+                    input.form-control.orderDetail-discountCash(type='text')
             .col-lg-1
                 .input-group
                     span.input-group-addon %
-                    input.form-control(type='text')
+                    input.form-control.orderDetail-discountPercent(type='text')
             .col-lg-2
                 .input-group
                     span.input-group-addon Tổng Tiền:
-                    input.form-control(type='text')
+                    input.form-control.orderDetail-finalPrice(type='text')
             .col-lg-2
                 button.btn.btn-default.createOrderDetail(type='submit') Create
 
     .content-body
-        +reactiveTable(collection=orderCollection)
-        +reactiveTable(collection=orderDetailCollection)
+        .row.order
+            h3 Order #{currentOrder}
+            +reactiveTable(collection=orderCollection)
+
+        .row.orderDetail
+            h3 OrderDetail
+            +reactiveTable(collection=orderDetailCollection)
 
 
 
