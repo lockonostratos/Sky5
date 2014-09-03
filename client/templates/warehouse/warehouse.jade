@@ -11,7 +11,21 @@ template(name="warehouse")
 				.tile.triple.double-vertical
 	+skyTab(option=tabOption)
 	+skyTab(option=tabOption2)
-
+	+productAside
 
 template(name="productSearch")
 	h4 #{name} (#{productCode})
+
+template(name="productAside")
+	#productAside.aside.modal.swipe.right
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(type="button" data-dismiss="modal")
+						span(aria-hidden="true") &times;
+						span.sr-only Close
+					h4.modal-title Modal title
+				.modal-body: p One find body &hellip;
+				.modal-footer
+					button.btn.btn-default(type="button" data-dismiss="modal") Close
+					button.btn.btn-primary(type="button") Save changes
