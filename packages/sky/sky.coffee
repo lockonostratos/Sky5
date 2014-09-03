@@ -1,4 +1,5 @@
 class Sky
+  class @global
   class @system
     @merchantPermissions:
       su:                 { key: 'su',                  description: 'tất cả' }

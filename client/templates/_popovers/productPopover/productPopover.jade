@@ -1,0 +1,11 @@
+template(name="productPopover")
+	#productPopover.popover.fade(style='width: 300px')
+		.arrow
+		h3.popover-title THÊM MỚI SẢN PHẨM
+		.popover-content.modalable
+			.wrapper.bottom: p form
+				//+reactiveTable(collection=products)
+			ul
+				each products
+					li #{name}, #{skulls}
+			.wrapper.top(align="right"): a.btn.btn-danger Button <br />

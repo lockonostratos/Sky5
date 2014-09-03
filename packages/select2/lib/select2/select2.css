@@ -28,18 +28,20 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
 
 .select2-container .select2-choice {
     display: block;
-    height: 26px;
+    height: 30px;
     padding: 0 0 0 8px;
     overflow: hidden;
     position: relative;
 
-    border: 1px solid #aaa;
+    border: 1px solid #DFDFDF;
     white-space: nowrap;
-    line-height: 26px;
+    line-height: 30px;
     color: #444;
     text-decoration: none;
 
-    border-radius: 4px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 
     background-clip: padding-box;
 
@@ -50,11 +52,6 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
               user-select: none;
 
     background-color: #fff;
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eee), color-stop(0.5, #fff));
-    background-image: -webkit-linear-gradient(center bottom, #eee 0%, #fff 50%);
-    background-image: -moz-linear-gradient(center bottom, #eee 0%, #fff 50%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#eeeeee', GradientType = 0);
-    background-image: linear-gradient(top, #fff 0%, #eee 50%);
 }
 
 .select2-container.select2-drop-above .select2-choice {
@@ -176,29 +173,22 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
 
 .select2-container .select2-choice .select2-arrow {
     display: inline-block;
-    width: 18px;
+    width: 22px;
     height: 100%;
     position: absolute;
     right: 0;
     top: 0;
 
-    border-left: 1px solid #aaa;
-    border-radius: 0 4px 4px 0;
+    border-left: 1px solid #DFDFDF;
 
     background-clip: padding-box;
-
-    background: #ccc;
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ccc), color-stop(0.6, #eee));
-    background-image: -webkit-linear-gradient(center bottom, #ccc 0%, #eee 60%);
-    background-image: -moz-linear-gradient(center bottom, #ccc 0%, #eee 60%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#eeeeee', endColorstr = '#cccccc', GradientType = 0);
-    background-image: linear-gradient(top, #ccc 0%, #eee 60%);
 }
 
 .select2-container .select2-choice .select2-arrow b {
     display: block;
     width: 100%;
     height: 100%;
+    margin-left: 2px;
     background: url('select2.png') no-repeat 0 1px;
 }
 
@@ -270,23 +260,12 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
     border-bottom-right-radius: 0;
 
     background-color: #eee;
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #fff), color-stop(0.5, #eee));
-    background-image: -webkit-linear-gradient(center bottom, #fff 0%, #eee 50%);
-    background-image: -moz-linear-gradient(center bottom, #fff 0%, #eee 50%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0);
-    background-image: linear-gradient(top, #fff 0%, #eee 50%);
 }
 
 .select2-dropdown-open.select2-drop-above .select2-choice,
 .select2-dropdown-open.select2-drop-above .select2-choices {
     border: 1px solid #5897fb;
     border-top-color: transparent;
-
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(0.5, #eee));
-    background-image: -webkit-linear-gradient(center top, #fff 0%, #eee 50%);
-    background-image: -moz-linear-gradient(center top, #fff 0%, #eee 50%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0);
-    background-image: linear-gradient(bottom, #fff 0%, #eee 50%);
 }
 
 .select2-dropdown-open .select2-choice .select2-arrow {
