@@ -101,7 +101,7 @@ _.extend Template.createOrder,
         Schema.orders.insert
           merchant: root.currentMerchant._id
           warehouse: root.currentWarehouse._id
-          creator: 'Sang'
+          creator: Meteor.userId()
           seller: template.find(".orderSeller").value
           buyer: template.find(".orderBuyer").value
           orderCode: template.find(".orderCode").value
