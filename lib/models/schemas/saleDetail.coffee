@@ -2,7 +2,7 @@ Schema2.saleDetails = new SimpleSchema
   sale:
     type: String
 
-  product:
+  productDetail:
     type: String
 
   quality:
@@ -10,18 +10,22 @@ Schema2.saleDetails = new SimpleSchema
 
   returnQuality:
     type: String
+    optional: true
 
   price:
     type: Number
 
   discountCash:
     type: Number
+    decimal: true
 
   discountPercent:
     type: Number
+    decimal: true
 
   finalPrice:
     type: Number
+
 
 
   version: { type: Schema.Version }
