@@ -4,8 +4,6 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-autopublish
-insecure
 less
 less-bootstrap-3
 coffeescript
@@ -19,6 +17,8 @@ jade
 font-awesome-4-less
 collection2
 collection-hooks
+reactive-publish
+publish-with-relations
 reactive-table
 select2
 x-editable-bootstrap

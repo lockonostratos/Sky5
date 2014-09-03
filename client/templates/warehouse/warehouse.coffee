@@ -29,7 +29,7 @@ _.extend Template.warehouse,
     Template.warehouse.ui.selectBox.bind 'keyup', 'ctrl+return', Template.warehouse.addNewProduct
 
     Template.warehouse.ui.selectBox.select2
-      placeholder: 'chọn sản phẩm'
+      placeholder: 'CHỌN SẢN PHẨM'
       query: (query) -> query.callback
         results: _.filter Template.warehouse.productList, (item) ->
           unsignedTerm = Sky.helpers.removeVnSigns query.term
@@ -65,6 +65,3 @@ _.extend Template.warehouse,
   events:
     "click .tile": (event, template) -> $(template.find '#productAside').modal()
     "click #poptest": (event, template) -> $(template.find '#productPopover').modalPopover('show')
-_.extend Template.productPopover,
-  events:
-    "click a": -> console.log 'clicked popover!'

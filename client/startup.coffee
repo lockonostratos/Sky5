@@ -14,14 +14,13 @@ Meteor.startup ->
     Session.set "currentMerchant", Schema.merchants.findOne({})
     root.currentMerchant = Session.get "currentMerchant"
 
+#    Session.set "personalNewProducts",
+    Sky.global.personalNewProducts = Schema.products.find({creator: Meteor.userId(), totalQuality: 0})
+
     if root.currentMerchant
       Session.set "currentWarehouse", Schema.warehouses.findOne({merchant: root.currentMerchant._id})
       root.currentWarehouse = Session.get "currentWarehouse"
 
-#    if root.currentWarehouse
-#      Session.set "currentImport", Schema.imports.findOne {merchant: root.currentMerchant._id, warehouse: root.currentWarehouse._id, finish: false}
-#      root.currentImport = Session.get "currentImport"
-#
-#    Session.set 'showCreateImport', true
+
   Deps.autorun ->
     console.log "Your food is #{root.getFood()}"
