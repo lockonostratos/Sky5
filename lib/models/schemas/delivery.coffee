@@ -11,7 +11,7 @@ Schema2.deliveries = new SimpleSchema
   order:
     type: String
 
-deliveryAddress:
+  deliveryAddress:
     type: String
 
   contactName:

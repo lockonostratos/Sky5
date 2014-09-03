@@ -1,5 +1,4 @@
 _.extend Template.navigation,
-  dump: 'yeh'
   rendered: ->
     $(@find '.collapse-toggle').tooltip
       placement: 'right'

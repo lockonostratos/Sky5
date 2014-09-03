@@ -1,6 +1,10 @@
 template(name="warehouse")
 	.page-header
 		h1 Warehouse <small>Page</small>
+		a#poptest.btn.btn-danger(href="") Poptest 1
+		a.btn.btn-danger.poptest2(href="#") Poptest 2
+		+productPopover
+
 		.sl2(style="margin-left: 10px; width: 250px;")
 		.metro.clearfix
 			.tiles
@@ -12,6 +16,14 @@ template(name="warehouse")
 	+skyTab(option=tabOption)
 	+skyTab(option=tabOption2)
 	+productAside
+
+template(name="productPopover")
+	#productPopover.popover.fade(style='width: 300px')
+		.arrow
+		h3.popover-title Demo Modal Popover
+		.popover-content
+			p Edit some data related to this context:
+			a.btn.btn-danger Button
 
 template(name="productSearch")
 	h4 #{name} (#{productCode})

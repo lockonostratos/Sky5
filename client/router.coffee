@@ -8,3 +8,4 @@ Router.map ->
   @route 'import', { path: '/import' }
   @route 'sales', { path: '/sales' }
   @route 'report', { path: '/report' }
+  @route 'roleManager', { path: '/roleManager' }

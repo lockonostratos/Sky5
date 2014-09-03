@@ -21,5 +21,6 @@ collection2
 collection-hooks
 reactive-table
 select2
+x-editable-bootstrap
 jquery-hotkeys
 sky

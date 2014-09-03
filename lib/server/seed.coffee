@@ -9,12 +9,14 @@ Meteor.startup ->
     merchant = Merchant.findOne huynhChauId
     merchant.addBranch { name: 'Huynh Chau HA NOI', creator: creator }
     warehouse = merchant.addWarehouse { name: 'Kho Chính', creator: creator }
+    seedSystemRoles()
     seedProvidersFor merchant, creator
     seedSkullsFor merchant, creator
     seedProductsFor merchant, creator, warehouse
 
 resetDatabase = ->
   Meteor.users.remove({})
+  Schema.roles.remove({})
   Schema.merchants.remove({})
   Schema.warehouses.remove({})
   Schema.providers.remove({})
@@ -23,6 +25,28 @@ resetDatabase = ->
   Schema.importDetails.remove({})
   Schema.products.remove({})
   Schema.productDetails.remove({})
+
+seedSystemRoles = ->
+  Schema.roles.insert
+    group: 'merchant'
+    name: 'admin'
+    description: 'admin'
+    permissions: [Sky.system.merchantPermissions.su.key]
+
+  Schema.roles.insert
+    group: 'merchant'
+    name: 'salesBasic'
+    description: 'bán hàng'
+    permissions: [Sky.system.merchantPermissions.sales.key]
+
+  Schema.roles.insert
+    group: 'merchant'
+    name: 'salesManager'
+    description: 'quản lý bán hàng'
+    permissions: [
+      Sky.system.merchantPermissions.sales.key
+      Sky.system.merchantPermissions.returns.key
+    ]
 
 seedAccountsFor = (merchant) ->
   merchant.addAccount

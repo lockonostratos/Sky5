@@ -17,6 +17,7 @@ Package.on_use(function(api){
     'lib/js/modal.js',
     'lib/js/tooltip.js',
     'lib/js/popover.js',
+    'lib/js/modal-popover.js',
     'lib/js/scrollspy.js',
     'lib/js/tab.js',
     'lib/js/affix.js',

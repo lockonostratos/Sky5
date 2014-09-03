@@ -47,9 +47,24 @@ _.extend Template.warehouse,
       console.log e.val
     Template.warehouse.ui.selectBox.select2 "val", Template.warehouse.currentProduct
 
+    $(@find '#productPopover').modalPopover
+      target: '#poptest'
+      backdrop: true
+      placement: 'bottom'
+
+    $('.poptest2').popover({
+      html: true
+      title: 'title'
+      content: '#productPopover'
+    });
+
   destroyed: ->
     $(document).unbind 'keyup', Template.warehouse.selectNewProduct
     $(document).unbind 'keyup', Template.warehouse.addNewProduct
 
   events:
     "click .tile": (event, template) -> $(template.find '#productAside').modal()
+    "click #poptest": (event, template) -> $(template.find '#productPopover').modalPopover('show')
+_.extend Template.productPopover,
+  events:
+    "click a": -> console.log 'clicked popover!'

@@ -1,4 +1,21 @@
 class Sky
+  class @system
+    @merchantPermissions:
+      su:                 { key: 'su',                  description: 'tất cả' }
+      sales:              { key: 'sales',               description: 'bán hàng' }
+      returns:            { key: 'returns',             description: 'trả hàng' }
+      detroySalesBill:    { key: 'destroySalesBill',    description: 'xóa hóa đơn' }
+      delivery:           { key: 'delivery',            description: 'chuyển hàng' }
+      deliveryConfirm:    { key: 'deliveryConfirm',     description: 'xác nhận giao hàng' }
+      export:             { key: 'export',              description: 'xuất kho' }
+      import:             { key: 'import',              description: 'nhập kho' }
+      destroyImport:      { key: 'destroyImport',       description: 'xóa phiếu nhập kho' }
+
+      createCustomer:     { key: 'createCustomer',      description: 'tạo khách hàng' }
+      accountManagement:  { key: 'accountManagement',   description: 'quản lý nhân viên' }
+      customerManagement: { key: 'customerManagement',  description: 'quản lý khách hàng' }
+
+
   class @helpers
     @removeVnSigns: (source) ->
       str = source
