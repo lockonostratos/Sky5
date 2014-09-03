@@ -8,7 +8,7 @@ Schema2.deliveries = new SimpleSchema
   creator:
       type: String
 
-  order:
+  sale:
     type: String
 
   deliveryAddress:
@@ -34,6 +34,7 @@ Schema2.deliveries = new SimpleSchema
 
   shipper:
     type: String
+    optional: true
 
   exporter:
     type: String

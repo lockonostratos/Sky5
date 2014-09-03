@@ -106,6 +106,7 @@ _.extend Template.createOrder,
           buyer: template.find(".orderBuyer").value
           orderCode: template.find(".orderCode").value
           billDiscount: false
+          deliveryType: 0
           status: 1
       else
         console.log 'sai thong tin'
@@ -115,12 +116,17 @@ _.extend Template.createOrder,
 
   #-------Tao OrderDetail--------------------------
     'click .createOrderDetail': (event, template)->
-      if checkValueOrderDetails(template)
+      if checkValueOrderDetail(template)
         calculationOrderDetail(template, Session.get('currentOrder'))
         addOrderDetail(template, Template.createOrder.currentOrderDetails())
       else
         console.log 'Sai thong tin'
+  #------Hoàn Thành Finish
 
+    'click .finishOrderDetail': (event, template)->
+      result = checkProductInstockQuality(Template.createOrder.currentOrderDetails(), Template.addImportDetail.productList)
+      if result.error then console.log result.error; return
+      createSaleAndSaleOrder(Session.get('currentOrder'), Session.get('currentOrderDetails'))
 
   rendered: ->
     Template.createOrder.ui = {}
@@ -243,7 +249,7 @@ calculation_tempOrder = (item, boolean)->
     item.discountCash = (item.discountPercent*item.totalPrice)/100
   item.finalPrice = item.totalPrice - item.discountCash
 #------ORDER_DETAILS----------------------------------------------------------------------------------------------------->
-checkValueOrderDetails=(template)->
+checkValueOrderDetail=(template)->
   currentProduct = Template.createOrder.currentProduct._id
   if currentProduct and
     template.find(".orderDetailPrice").value > 0 and
@@ -258,11 +264,12 @@ checkValueOrderDetails=(template)->
     return false
 
 calculationOrderDetail = (template, currentOrder)->
+  if !template.find(".orderDetail-discountCash").value then template.find(".orderDetail-discountCash").value = 0
   quality = template.find(".orderDetailQuality").value
   price = template.find(".orderDetailPrice").value
   totalPrice = quality*price
   discountCash = template.find(".orderDetail-discountCash").value
-  if currentOrder.billDiscount == 1
+  if currentOrder.billDiscount
     template.find(".orderDetail-discountCash").value = 0
     template.find(".orderDetail-discountPercent").value = 0
     template.find(".orderDetail-finalPrice").value = totalPrice
@@ -276,53 +283,171 @@ addOrderDetail = (template, orderDetails) ->
     if Template.createOrder.currentProduct._id == detail.product
       if parseFloat(template.find(".orderDetail-discountPercent").value) == detail.discountPercent
         if parseInt(template.find(".orderDetailPrice").value) == detail.price
-          quality = detail.quality + parseInt(template.find(".orderDetailQuality").value)
-          totalPrice = quality * detail.price
+          quality      = detail.quality + parseInt(template.find(".orderDetailQuality").value)
+          totalPrice   = quality * detail.price
           discountCash = totalPrice*detail.discountPercent/100
-          finalPrice = totalPrice - discountCash
+          finalPrice   = totalPrice - discountCash
           Schema.orderDetails.update detail._id,
             $set:
-              quality: quality
-              discountCash: discountCash
-              finalPrice: finalPrice
+              quality      : quality
+              discountCash : discountCash
+              finalPrice   : finalPrice
           temp = false
   if temp
     Schema.orderDetails.insert
-      order           : Session.get('currentOrder')._id
-      product         : Template.createOrder.currentProduct._id
-      price           : template.find(".orderDetailPrice").value
-      quality         : template.find(".orderDetailQuality").value
-      discountCash    : template.find(".orderDetail-discountCash").value
-      discountPercent : template.find(".orderDetail-discountPercent").value
-      finalPrice      : template.find(".orderDetail-finalPrice").value
+      order               : Session.get('currentOrder')._id
+      product             : Template.createOrder.currentProduct._id
+      price               : template.find(".orderDetailPrice").value
+      quality             : template.find(".orderDetailQuality").value
+      discountCash        : template.find(".orderDetail-discountCash").value
+      discountPercent     : template.find(".orderDetail-discountPercent").value
+      tempDiscountPercent : template.find(".orderDetail-discountPercent").value
+      finalPrice          : template.find(".orderDetail-finalPrice").value
+
+checkProductInstockQuality= (orderDetailsList, productList)->
+  orderDetails = _.chain(orderDetailsList)
+            .groupBy("product")
+            .map (group, key) ->
+              return {
+                product: key
+                quality: _.reduce(group, ((res, current) -> res + current.quality), 0)
+              }
+            .value()
+  try
+    for currentDetail in orderDetails
+      currentProduct = _.findWhere(productList, {_id: currentDetail.product})
+      if currentProduct.availableQuality < currentDetail.quality
+        throw {message: "lỗi", item: currentDetail}
+
+    return {}
+  catch e
+    return {error: e}
+
+createSaleAndSaleOrder= (currentOrder, currentOrderDetails, delivery)->
+  sale = Schema.sales.insert
+    merchant:      currentOrder.merchant
+    warehouse:     currentOrder.warehouse
+    creator:       currentOrder.creator
+    seller:        currentOrder.seller
+    buyer:         currentOrder.buyer
+    orderCode:     currentOrder.orderCode
+    billDiscount:  currentOrder.billDiscount
+    productCount:  0
+    saleCount:     0
+    deliveryType:  0
+    paymentMethod: 0
+    discountCash:  0
+    totalPrice:    0
+    finalPrice:    0
+    deposit:       0
+    debit:         0
+    status:        currentOrder.status
+
+  currentSale = Schema.sales.findOne(sale)
+  for currentOrderDetail in currentOrderDetails
+    productDetails = Schema.productDetails.find({product: currentOrderDetail.product}).fetch()
+    subtractQualityOnSales(productDetails, currentOrderDetail, currentSale)
+  if delivery and currentSale.deliveryType == 1
+    createDelivery(currentSale)
+  removeOrderAndOrderDetails(); Session.set 'currentOrder'
 
 
+subtractQualityOnSales= (stockingItems, sellingItem , currentSale) ->
+  transactionedQuality = 0
+  for product in stockingItems
+    requiredQuality = sellingItem.quality - transactionedQuality
+    if product.availableQuality > requiredQuality
+      takkenQuality = requiredQuality
+    else
+      takkenQuality = product.availableQuality
+    console.log takkenQuality
+    if currentSale.billDiscount
+      totalPrice = (takkenQuality * sellingItem.price)
+      if currentSale.discountCash == 0
+        discountPercent = 0
+      else
+        discountPercent = sale.discountCash/(currentSale.totalPrice/100)
+      discountCash = (discountPercent * totalPrice)/100
+      Schema.saleDetails.insert
+        sale: currentSale._id
+        productDetail: product._id
+        quality: takkenQuality
+        price: sellingItem.price
+        discountCash: discountCash
+        discountPercent: discountPercent
+        finalPrice: totalPrice - discountCash
+    else
+      totalPrice = (takkenQuality * sellingItem.price)
+      discountCash = (sellingItem.discountPercent * totalPrice)/100
+      Schema.saleDetails.insert
+        sale: currentSale._id
+        productDetail: product._id
+        quality: takkenQuality
+        price: sellingItem.price
+        discountCash: discountCash
+        discountPercent: sellingItem.discountPercent
+        finalPrice: totalPrice - discountCash
+
+    if currentSale.deliveryType == 0 then instockQuality = takkenQuality else instockQuality = 0
+    productDetail = Schema.productDetails.update product._id,
+      $inc:
+        availableQuality: -takkenQuality
+        instockQuality: instockQuality
+
+    transactionedQuality += takkenQuality
+    if transactionedQuality == sellingItem.quality then break
+  return transactionedQuality == sellingItem.quality
+
+removeOrderAndOrderDetails= () ->
+  orderDetails = Session.get 'currentOrderDetails'
+  for detail in orderDetails
+    Schema.orderDetails.remove detail._id
+  Schema.orders.remove Session.get('currentOrder')._id
+
+#checkValueDelivery=(template)->
+#  delivery={}
+#  delivery.contactName      : template.find(".delivery-contactName").value
+#  delivery.deliveryAddress  : template.find(".delivery-contactAddress").value
+#  delivery.contactPhone     : template.find(".delivery-contactPhone").value
+#  delivery.deliveryDate     : template.find(".delivery-deliveryDate").value
+#  delivery.comment          : template.find(".delivery-comment").value
+#  delivery.transportationFee: template.find(".delivery-transportationFee").value
+
+#createDelivery=(currentSale)->
+#  Schema.deliveries.insert
+#    merchant: root.currentMerchant._id
+#    warehouse: root.currentWarehouse._id
+#    creator: 'sang'
+#    sale: currentSale._id
+#    deliveryAddress: template.find(".delivery-contactAddress").value
+#    contactName: template.find(".delivery-contactName").value
+#    contactPhone: template.find(".delivery-contactPhone").value
+#    deliveryDate: template.find(".delivery-deliveryDate").value
+#    comment: template.find(".delivery-comment").value
+#    transportationFee: template.find(".delivery-transportationFee").value
+#    status:
 
 
-#checkInputValueOrderDetail = (template, item)->
+#updateMetroSummary= ->
+#  Schema.metroSummaries.update {warehouse: @data.warehouse},
+#    $inc:
+#      stockCount: -@data.saleCount
+#      saleCount: @data.saleCount
+#      saleCountDay: @data.saleCount
+#      saleCountMonth: @data.saleCount
+#      revenue: @data.finalPrice
+#      revenueDay: @data.finalPrice
+#      revenueMonth: @data.finalPrice
+#  , (error, result) -> console.log result; console.log error if error
 
-
-#  item.quality = calculation_item_range_min_max(item.quality, 0, calculation_max_sale_product())
-#  item.total_price =  item.quality * item.price
-#  item.discount_cash = calculation_item_range_min_max(item.discount_cash, 0, item.total_price)
-#  item.discount_percent = calculation_item_range_min_max(item.discount_percent, 0, 100)
-#  if item.quality > 0
-#    if boolean
-#      item.discount_percent = (item.discount_cash/item.total_price)*100
-#    else
-#      item.discount_cash = (item.discount_percent*item.total_price)/100
-#  else
-#    item.discount_percent = 0
-#    item.discount_cash = 0
-#  item.total_amount = item.total_price - item.discount_cash
-#
-#
 calculation_max_sale_product = (product, productlist)->
   temp = 0
   for item in productlist
     if item.product == product._id then temp += item.quality
   temp = product.availableQuality - temp
   return temp
+
+
 #
 #
 #

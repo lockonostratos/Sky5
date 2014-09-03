@@ -25,6 +25,7 @@ Schema2.sales = new SimpleSchema
 
   return:
     type: Boolean
+    optional: true
 
   deliveryType:
     type: Number
