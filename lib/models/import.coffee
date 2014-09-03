@@ -17,11 +17,21 @@ Schema.add 'imports', class Import
         productDetail.availableQuality = importDetail.importQuality
         productDetail.instockQuality = importDetail.importQuality
         productDetail.importPrice = importDetail.importPrice
-        console.log productDetail
+
         Schema.productDetails.insert productDetail, (error, result) ->
           if error then throw 'Sai thong Tin San Pham'
+
+        Schema.products.update importDetail.product,
+          $inc:
+            totalQuality    : importDetail.importQuality
+            availableQuality: importDetail.importQuality
+            instockQuality  : importDetail.importQuality
+
       for importDetail in importDetails
         Schema.importDetails.remove(importDetail._id)
       Schema.imports.update @id, $set:{finish: true}
     catch e
       console.log e
+
+
+

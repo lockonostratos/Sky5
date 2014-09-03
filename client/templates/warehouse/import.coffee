@@ -91,6 +91,9 @@ _.extend Template.createOrder,
   orderCollection: Schema.orders.find({})
   orderDetailCollection: Schema.orderDetails.find({})
   currentOrderDetails: -> Session.get 'currentOrderDetails'
+
+
+
   currentProduct: {}
   formatSearch: (item) -> "#{item.name} [#{item.skulls}]"
 
@@ -99,15 +102,23 @@ _.extend Template.createOrder,
     'click .createOrder': (event, template)->
       if checkValueOrder(template)
         Schema.orders.insert
-          merchant: root.currentMerchant._id
-          warehouse: root.currentWarehouse._id
-          creator: 'Sang'
-          seller: template.find(".orderSeller").value
-          buyer: template.find(".orderBuyer").value
-          orderCode: template.find(".orderCode").value
-          billDiscount: false
-          deliveryType: 0
-          status: 1
+          merchant      : root.currentMerchant._id
+          warehouse     : root.currentWarehouse._id
+          creator       : 'Sang'
+          seller        : template.find(".orderSeller").value
+          buyer         : template.find(".orderBuyer").value
+          orderCode     : template.find(".orderCode").value
+          deliveryType  : template.find(".orderDeliveryType").value
+          paymentMethod : template.find(".orderPaymentMethod").value
+          discountCash  : 0
+          productCount  : 0
+          saleCount     : 0
+          totalPrice    : 0
+          finalPrice    : 0
+          deposit       : 0
+          debit         : 0
+          billDiscount  : false
+          status        : 1
       else
         console.log 'sai thong tin'
 
@@ -126,7 +137,7 @@ _.extend Template.createOrder,
     'click .finishOrderDetail': (event, template)->
       result = checkProductInstockQuality(Template.createOrder.currentOrderDetails(), Template.addImportDetail.productList)
       if result.error then console.log result.error; return
-      createSaleAndSaleOrder(Session.get('currentOrder'), Session.get('currentOrderDetails'))
+      createSaleAndSaleOrder(Session.get('currentOrder'), Session.get('currentOrderDetails'), template)
 
   rendered: ->
     Template.createOrder.ui = {}
@@ -303,6 +314,19 @@ addOrderDetail = (template, orderDetails) ->
       discountPercent     : template.find(".orderDetail-discountPercent").value
       tempDiscountPercent : template.find(".orderDetail-discountPercent").value
       finalPrice          : template.find(".orderDetail-finalPrice").value
+  if _.findWhere(Session.get('currentOrderDetails'), {product: Template.createOrder.currentProduct._id}) then countProduct = 0 else countProduct = 1
+  saleProduct  = parseInt(template.find(".orderDetailQuality").value)
+  price        = parseInt(template.find(".orderDetailPrice").value)
+  discountCash = parseInt(template.find(".orderDetail-discountCash").value)
+  totalPrice   = saleProduct * price
+  finalPrice   = totalPrice - discountCash
+  Schema.orders.update Session.get('currentOrder')._id,
+    $inc:
+      productCount  : countProduct
+      saleCount     : saleProduct
+      discountCash  : discountCash
+      totalPrice    : totalPrice
+      finalPrice    : finalPrice
 
 checkProductInstockQuality= (orderDetailsList, productList)->
   orderDetails = _.chain(orderDetailsList)
@@ -323,33 +347,34 @@ checkProductInstockQuality= (orderDetailsList, productList)->
   catch e
     return {error: e}
 
-createSaleAndSaleOrder= (currentOrder, currentOrderDetails, delivery)->
+createSaleAndSaleOrder= (currentOrder, currentOrderDetails, template)->
   sale = Schema.sales.insert
-    merchant:      currentOrder.merchant
-    warehouse:     currentOrder.warehouse
-    creator:       currentOrder.creator
-    seller:        currentOrder.seller
-    buyer:         currentOrder.buyer
-    orderCode:     currentOrder.orderCode
-    billDiscount:  currentOrder.billDiscount
-    productCount:  0
-    saleCount:     0
-    deliveryType:  0
-    paymentMethod: 0
-    discountCash:  0
-    totalPrice:    0
-    finalPrice:    0
-    deposit:       0
-    debit:         0
-    status:        currentOrder.status
+    merchant      : currentOrder.merchant
+    warehouse     : currentOrder.warehouse
+    creator       : currentOrder.creator
+    seller        : currentOrder.seller
+    buyer         : currentOrder.buyer
+    orderCode     : currentOrder.orderCode
+    billDiscount  : currentOrder.billDiscount
+    productCount  : currentOrder.productCount
+    saleCount     : currentOrder.saleCount
+    deliveryType  : currentOrder.deliveryType
+    paymentMethod : currentOrder.paymentMethod
+    discountCash  : currentOrder.discountCash
+    totalPrice    : currentOrder.totalPrice
+    finalPrice    : currentOrder.finalPrice
+    deposit       : currentOrder.deposit
+    debit         : currentOrder.debit
+    status        : currentOrder.status
+#  , (e, r) -> console.log 'xx'
 
   currentSale = Schema.sales.findOne(sale)
   for currentOrderDetail in currentOrderDetails
     productDetails = Schema.productDetails.find({product: currentOrderDetail.product}).fetch()
     subtractQualityOnSales(productDetails, currentOrderDetail, currentSale)
-  if delivery and currentSale.deliveryType == 1
-    createDelivery(currentSale)
-  removeOrderAndOrderDetails(); Session.set 'currentOrder'
+  if currentSale.deliveryType == 1
+    createDelivery(currentSale, template)
+#  removeOrderAndOrderDetails(); Session.set 'currentOrder'
 
 
 subtractQualityOnSales= (stockingItems, sellingItem , currentSale) ->
@@ -360,7 +385,6 @@ subtractQualityOnSales= (stockingItems, sellingItem , currentSale) ->
       takkenQuality = requiredQuality
     else
       takkenQuality = product.availableQuality
-    console.log takkenQuality
     if currentSale.billDiscount
       totalPrice = (takkenQuality * sellingItem.price)
       if currentSale.discountCash == 0
@@ -389,10 +413,15 @@ subtractQualityOnSales= (stockingItems, sellingItem , currentSale) ->
         finalPrice: totalPrice - discountCash
 
     if currentSale.deliveryType == 0 then instockQuality = takkenQuality else instockQuality = 0
-    productDetail = Schema.productDetails.update product._id,
+    Schema.productDetails.update product._id,
       $inc:
         availableQuality: -takkenQuality
-        instockQuality: instockQuality
+        instockQuality: -instockQuality
+
+    Schema.products.update product.product,
+      $inc:
+        availableQuality: -takkenQuality
+        instockQuality  : -instockQuality
 
     transactionedQuality += takkenQuality
     if transactionedQuality == sellingItem.quality then break
@@ -404,6 +433,10 @@ removeOrderAndOrderDetails= () ->
     Schema.orderDetails.remove detail._id
   Schema.orders.remove Session.get('currentOrder')._id
 
+
+#----- DELIVERY-------------------------------------------
+
+
 #checkValueDelivery=(template)->
 #  delivery={}
 #  delivery.contactName      : template.find(".delivery-contactName").value
@@ -413,19 +446,20 @@ removeOrderAndOrderDetails= () ->
 #  delivery.comment          : template.find(".delivery-comment").value
 #  delivery.transportationFee: template.find(".delivery-transportationFee").value
 
-#createDelivery=(currentSale)->
-#  Schema.deliveries.insert
-#    merchant: root.currentMerchant._id
-#    warehouse: root.currentWarehouse._id
-#    creator: 'sang'
-#    sale: currentSale._id
-#    deliveryAddress: template.find(".delivery-contactAddress").value
-#    contactName: template.find(".delivery-contactName").value
-#    contactPhone: template.find(".delivery-contactPhone").value
-#    deliveryDate: template.find(".delivery-deliveryDate").value
-#    comment: template.find(".delivery-comment").value
-#    transportationFee: template.find(".delivery-transportationFee").value
-#    status:
+createDelivery=(currentSale, template)->
+  Schema.deliveries.insert
+    merchant          : currentSale.merchant
+    warehouse         : currentSale.warehouse
+    creator           : currentSale.creator
+    sale              : currentSale._id
+    deliveryAddress   : template.find(".delivery-contactAddress").value
+    contactName       : template.find(".delivery-contactName").value
+    contactPhone      : template.find(".delivery-contactPhone").value
+    deliveryDate      : new Date
+    comment           : template.find(".delivery-comment").value
+    transportationFee : template.find(".delivery-transportationFee").value
+    status            : 1
+  , (error, result) -> console.log error
 
 
 #updateMetroSummary= ->

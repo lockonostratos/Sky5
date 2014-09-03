@@ -10,6 +10,7 @@ Schema2.deliveries = new SimpleSchema
 
   sale:
     type: String
+    optional: true
 
   deliveryAddress:
     type: String
@@ -23,6 +24,7 @@ Schema2.deliveries = new SimpleSchema
 
   deliveryDate:
     type: Date
+    optional: true
 
   comment:
     type: String
