@@ -1,4 +1,14 @@
-Meteor.subscribe 'orders'
-Meteor.subscribe 'products'
 Meteor.subscribe 'merchants'
 Meteor.subscribe 'warehouses'
+Meteor.subscribe 'products'
+Meteor.subscribe 'productDetails'
+
+Meteor.subscribe 'orders'
+Meteor.subscribe 'orderDetails'
+Meteor.subscribe 'sales'
+Meteor.subscribe 'saleDetails'
+Meteor.subscribe 'deliveries'
+Meteor.subscribe 'returns'
+Meteor.subscribe 'returnDetails'
+
+

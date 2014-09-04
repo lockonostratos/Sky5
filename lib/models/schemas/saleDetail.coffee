@@ -2,6 +2,9 @@ Schema2.saleDetails = new SimpleSchema
   sale:
     type: String
 
+  product:
+    type: String
+
   productDetail:
     type: String
 

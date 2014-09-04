@@ -1,0 +1,37 @@
+template(name="returns")
+    .content
+        .content-heading
+            .row
+                .col-lg-3
+                    .input-group
+                        span.input-group-addon Phiếu Bán:
+                        .sl2.field(style="width: 250px;")
+                .col-lg-3
+                    .input-group
+                        span.input-group-addon Tên Phiếu Trả:
+                        input.form-control.returnCode(type='text')
+                .col-lg-4
+                    .input-group
+                        span.input-group-addon Nội dung:
+                        input.form-control.comment(type='text')
+                .col-lg-2
+                    button.btn.btn-default.createReturns(type='submit') Tạo Phiếu Trả Hàng
+            .row
+                .col-lg-3
+                    .input-group
+                        span.input-group-addon Phiếu Trả Hàng:
+                        .sl3.field(style="width: 250px;")
+                .col-lg-3
+                    .input-group
+                        span.input-group-addon Sản Phẩm Trả:
+                        .sl4.field(style="width: 250px;")
+                .col-lg-3
+                    .input-group
+                        span.input-group-addon Số lượng trả:
+                        input.form-control.returnQuality(type='text')
+                .col-lg-2
+                    button.btn.btn-default.createReturnDetail(type='submit') Add Hàng Trả
+
+        .content-body
+            +reactiveTable(collection=returnCollection)
+        .content-footer footer

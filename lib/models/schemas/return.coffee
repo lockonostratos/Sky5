@@ -5,7 +5,7 @@ Schema2.returns = new SimpleSchema
   warehouse:
     type: String
 
-  order:
+  sale:
     type: String
 
   creator:
@@ -13,8 +13,9 @@ Schema2.returns = new SimpleSchema
 
   submitReturn:
     type: String
+    optional: true
 
-  name:
+  returnCode:
     type: String
 
   productSale:

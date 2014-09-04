@@ -1,14 +1,14 @@
 Schema2.returnDetails  = new SimpleSchema
-  order:
+  sale:
     type: String
 
-  return:
+  returns:
     type: String
 
-  product:
+  productDetail:
     type: String
 
-  quality:
+  returnQuality:
     type: String
 
   price:
@@ -20,13 +20,11 @@ Schema2.returnDetails  = new SimpleSchema
   finalPrice:
     type: Number
 
-  submited:
+  submit:
     type: Boolean
+    optional: true
 
-  createdAt:
-    type: Date
 
-  updatedAt:
-    type: Date
+  version: { type: Schema.Version }
 
 Schema.add 'returnDetails'

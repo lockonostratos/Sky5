@@ -28,3 +28,18 @@ Schema.deliveries.allow
   insert: -> true
   update: -> true
   remove: -> true
+
+Meteor.publish 'returns', -> Schema.returns.find({})
+Schema.returns.allow
+  insert: -> true
+  update: -> true
+  remove: -> true
+
+Meteor.publish 'returnDetails', -> Schema.returnDetails.find({})
+Schema.returnDetails.allow
+  insert: -> true
+  update: -> true
+  remove: -> true
+
+
+

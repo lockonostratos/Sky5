@@ -1,27 +1,35 @@
-Nhap Kho      [Ok]
-Product REST    [reCheck]
-Huy nhap kho    [...]
-Chuyen kho     [...]
-Kiem khi        [...]
-Ban hang      [90%]
-Tra hang      [...]
-Giao hang     [...]
-Bao cao      [...]
-Khach hang REST   [...]
-Nhan vien REST   [...]
-Kho REST     [...]
+Nhap Kho 					[Done]
+Huy nhap kho				[.5h] 2nd
+Chuyen kho					[1h] 3rd
+Kiem kho					  	[1h] 4th
+--------------------------
+Ban hang 					[100%]
+Tra hang 						[1h] 1.5h 
+Giao hang					[Done] 2.5h
+--------------------------
 
-modalPopervers-----
-brandNewProducts  [60%]
+
+Bao cao						[...]
+Product REST				[60%]
+Khach hang REST			[...]
+Nhan vien REST				[...]
+Kho REST					[...]
+
+modalPopervers -------------
+brandNewProducts		[60%]
 
 System
-finish layout parts   [70%]
-Phan quyen     [60%]
-Options      [40%]
-Aside widget    [Done]
-modalPopover     [Done]
-twoWayBinding /reactive [...]
-tabControl     [...]
-publish-with-relation  [...]
-chat system...    [...]
-notification-region   [...]
+finish layout parts			[70%]
+Phan quyen					[60%]
+Options						[40%]
+Aside widget					[Done]
+modalPopover 				[Done]
+twoWayBinding	/reactive	[...] 1st
+tabControl					[...] 3rd
+Sky.template					[Done] 4.5h
+gridControl					[...]
+publish-with-relation		[...] 2nd
+chat system...				[...]
+notification-region			[...]
+---------------------------
+Chuyen he thong GUI		[...]

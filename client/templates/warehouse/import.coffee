@@ -365,8 +365,7 @@ createSaleAndSaleOrder= (currentOrder, currentOrderDetails, template)->
     finalPrice    : currentOrder.finalPrice
     deposit       : currentOrder.deposit
     debit         : currentOrder.debit
-    status        : currentOrder.status
-#  , (e, r) -> console.log 'xx'
+#  , (e, r) -> console.log currentOrder
 
   currentSale = Schema.sales.findOne(sale)
   for currentOrderDetail in currentOrderDetails
@@ -394,6 +393,7 @@ subtractQualityOnSales= (stockingItems, sellingItem , currentSale) ->
       discountCash = (discountPercent * totalPrice)/100
       Schema.saleDetails.insert
         sale: currentSale._id
+        product: sellingItem.product
         productDetail: product._id
         quality: takkenQuality
         price: sellingItem.price
@@ -405,6 +405,7 @@ subtractQualityOnSales= (stockingItems, sellingItem , currentSale) ->
       discountCash = (sellingItem.discountPercent * totalPrice)/100
       Schema.saleDetails.insert
         sale: currentSale._id
+        product: sellingItem.product
         productDetail: product._id
         quality: takkenQuality
         price: sellingItem.price
@@ -458,7 +459,7 @@ createDelivery=(currentSale, template)->
     deliveryDate      : new Date
     comment           : template.find(".delivery-comment").value
     transportationFee : template.find(".delivery-transportationFee").value
-    status            : 1
+    status            : 0
   , (error, result) -> console.log error
 
 

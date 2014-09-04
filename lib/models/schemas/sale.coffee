@@ -51,6 +51,10 @@ Schema2.sales = new SimpleSchema
   debit:
     type: Number
 
+  status:
+    type: Boolean
+    optional: true
+
   version: { type: Schema.Version }
 
 Schema.add 'sales'
