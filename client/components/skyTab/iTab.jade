@@ -1,6 +1,7 @@
-template(name="skyTab")
+template(name="iTab")
+	h1 {{foo}}!
 	ul.sky-tab
-		each getTabs
+		each allTabs
 			li(class="#{class}")
 				a(href="#") #{caption}
 				span.fa.fa-trash-o

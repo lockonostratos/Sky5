@@ -3,7 +3,8 @@ Package.describe({
 });
 
 Package.on_use(function (api, where) {
-    api.add_files('sky.coffee', ['client', 'server']);
+    api.add_files(['lib/sky.coffee', 'lib/template.coffee'], ['client', 'server']);
+
     api.use(['coffeescript', 'handlebars', 'deps'], ['client', 'server']);
     api.export('Sky', ['client', 'server']);
 });

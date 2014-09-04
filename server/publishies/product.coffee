@@ -1,4 +1,14 @@
 Meteor.publish 'products', -> Schema.products.find {}
+#  Meteor.publishWithRelations
+#    handle: this
+#    collection: Schema.products
+#    filter: {}
+#    mappings: [
+#      key: 'creator'
+#      collection: Meteor.users
+#    ]
+
+
 Schema.products.allow
   insert: -> true
   update: -> true

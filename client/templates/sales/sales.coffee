@@ -6,6 +6,7 @@ Sky.global.personalOrders = ->
     item
 
 _.extend Template.sales,
+  allOrders: [{caption: "tab 1", class: "active"}, {caption: "tab 2"}, {caption: "tab 3"}]
   saleTabOptions: ->
     tabs: -> Sky.global.personalOrders()
     createInstance: (caption) ->
@@ -26,10 +27,8 @@ _.extend Template.sales,
 #      Schema.orders.insert newOrder, (error, result) -> success = true if !error
 #      return unless success
 
-
-
     currentTab: 'currentOrderTab'
-  rendered: -> console.log 'sales rendered'
+  rendered: ->
 
 
 #    orderCollection: Schema.orders.find({})

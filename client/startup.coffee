@@ -21,6 +21,5 @@ Meteor.startup ->
       Session.set "currentWarehouse", Schema.warehouses.findOne({merchant: root.currentMerchant._id})
       root.currentWarehouse = Session.get "currentWarehouse"
 
-
   Deps.autorun ->
     console.log "Your food is #{root.getFood()}"

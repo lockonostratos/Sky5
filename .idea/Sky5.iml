@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/blaze-layout/examples/simple/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/iron-dynamic-template/examples/basic/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/iron-dynamic-template/examples/javascript/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/iron-layout/examples/javascript/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/iron-layout/examples/templates/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/iron-router/examples/basic/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/iron-router/examples/hooks/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/iron-router/examples/waiton/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/publish-with-relations/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/reactive-table/examples/leaderboard/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/reactive-table/examples/table-features/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/x-editable-bootstrap/example/.meteor/local" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="meteor-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="bootstrap-DefinitelyTyped" level="application" />
   </component>
 </module>
 

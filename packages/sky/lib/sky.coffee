@@ -16,7 +16,6 @@ class Sky
       accountManagement:  { key: 'accountManagement',   description: 'quản lý nhân viên' }
       customerManagement: { key: 'customerManagement',  description: 'quản lý khách hàng' }
 
-
   class @helpers
     @removeVnSigns: (source) ->
       str = source
