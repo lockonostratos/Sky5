@@ -18,10 +18,10 @@ Schema2.sales = new SimpleSchema
     type: String
 
   productCount:
-    type: String
+    type: Number
 
   saleCount:
-    type: String
+    type: Number
 
   return:
     type: Boolean

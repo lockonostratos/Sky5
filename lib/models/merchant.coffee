@@ -53,6 +53,12 @@ Schema.add 'merchants', class Merchant
 
         Schema.productDetails.insert productDetail, (error, result) ->
           if error then throw 'Sai thông tin sản phẩm'
+#        console.log productDetail.importQuality
+        Schema.products.update productDetail.product,
+          $inc:
+            totalQuality    : productDetail.importQuality
+            availableQuality: productDetail.importQuality
+            instockQuality  : productDetail.importQuality
     catch e
       transaction.rollBack()
       console.log e

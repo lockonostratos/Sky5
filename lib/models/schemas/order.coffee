@@ -21,11 +21,11 @@ Schema2.orders = new SimpleSchema
     optional: true
 
   productCount:
-    type: String
+    type: Number
     optional: true
 
   saleCount:
-    type: String
+    type: Number
     optional: true
 
   deliveryType:

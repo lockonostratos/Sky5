@@ -127,11 +127,11 @@ template(name='createOrder')
             .col-lg-2
                 .input-group
                     span.input-group-addon CTT:
-                    input.form-control.orderDetail-paymentMethod(type='text' value='0')
+                    input.form-control.orderPaymentMethod(type='text' value='0')
             .col-lg-2
                 .input-group
                     span.input-group-addon PTVC:
-                    input.form-control.orderDetail-deliveryType(type='text' value='0')
+                    input.form-control.orderDeliveryType(type='text' value='0')
             .col-lg-2
                 .input-group
                     span.input-group-addon Giam Bill:
@@ -185,7 +185,4 @@ template(name='createOrder')
         .row.orderDetail
             h3 OrderDetail
             +reactiveTable(collection=orderDetailCollection)
-
-
-
-
+//-----Xem Delivery -------
