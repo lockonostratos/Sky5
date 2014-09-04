@@ -2,4 +2,7 @@ template(name="sales")
 	.app-header
 		span.caption Bán hàng <small>(cửa hàng)</small>
 	.app-editor
-	+iTab(source=allOrders)
+		.seller-select2(style="width: 200px;")
+		.buyer-select2(style="width: 200px;")
+	+iTab(options=tabOptions)
+	+reactiveTable(collection=orderCollection)

@@ -1,35 +1,43 @@
-Sky.global.personalOrders = ->
-  data = Schema.orders.find({creator: Meteor.userId()}).fetch()
-  _.map data, (item) ->
-    item.caption = item._id
-    item.details = -> Schema.orderDetails.find({order: item._id})
-    item
+tabSource = [{alias: "tab 1", class: "active"}, {alias: "tab 2"}, {alias: "tab 3"}]
+
+Deps.autorun ->
+  if options.currentTab then currentTab = Schema.orderDetails.find({order: options.currentTab._id})
+
+options =
+  source: -> Sky.global.personalOrders
+  caption: 'orderCode'
+  key: '_id'
+  instanceCreator: ->
+    newOrder =
+      merchant      : currentMerchant._id
+      warehouse     : currentWarehouse._id
+      creator       : Meteor.userId()
+      seller        : 'asdsad'
+      buyer         : 'asdsad'
+      orderCode     : 'asdsad'
+      deliveryType  : 0
+      paymentMethod : 0
+      discountCash  : 0
+      productCount  : 0
+      saleCount     : 0
+      totalPrice    : 0
+      finalPrice    : 0
+      deposit       : 0
+      debit         : 0
+      billDiscount  : false
+      status        : 1
+    Schema.orders.insert newOrder
+    newOrder
+  instanceDestroyer: (instance) ->
+
 
 _.extend Template.sales,
-  allOrders: [{caption: "tab 1", class: "active"}, {caption: "tab 2"}, {caption: "tab 3"}]
-  saleTabOptions: ->
-    tabs: -> Sky.global.personalOrders()
-    createInstance: (caption) ->
-      newOrder =
-        caption: caption
-        class: 'active'
-        dumpData: 'yeha'
-        merchant: currentMerchant._id
-        warehouse: currentWarehouse._id
-        creator: Meteor.userId()
-        saler: 'sang'
-        buyer: 'Ky'
-        orderCode: '123213'
-        status: 1
-
-      success = false;
-      Schema.orders.insert newOrder, (error, result) -> console.log error; console.log result
-#      Schema.orders.insert newOrder, (error, result) -> success = true if !error
-#      return unless success
-
-    currentTab: 'currentOrderTab'
+  tabOptions: options
+  orderDetailCollection: currentTab
   rendered: ->
 
+  events:
+    "click": -> console.log options.currentTab
 
 #    orderCollection: Schema.orders.find({})
 #  orderDetailCollection: Schema.orderDetails.find({})

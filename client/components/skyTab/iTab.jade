@@ -1,9 +1,8 @@
 template(name="iTab")
-	h1 {{foo}}!
 	ul.sky-tab
 		each allTabs
-			li(class="#{class}")
-				a(href="#") #{caption}
+			li(class="#{activeClass}")
+				a(href="#") #{caption} #{getCaption}
 				span.fa.fa-trash-o
 		li.new-button
 			a(href="#") &nbsp;

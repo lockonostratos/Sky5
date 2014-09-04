@@ -5,7 +5,10 @@ template(name="productPopover")
 		.popover-content.modalable
 			.wrapper.bottom: p form
 				//+reactiveTable(collection=products)
-			ul
+				div(align="right"): a.btn.btn-danger Tạo mới
+			ul.grid
 				each products
-					li #{name}, #{skulls}
+					li
+						|#{name}, #{skulls}
+						a.btn.btn-danger xóa
 			.wrapper.top(align="right"): a.btn.btn-danger Button <br />

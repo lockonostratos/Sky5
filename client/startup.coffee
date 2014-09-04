@@ -21,5 +21,8 @@ Meteor.startup ->
       Session.set "currentWarehouse", Schema.warehouses.findOne({merchant: root.currentMerchant._id})
       root.currentWarehouse = Session.get "currentWarehouse"
 
+    Sky.global.sellers = Meteor.users.find({}).fetch()
+    Sky.global.personalOrders = Schema.orders.find({})
+
   Deps.autorun ->
     console.log "Your food is #{root.getFood()}"
