@@ -10,7 +10,7 @@ _.extend Template.delivery,
     { key: 'deliveryAddress'  , label: 'Dia Chi' }
     { key: 'contactPhone'     , label: 'So DT' }
     { key: 'transportationFee', label: 'Phi Giao' }
-    { key: 'status', label: 'Trang Thai' }
+    { key: 'status'           , label: 'Trang Thai' }
     { key: ''                 , label: '', tmpl: Template.removeItem }
   ]
   }
@@ -30,12 +30,14 @@ updateDelyvery= (delivery, value)->
     Schema.deliveries.update item._id, $set:{status: 2, exporter: Meteor.userId()}; return
   if item.status == 2 and value == 0
     Schema.deliveries.update item._id, $set:{status: 3}; return
+
   #Giao Hang Thanh Cong
   if item.status == 3 and value == 1
     Schema.deliveries.update item._id, $set:{status: 4}; return
   if item.status == 4 and value == 0
     Schema.deliveries.update item._id, $set:{status: 5, cashier: Meteor.userId()}; return
   if item.status == 5 and value == 0 then updateDeliveryTrue item
+
   #Giao Hang That Bai
   if item.status == 3 and value == 2
     Schema.deliveries.update item._id, $set:{status: 7}; return

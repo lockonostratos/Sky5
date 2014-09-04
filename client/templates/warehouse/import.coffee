@@ -328,6 +328,8 @@ addOrderDetail = (template, orderDetails) ->
       totalPrice    : totalPrice
       finalPrice    : finalPrice
 
+  Session.set 'currentOrder', Schema.orders.findOne Session.get('currentOrder')._id
+
 checkProductInstockQuality= (orderDetailsList, productList)->
   orderDetails = _.chain(orderDetailsList)
             .groupBy("product")
@@ -348,23 +350,24 @@ checkProductInstockQuality= (orderDetailsList, productList)->
     return {error: e}
 
 createSaleAndSaleOrder= (currentOrder, currentOrderDetails, template)->
+  order = Schema.orders.findOne currentOrder._id
   sale = Schema.sales.insert
-    merchant      : currentOrder.merchant
-    warehouse     : currentOrder.warehouse
-    creator       : currentOrder.creator
-    seller        : currentOrder.seller
-    buyer         : currentOrder.buyer
-    orderCode     : currentOrder.orderCode
-    billDiscount  : currentOrder.billDiscount
-    productCount  : currentOrder.productCount
-    saleCount     : currentOrder.saleCount
-    deliveryType  : currentOrder.deliveryType
-    paymentMethod : currentOrder.paymentMethod
-    discountCash  : currentOrder.discountCash
-    totalPrice    : currentOrder.totalPrice
-    finalPrice    : currentOrder.finalPrice
-    deposit       : currentOrder.deposit
-    debit         : currentOrder.debit
+    merchant      : order.merchant
+    warehouse     : order.warehouse
+    creator       : order.creator
+    seller        : order.seller
+    buyer         : order.buyer
+    orderCode     : order.orderCode
+    billDiscount  : order.billDiscount
+    productCount  : order.productCount
+    saleCount     : order.saleCount
+    deliveryType  : order.deliveryType
+    paymentMethod : order.paymentMethod
+    discountCash  : order.discountCash
+    totalPrice    : order.totalPrice
+    finalPrice    : order.finalPrice
+    deposit       : order.deposit
+    debit         : order.debit
 #  , (e, r) -> console.log currentOrder
 
   currentSale = Schema.sales.findOne(sale)
@@ -373,7 +376,9 @@ createSaleAndSaleOrder= (currentOrder, currentOrderDetails, template)->
     subtractQualityOnSales(productDetails, currentOrderDetail, currentSale)
   if currentSale.deliveryType == 1
     createDelivery(currentSale, template)
-#  removeOrderAndOrderDetails(); Session.set 'currentOrder'
+  else
+    Schema.sales.update sale, $set: {status: true}
+  removeOrderAndOrderDetails(); Session.set 'currentOrder'
 
 
 subtractQualityOnSales= (stockingItems, sellingItem , currentSale) ->
