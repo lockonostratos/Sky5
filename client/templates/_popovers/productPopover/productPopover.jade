@@ -1,14 +1,25 @@
 template(name="productPopover")
-	#productPopover.popover.fade(style='width: 300px')
-		.arrow
-		h3.popover-title THÊM MỚI SẢN PHẨM
-		.popover-content.modalable
-			.wrapper.bottom: p form
-				//+reactiveTable(collection=products)
-				div(align="right"): a.btn.btn-danger Tạo mới
-			ul.grid
-				each products
-					li
-						|#{name}, #{skulls}
-						a.btn.btn-danger xóa
-			.wrapper.top(align="right"): a.btn.btn-danger Button <br />
+    #productPopover.popover.fade(style='width: 300px')
+        .arrow
+        h3.popover-title THÊM MỚI SẢN PHẨM
+        .popover-content.modalable
+            .wrapper.bottom
+                if error
+                    |#{error}
+                .input-group
+                    span.input-group-addon Code:
+                    input.form-control.productCode(type='text')
+                .input-group
+                    span.input-group-addon Tên :
+                    input.form-control.name(type='text')
+                .input-group
+                    span.input-group-addon Loại:
+                    input.form-control.skull(type='text')
+
+                div(align="right"): a.btn.btn-danger.create Tạo mới
+            ul.grid
+                each products
+                    li
+                        | #{name}, #{skulls}
+                        a.btn.btn-danger.productRemove xóa
+            .wrapper.top(align="right"): a.btn.btn-danger Button <br />

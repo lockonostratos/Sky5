@@ -1,7 +1,7 @@
 tabSource = [{alias: "tab 1", class: "active"}, {alias: "tab 2"}, {alias: "tab 3"}]
 
 Deps.autorun ->
-  if options.currentTab then currentTab = Schema.orderDetails.find({order: options.currentTab._id})
+#  if options.currentTab then currentTab = Schema.orderDetails.find({order: options.currentTab._id})
 
 options =
   source: -> Sky.global.personalOrders

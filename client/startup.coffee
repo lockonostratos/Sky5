@@ -15,7 +15,7 @@ Meteor.startup ->
     root.currentMerchant = Session.get "currentMerchant"
 
 #    Session.set "personalNewProducts",
-    Sky.global.personalNewProducts = Schema.products.find({creator: Meteor.userId(), totalQuality: 0})
+    Sky.global.personalNewProducts = Schema.products.find({creator: Meteor.userId(), totalQuality: 0},sort: {version:{createdAt: -1}})
 
     if root.currentMerchant
       Session.set "currentWarehouse", Schema.warehouses.findOne({merchant: root.currentMerchant._id})
