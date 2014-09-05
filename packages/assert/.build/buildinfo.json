@@ -1,0 +1,47 @@
+{
+  "builtBy": "meteor/10",
+  "sliceDependencies": {
+    "browser.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\assert\\package.js": "5b628ebf7b9fb8e15751642b1092a8b11e21c4e6",
+        "D:\\Projects\\Sky5\\packages\\assert\\client\\assert.js": "1f08aa07a4d0b1bd518936ae27bda74e57c9923d",
+        "D:\\Projects\\Sky5\\packages\\assert\\export-assert.js": "6d222a201d7bc62c685b8b24431a6d62115df8ba"
+      },
+      "directories": []
+    },
+    "os.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\assert\\package.js": "5b628ebf7b9fb8e15751642b1092a8b11e21c4e6",
+        "D:\\Projects\\Sky5\\packages\\assert\\server.js": "0858548aee5812fedc7f062f9218434e2e2cd3a4"
+      },
+      "directories": []
+    },
+    "tests.browser.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\assert\\package.js": "5b628ebf7b9fb8e15751642b1092a8b11e21c4e6",
+        "D:\\Projects\\Sky5\\packages\\assert\\tests.js": "dec72fc03edf6d2ba53775bb0aac3bac0b1c9ca5"
+      },
+      "directories": []
+    },
+    "tests.os.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\assert\\package.js": "5b628ebf7b9fb8e15751642b1092a8b11e21c4e6",
+        "D:\\Projects\\Sky5\\packages\\assert\\tests.js": "dec72fc03edf6d2ba53775bb0aac3bac0b1c9ca5"
+      },
+      "directories": []
+    }
+  },
+  "pluginDependencies": {
+    "files": {
+      "D:\\Projects\\Sky5\\packages\\assert\\package.js": "5b628ebf7b9fb8e15751642b1092a8b11e21c4e6"
+    },
+    "directories": []
+  },
+  "pluginProviderPackages": {
+    "assert": "D:\\Projects\\Sky5\\packages\\assert",
+    "meteor": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\meteor\\9b5817e6fc",
+    "tinytest": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\tinytest\\7121f0b2a7",
+    "test-helpers": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\test-helpers\\dddc77b8ee"
+  },
+  "source": "D:\\Projects\\Sky5\\packages\\assert"
+}

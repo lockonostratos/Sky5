@@ -1,0 +1,44 @@
+{
+  "builtBy": "meteor/10",
+  "sliceDependencies": {
+    "browser.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\util\\package.js": "d54fea761b400cf3b21368f4f4e0e7ac3da48ec4"
+      },
+      "directories": []
+    },
+    "os.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\util\\package.js": "d54fea761b400cf3b21368f4f4e0e7ac3da48ec4",
+        "D:\\Projects\\Sky5\\packages\\util\\server.js": "41dfc1ef66579cdfaa08186543c29efbb1028785"
+      },
+      "directories": []
+    },
+    "tests.browser.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\util\\package.js": "d54fea761b400cf3b21368f4f4e0e7ac3da48ec4"
+      },
+      "directories": []
+    },
+    "tests.os.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\util\\package.js": "d54fea761b400cf3b21368f4f4e0e7ac3da48ec4",
+        "D:\\Projects\\Sky5\\packages\\util\\tests.js": "48bcb90b6110f323029fb7b37a32b988a6db7b1d"
+      },
+      "directories": []
+    }
+  },
+  "pluginDependencies": {
+    "files": {
+      "D:\\Projects\\Sky5\\packages\\util\\package.js": "d54fea761b400cf3b21368f4f4e0e7ac3da48ec4"
+    },
+    "directories": []
+  },
+  "pluginProviderPackages": {
+    "util": "D:\\Projects\\Sky5\\packages\\util",
+    "meteor": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\meteor\\9b5817e6fc",
+    "tinytest": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\tinytest\\7121f0b2a7",
+    "test-helpers": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\test-helpers\\dddc77b8ee"
+  },
+  "source": "D:\\Projects\\Sky5\\packages\\util"
+}

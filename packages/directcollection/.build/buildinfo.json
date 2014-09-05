@@ -1,0 +1,50 @@
+{
+  "builtBy": "meteor/10",
+  "sliceDependencies": {
+    "browser.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\directcollection\\package.js": "738c2647931539c8c59703a9f9f9d9b3dddb125f"
+      },
+      "directories": []
+    },
+    "os.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\directcollection\\package.js": "738c2647931539c8c59703a9f9f9d9b3dddb125f",
+        "D:\\Projects\\Sky5\\packages\\directcollection\\direct.coffee": "8fdf4257fc458b8b6ef3e91e9080c0bc9681175a",
+        "D:\\Projects\\Sky5\\packages\\blocking\\package.js": "1ece00ed729667e5ff7e5d0d0b645d77cecbc27a"
+      },
+      "directories": []
+    },
+    "tests.browser.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\directcollection\\package.js": "738c2647931539c8c59703a9f9f9d9b3dddb125f"
+      },
+      "directories": []
+    },
+    "tests.os.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\directcollection\\package.js": "738c2647931539c8c59703a9f9f9d9b3dddb125f",
+        "D:\\Projects\\Sky5\\packages\\directcollection\\tests.coffee": "994918e3f53998023576797925e5de8a1c485383"
+      },
+      "directories": []
+    }
+  },
+  "pluginDependencies": {
+    "files": {
+      "D:\\Projects\\Sky5\\packages\\directcollection\\package.js": "738c2647931539c8c59703a9f9f9d9b3dddb125f"
+    },
+    "directories": []
+  },
+  "pluginProviderPackages": {
+    "directcollection": "D:\\Projects\\Sky5\\packages\\directcollection",
+    "meteor": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\meteor\\9b5817e6fc",
+    "coffeescript": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\coffeescript\\ac8a2e40e2",
+    "underscore": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\underscore\\385ecbfa96",
+    "random": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\random\\044885b58f",
+    "blocking": "D:\\Projects\\Sky5\\packages\\blocking",
+    "ejson": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\ejson\\630cb4225c",
+    "tinytest": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\tinytest\\7121f0b2a7",
+    "test-helpers": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\test-helpers\\dddc77b8ee"
+  },
+  "source": "D:\\Projects\\Sky5\\packages\\directcollection"
+}

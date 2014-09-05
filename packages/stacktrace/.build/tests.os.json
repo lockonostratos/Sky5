@@ -1,0 +1,32 @@
+{
+  "format": "unipackage-slice-pre1",
+  "noExports": true,
+  "packageVariables": [],
+  "uses": [
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "stacktrace"
+    },
+    {
+      "package": "tinytest"
+    },
+    {
+      "package": "test-helpers"
+    },
+    {
+      "package": "underscore"
+    }
+  ],
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "tests.os/packages/stacktracetests.js",
+      "length": 2302,
+      "offset": 0,
+      "servePath": "/packages/stacktrace:tests.js",
+      "sourceMap": "tests.os/packages/stacktracetests.js.map"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "format": "unipackage-slice-pre1",
+  "noExports": true,
+  "packageVariables": [],
+  "uses": [
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "blocking"
+    },
+    {
+      "package": "tinytest"
+    },
+    {
+      "package": "test-helpers"
+    }
+  ],
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "tests.os/packages/blockingtests.js",
+      "length": 2302,
+      "offset": 0,
+      "servePath": "/packages/blocking:tests.js",
+      "sourceMap": "tests.os/packages/blockingtests.js.map"
+    }
+  ]
+}

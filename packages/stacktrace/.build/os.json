@@ -1,0 +1,24 @@
+{
+  "format": "unipackage-slice-pre1",
+  "packageVariables": [
+    {
+      "name": "StackTrace",
+      "export": true
+    }
+  ],
+  "uses": [
+    {
+      "package": "meteor"
+    }
+  ],
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "os/packages/stacktrace.js",
+      "length": 65695,
+      "offset": 0,
+      "servePath": "/packages/stacktrace.js",
+      "sourceMap": "os/packages/stacktrace.js.map"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "format": "unipackage-slice-pre1",
+  "noExports": true,
+  "packageVariables": [],
+  "uses": [
+    {
+      "package": "meteor"
+    }
+  ],
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "tests.browser/packages/blockingtests.js",
+      "length": 0,
+      "offset": 0,
+      "servePath": "/packages/blocking:tests.js",
+      "sourceMap": "tests.browser/packages/blockingtests.js.map"
+    }
+  ]
+}

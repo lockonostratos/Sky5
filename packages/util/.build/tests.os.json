@@ -1,0 +1,29 @@
+{
+  "format": "unipackage-slice-pre1",
+  "noExports": true,
+  "packageVariables": [],
+  "uses": [
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "util"
+    },
+    {
+      "package": "tinytest"
+    },
+    {
+      "package": "test-helpers"
+    }
+  ],
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "tests.os/packages/utiltests.js",
+      "length": 1598,
+      "offset": 0,
+      "servePath": "/packages/util:tests.js",
+      "sourceMap": "tests.os/packages/utiltests.js.map"
+    }
+  ]
+}

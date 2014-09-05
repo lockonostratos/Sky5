@@ -6,6 +6,7 @@
     font-size: 36px;
     font-weight: 500;
     line-height: 1.1;
+    text-transform: uppercase;
 
     small {
       font-size: 65%;
@@ -43,11 +44,15 @@
   height: 45px;
   margin-top: 7px;
   background-color: #000;
-  text-align: center;
-  i { color: #fff; line-height: 45px; font-size: 12px; }
 
-  &.left  { right:  -12px; }
-  &.right { left:   -12px; }
+  &.left  {
+    right: -12px;
+    background: url("images/left-handle.png") no-repeat;
+  }
+  &.right {
+    left: -12px;
+    background: url("images/right-handle.png") no-repeat;
+  }
 }
 
 .dark-line {

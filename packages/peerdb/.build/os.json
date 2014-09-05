@@ -1,0 +1,54 @@
+{
+  "format": "unipackage-slice-pre1",
+  "packageVariables": [
+    {
+      "name": "Document",
+      "export": true
+    },
+    {
+      "name": "__coffeescriptShare"
+    }
+  ],
+  "uses": [
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "coffeescript"
+    },
+    {
+      "package": "underscore"
+    },
+    {
+      "package": "minimongo"
+    },
+    {
+      "package": "assert"
+    },
+    {
+      "package": "stacktrace"
+    },
+    {
+      "package": "logging"
+    },
+    {
+      "package": "util"
+    },
+    {
+      "package": "moment"
+    },
+    {
+      "package": "directcollection"
+    }
+  ],
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "os/packages/peerdb.js",
+      "length": 83647,
+      "offset": 0,
+      "servePath": "/packages/peerdb.js",
+      "sourceMap": "os/packages/peerdb.js.map"
+    }
+  ]
+}

@@ -5,19 +5,22 @@
 
 standard-app-packages
 less
-less-bootstrap-3
+jade
 coffeescript
+font-awesome-4-less
+less-bootstrap-3
+sky
+
 accounts-password
 accounts-entry
 accounts-ui
 iron-router
 iron-router-active
 iron-router-progress
-jade
-font-awesome-4-less
+
+knockout
 collection2
 reactive-table
 select2
 x-editable-bootstrap
 jquery-hotkeys
-sky

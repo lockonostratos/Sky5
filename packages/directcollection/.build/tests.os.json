@@ -1,0 +1,39 @@
+{
+  "format": "unipackage-slice-pre1",
+  "noExports": true,
+  "packageVariables": [
+    {
+      "name": "__coffeescriptShare"
+    }
+  ],
+  "uses": [
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "directcollection"
+    },
+    {
+      "package": "tinytest"
+    },
+    {
+      "package": "test-helpers"
+    },
+    {
+      "package": "coffeescript"
+    },
+    {
+      "package": "underscore"
+    }
+  ],
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "tests.os/packages/directcollectiontests.js",
+      "length": 3388,
+      "offset": 0,
+      "servePath": "/packages/directcollection:tests.js",
+      "sourceMap": "tests.os/packages/directcollectiontests.js.map"
+    }
+  ]
+}

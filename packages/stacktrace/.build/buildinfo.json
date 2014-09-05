@@ -1,0 +1,49 @@
+{
+  "builtBy": "meteor/10",
+  "sliceDependencies": {
+    "browser.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\stacktrace\\package.js": "a87a2f726821577c7af55b958adb9b159bf0b270",
+        "D:\\Projects\\Sky5\\packages\\stacktrace\\stacktrace\\stacktrace.js": "60edd42d2b95ca861f7cb36b2bf10c3958304864",
+        "D:\\Projects\\Sky5\\packages\\stacktrace\\export-stacktrace.js": "dae3f4b131795d315434b87212c0719dad98f7c5"
+      },
+      "directories": []
+    },
+    "os.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\stacktrace\\package.js": "a87a2f726821577c7af55b958adb9b159bf0b270",
+        "D:\\Projects\\Sky5\\packages\\stacktrace\\stacktrace\\stacktrace.js": "60edd42d2b95ca861f7cb36b2bf10c3958304864",
+        "D:\\Projects\\Sky5\\packages\\stacktrace\\export-stacktrace.js": "dae3f4b131795d315434b87212c0719dad98f7c5"
+      },
+      "directories": []
+    },
+    "tests.browser.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\stacktrace\\package.js": "a87a2f726821577c7af55b958adb9b159bf0b270",
+        "D:\\Projects\\Sky5\\packages\\stacktrace\\tests.js": "e2e7b0515a2da3e98f89f0832a6041f589613d79"
+      },
+      "directories": []
+    },
+    "tests.os.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\stacktrace\\package.js": "a87a2f726821577c7af55b958adb9b159bf0b270",
+        "D:\\Projects\\Sky5\\packages\\stacktrace\\tests.js": "e2e7b0515a2da3e98f89f0832a6041f589613d79"
+      },
+      "directories": []
+    }
+  },
+  "pluginDependencies": {
+    "files": {
+      "D:\\Projects\\Sky5\\packages\\stacktrace\\package.js": "a87a2f726821577c7af55b958adb9b159bf0b270"
+    },
+    "directories": []
+  },
+  "pluginProviderPackages": {
+    "stacktrace": "D:\\Projects\\Sky5\\packages\\stacktrace",
+    "meteor": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\meteor\\9b5817e6fc",
+    "tinytest": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\tinytest\\7121f0b2a7",
+    "test-helpers": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\test-helpers\\dddc77b8ee",
+    "underscore": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\underscore\\385ecbfa96"
+  },
+  "source": "D:\\Projects\\Sky5\\packages\\stacktrace"
+}

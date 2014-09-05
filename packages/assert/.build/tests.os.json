@@ -1,0 +1,29 @@
+{
+  "format": "unipackage-slice-pre1",
+  "noExports": true,
+  "packageVariables": [],
+  "uses": [
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "assert"
+    },
+    {
+      "package": "tinytest"
+    },
+    {
+      "package": "test-helpers"
+    }
+  ],
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "tests.os/packages/asserttests.js",
+      "length": 1934,
+      "offset": 0,
+      "servePath": "/packages/assert:tests.js",
+      "sourceMap": "tests.os/packages/asserttests.js.map"
+    }
+  ]
+}

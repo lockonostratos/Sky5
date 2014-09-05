@@ -1,0 +1,42 @@
+{
+  "format": "unipackage-slice-pre1",
+  "packageVariables": [
+    {
+      "name": "DirectCollection",
+      "export": true
+    },
+    {
+      "name": "__coffeescriptShare"
+    }
+  ],
+  "uses": [
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "coffeescript"
+    },
+    {
+      "package": "underscore"
+    },
+    {
+      "package": "random"
+    },
+    {
+      "package": "blocking"
+    },
+    {
+      "package": "ejson"
+    }
+  ],
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "os/packages/directcollection.js",
+      "length": 4747,
+      "offset": 0,
+      "servePath": "/packages/directcollection.js",
+      "sourceMap": "os/packages/directcollection.js.map"
+    }
+  ]
+}

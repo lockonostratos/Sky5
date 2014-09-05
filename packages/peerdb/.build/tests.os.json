@@ -1,0 +1,54 @@
+{
+  "format": "unipackage-slice-pre1",
+  "noExports": true,
+  "packageVariables": [
+    {
+      "name": "__coffeescriptShare"
+    }
+  ],
+  "uses": [
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "peerdb"
+    },
+    {
+      "package": "tinytest"
+    },
+    {
+      "package": "test-helpers"
+    },
+    {
+      "package": "coffeescript"
+    },
+    {
+      "package": "insecure"
+    },
+    {
+      "package": "accounts-base"
+    },
+    {
+      "package": "accounts-password"
+    },
+    {
+      "package": "assert"
+    },
+    {
+      "package": "underscore"
+    },
+    {
+      "package": "directcollection"
+    }
+  ],
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "tests.os/packages/peerdbtests.js",
+      "length": 684233,
+      "offset": 0,
+      "servePath": "/packages/peerdb:tests.js",
+      "sourceMap": "tests.os/packages/peerdbtests.js.map"
+    }
+  ]
+}

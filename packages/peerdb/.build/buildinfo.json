@@ -1,0 +1,73 @@
+{
+  "builtBy": "meteor/10",
+  "sliceDependencies": {
+    "browser.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\peerdb\\package.js": "02c4696db550c40ace9869f3218f2a47da7424d8",
+        "D:\\Projects\\Sky5\\packages\\peerdb\\lib.coffee": "a5271a703d643d9b7c7718f10b8786aa3e683ead",
+        "D:\\Projects\\Sky5\\packages\\assert\\package.js": "5b628ebf7b9fb8e15751642b1092a8b11e21c4e6",
+        "D:\\Projects\\Sky5\\packages\\stacktrace\\package.js": "a87a2f726821577c7af55b958adb9b159bf0b270"
+      },
+      "directories": []
+    },
+    "os.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\peerdb\\package.js": "02c4696db550c40ace9869f3218f2a47da7424d8",
+        "D:\\Projects\\Sky5\\packages\\peerdb\\lib.coffee": "a5271a703d643d9b7c7718f10b8786aa3e683ead",
+        "D:\\Projects\\Sky5\\packages\\peerdb\\server.coffee": "9a6ff31dd972faaf36c0c729c054c171e789df8b",
+        "D:\\Projects\\Sky5\\packages\\assert\\package.js": "5b628ebf7b9fb8e15751642b1092a8b11e21c4e6",
+        "D:\\Projects\\Sky5\\packages\\stacktrace\\package.js": "a87a2f726821577c7af55b958adb9b159bf0b270",
+        "D:\\Projects\\Sky5\\packages\\util\\package.js": "d54fea761b400cf3b21368f4f4e0e7ac3da48ec4",
+        "D:\\Projects\\Sky5\\packages\\moment\\package.js": "6a610913178fc25d6cb48e9031010b9e1051439c",
+        "D:\\Projects\\Sky5\\packages\\directcollection\\package.js": "738c2647931539c8c59703a9f9f9d9b3dddb125f"
+      },
+      "directories": []
+    },
+    "tests.browser.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\peerdb\\package.js": "02c4696db550c40ace9869f3218f2a47da7424d8",
+        "D:\\Projects\\Sky5\\packages\\peerdb\\tests_defined.js": "f66cfe8a19f7aa3e8e4607f76ecb6bc2ebfd71d5",
+        "D:\\Projects\\Sky5\\packages\\peerdb\\tests.coffee": "b9c58a921fd569814a7a27e50e73179628b9f4de",
+        "D:\\Projects\\Sky5\\packages\\assert\\package.js": "5b628ebf7b9fb8e15751642b1092a8b11e21c4e6",
+        "D:\\Projects\\Sky5\\packages\\directcollection\\package.js": "738c2647931539c8c59703a9f9f9d9b3dddb125f"
+      },
+      "directories": []
+    },
+    "tests.os.json": {
+      "files": {
+        "D:\\Projects\\Sky5\\packages\\peerdb\\package.js": "02c4696db550c40ace9869f3218f2a47da7424d8",
+        "D:\\Projects\\Sky5\\packages\\peerdb\\tests_defined.js": "f66cfe8a19f7aa3e8e4607f76ecb6bc2ebfd71d5",
+        "D:\\Projects\\Sky5\\packages\\peerdb\\tests.coffee": "b9c58a921fd569814a7a27e50e73179628b9f4de",
+        "D:\\Projects\\Sky5\\packages\\peerdb\\tests_migrations.coffee": "96d4c2574fdd9828fa5a9bea30e1b9a218f563d4",
+        "D:\\Projects\\Sky5\\packages\\assert\\package.js": "5b628ebf7b9fb8e15751642b1092a8b11e21c4e6",
+        "D:\\Projects\\Sky5\\packages\\directcollection\\package.js": "738c2647931539c8c59703a9f9f9d9b3dddb125f"
+      },
+      "directories": []
+    }
+  },
+  "pluginDependencies": {
+    "files": {
+      "D:\\Projects\\Sky5\\packages\\peerdb\\package.js": "02c4696db550c40ace9869f3218f2a47da7424d8"
+    },
+    "directories": []
+  },
+  "pluginProviderPackages": {
+    "peerdb": "D:\\Projects\\Sky5\\packages\\peerdb",
+    "meteor": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\meteor\\9b5817e6fc",
+    "coffeescript": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\coffeescript\\ac8a2e40e2",
+    "underscore": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\underscore\\385ecbfa96",
+    "minimongo": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\minimongo\\35f5771f8b",
+    "assert": "D:\\Projects\\Sky5\\packages\\assert",
+    "stacktrace": "D:\\Projects\\Sky5\\packages\\stacktrace",
+    "logging": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\logging\\4a1ff80ee5",
+    "util": "D:\\Projects\\Sky5\\packages\\util",
+    "moment": "D:\\Projects\\Sky5\\packages\\moment",
+    "directcollection": "D:\\Projects\\Sky5\\packages\\directcollection",
+    "tinytest": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\tinytest\\7121f0b2a7",
+    "test-helpers": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\test-helpers\\dddc77b8ee",
+    "insecure": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\insecure\\ed652d3bcc",
+    "accounts-base": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\accounts-base\\2005c82891",
+    "accounts-password": "C:\\Users\\pc\\AppData\\Local\\.meteor\\packages\\accounts-password\\af3aa668f0"
+  },
+  "source": "D:\\Projects\\Sky5\\packages\\peerdb"
+}

@@ -4,7 +4,7 @@
 
 Sky.template.extends Template.sales,
   orderDetails: -> Session.get('currentOrderDetails')
-
+  iClasses: -> ' asdad'
   tabOptions:
     source: 'orderHistory'
     currentSource: 'currentOrder'
@@ -13,7 +13,7 @@ Sky.template.extends Template.sales,
     createAction: -> orderCreator('dsa', 'asd')
     destroyAction: (instance) -> Schema.orders.remove(instance._id)
     navigateAction: (instance) ->
-#      console.log "You had navigated to ", instance
+
   ui:
     productSelection: ".product-select2"
 
@@ -41,12 +41,11 @@ Sky.template.extends Template.sales,
     .on "change", (e) ->
       Schema.orders.update(Session.get('currentOrder')._id, {$set: {currentProduct: e.added._id}})
       Session.set('currentOrder', Schema.orders.findOne(Session.get('currentOrder')._id))
+
     jProductSelection.select2("val", Session.get('currentOrder').currentProduct) if Session.get('currentOrder')
+    jProductSelection.find('.select2-results').slimScroll({height: '200px'})
 
   destroyed: -> @autoSelectProduct.stop()
-
-
-
 
 
 orderCreator = (merchantId, warehouseId)->
