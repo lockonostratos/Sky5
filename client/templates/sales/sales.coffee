@@ -2,7 +2,9 @@
 #  orderDetailCollection: Schema.orderDetails.find({})
 #  currentOrderDetails: -> Session.get 'currentOrderDetails'
 
-_.extend Template.sales,
+Sky.template.extends Template.sales,
+  orderDetails: -> Session.get('currentOrderDetails')
+
   tabOptions:
     source: 'orderHistory'
     currentSource: 'currentOrder'
@@ -10,9 +12,42 @@ _.extend Template.sales,
     key: '_id'
     createAction: -> orderCreator('dsa', 'asd')
     destroyAction: (instance) -> Schema.orders.remove(instance._id)
-    navigateAction: (instance) -> console.log "You had navigated to ", instance
-  orderDetailCollection: {}
+    navigateAction: (instance) ->
+#      console.log "You had navigated to ", instance
+  ui:
+    productSelection: ".product-select2"
+
   rendered: ->
+    jProductSelection = $(@ui.productSelection)
+
+    @autoSelectProduct = Deps.autorun ->
+      jProductSelection.select2("val", Session.get('currentOrder').currentProduct) if Session.get('currentOrder')
+
+    $(document).bind 'keyup', 'return', -> jProductSelection.select2("open")
+    jProductSelection.select2
+      placeholder: "CHỌN SẢN PHẨM"
+      query: (query) -> query.callback
+        results: _.filter Session.get('availableProducts'), (item) ->
+          unsignedTerm = Sky.helpers.removeVnSigns query.term
+          unsignedName = Sky.helpers.removeVnSigns item.name
+
+          unsignedName.indexOf(unsignedTerm) > -1 || item.productCode.indexOf(unsignedTerm) > -1
+        text: 'name'
+      initSelection: (element, callback) -> callback(Schema.products.findOne(Session.get('currentOrder')?.currentProduct));
+
+      id: '_id'
+      formatSelection: formatProductSearch
+      formatResult: formatProductSearch
+    .on "change", (e) ->
+      Schema.orders.update(Session.get('currentOrder')._id, {$set: {currentProduct: e.added._id}})
+      Session.set('currentOrder', Schema.orders.findOne(Session.get('currentOrder')._id))
+    jProductSelection.select2("val", Session.get('currentOrder').currentProduct) if Session.get('currentOrder')
+
+  destroyed: -> @autoSelectProduct.stop()
+
+
+
+
 
 orderCreator = (merchantId, warehouseId)->
   newOrder =
@@ -36,3 +71,5 @@ orderCreator = (merchantId, warehouseId)->
   newId = Schema.orders.insert newOrder
   newOrder._id = newId
   newOrder
+
+formatProductSearch = (item) -> "#{item.name} [#{item.skulls}]"

@@ -1,5 +1,5 @@
 .app-header {
-  padding: 20px 0 0 15px;
+  padding: 11px 0 9px 30px;
   border-bottom: 1px solid #eeeeee;
   .caption {
     font-family: inherit;
@@ -28,4 +28,31 @@
   .field {
     margin: 5px;
   }
+}
+
+.app-status {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.sidebar-handle {
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 45px;
+  margin-top: 7px;
+  background-color: #000;
+  text-align: center;
+  i { color: #fff; line-height: 45px; font-size: 12px; }
+
+  &.left  { right:  -12px; }
+  &.right { left:   -12px; }
+}
+
+.dark-line {
+  height: 1px;
+  width: 100%;
+  background-color: #1a1a1a;
+  float: left;
 }

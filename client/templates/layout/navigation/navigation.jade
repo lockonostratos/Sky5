@@ -4,7 +4,6 @@ template(name="navigation")
 			.branding
 				form.navbar-form.navbar-left
 					input.form-control(type="text" maxlength="30" placeholder="tìm kiếm nhanh")
-				a.collapse-toggle: i.fa.fa-list
 			ul.nav.navbar-nav
 				li.home(class="{{isActiveRoute 'metroHome'}}"): a(href="{{pathFor 'metroHome'}}"): i.fa.fa-home
 				li(class="{{isActiveRoute 'sales'}}"): a(href="{{pathFor 'sales'}}") Sales
