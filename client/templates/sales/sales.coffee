@@ -1,25 +1,23 @@
-tabSource = [{alias: "tab 1", class: "active"}, {alias: "tab 2"}, {alias: "tab 3"}]
+#  orderCollection: Schema.orders.find({})
+#  orderDetailCollection: Schema.orderDetails.find({})
+#  currentOrderDetails: -> Session.get 'currentOrderDetails'
 
 _.extend Template.sales,
   tabOptions:
     source: 'orderHistory'
+    currentSource: 'currentOrder'
     caption: 'orderCode'
     key: '_id'
-    currentTab: 'currentOrderTab'
-    instanceCreator: -> orderCreator()
-    instanceDestroyer: (instance) -> Schema.orders.remove instance._id; instance
-
+    createAction: -> orderCreator('dsa', 'asd')
+    destroyAction: (instance) -> Schema.orders.remove(instance._id)
+    navigateAction: (instance) -> console.log "You had navigated to ", instance
   orderDetailCollection: {}
   rendered: ->
 
-#    orderCollection: Schema.orders.find({})
-#  orderDetailCollection: Schema.orderDetails.find({})
-#  currentOrderDetails: -> Session.get 'currentOrderDetails'
-
-orderCreator = ->
+orderCreator = (merchantId, warehouseId)->
   newOrder =
-    merchant      : currentMerchant._id
-    warehouse     : currentWarehouse._id
+    merchant      : merchantId
+    warehouse     : warehouseId
     creator       : Meteor.userId()
     seller        : 'asdsad'
     buyer         : 'asdsad'
@@ -35,5 +33,6 @@ orderCreator = ->
     debit         : 0
     billDiscount  : false
     status        : 1
-  Schema.orders.insert newOrder
+  newId = Schema.orders.insert newOrder
+  newOrder._id = newId
   newOrder
