@@ -22,7 +22,7 @@ Meteor.startup ->
       root.currentWarehouse = Session.get "currentWarehouse"
 
     Sky.global.sellers = Meteor.users.find({}).fetch()
-    Sky.global.personalOrders = Schema.orders.find({})
+    Session.set 'orderHistory', Schema.orders.find({}).fetch()
 
   Deps.autorun ->
     console.log "Your food is #{root.getFood()}"

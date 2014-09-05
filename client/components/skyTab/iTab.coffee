@@ -1,16 +1,16 @@
-iDep = new Deps.Dependency
-
 Sky.template.extends Template.iTab,
-  allTabs: -> iDep.depend(); @options.source()
+  allTabs: -> Session.get @options.source
   getCaption: -> @[UI._templateInstance().data.options.caption ? 'caption']
   activeClass: ->
-    return if !UI._templateInstance().data.options.currentTab
+    currentTab = Session.get(UI._templateInstance().data.options.currentTab)
+    return if !currentTab
+
     key = UI._templateInstance().data.options.key
-    if @[key] is UI._templateInstance().data.options.currentTab[key] then 'active' else ''
+    if @[key] is currentTab[key] then 'active' else ''
 
   created: ->
-    console.log @data
-    @data.options.currentTab = @data.options.currentTab ? @data.options.source().fetch()[0]
+    allTabs = Session.get(@data.options.source)
+    Session.set @data.options.currentTab, allTabs[0] if Session.get(@data.options.currentTab) is undefined
 
   ui:
     newButton: "li"
@@ -20,20 +20,12 @@ Sky.template.extends Template.iTab,
     "click li.new-button": (event, template) -> createTab(template.data)
     "dblclick span.fa": (event, template) -> destroyTab(template.data, @); event.stopPropagation()
 
-focusTab = (context, recentTab) ->
-  context.options.currentTab = recentTab
-  iDep.changed()
+focusTab = (context, recentTab) -> Session.set context.options.currentTab, recentTab
 
-createTab = (context) -> context.options.instanceCreator(); iDep.changed()
+createTab = (context) -> context.options.instanceCreator()
 
 destroyTab = (context, instance) ->
-  return if context.options.currentTab.brandNew
-
-  context.options.currentTab = context.options.instanceDestroyer(instance)
-  if context.options.source().length is 0
+  context.options.instanceDestroyer(instance)
+  if Session.get(context.options.source).length is 0
     newTab = context.options.instanceCreator()
-    newTab.brandNew = true
-    context.options.currentTab = newTab
-
-  context.options.currentTab.class = 'active'
-  iDep.changed()
+    Session.set context.option.currentTab, newTab
