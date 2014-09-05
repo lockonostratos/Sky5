@@ -2,6 +2,7 @@ template(name="iTab")
 	ul.sky-tab
 		each allTabs
 			li(class="#{activeClass}")
+				a.hidden
 				a(href="#") #{caption} #{getCaption}
 				span.fa.fa-trash-o
 		li.new-button
