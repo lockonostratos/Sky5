@@ -52,7 +52,13 @@ _.extend Template.warehouse,
       backdrop: true
       placement: 'bottom'
 
-    $('.poptest2').popover({
+    $(@find '#providerPopover').modalPopover
+      target: '#popProvider'
+      backdrop: true
+      placement: 'bottom'
+
+
+    $('.popProvider').popover({
       html: true
       title: 'title'
       content: '#productPopover'
@@ -65,3 +71,4 @@ _.extend Template.warehouse,
   events:
     "click .tile": (event, template) -> $(template.find '#productAside').modal()
     "click #poptest": (event, template) -> $(template.find '#productPopover').modalPopover('show')
+    "click #popProvider": (event, template) -> $(template.find '#providerPopover').modalPopover('show')

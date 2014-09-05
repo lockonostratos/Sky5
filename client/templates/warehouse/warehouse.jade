@@ -3,6 +3,7 @@ template(name="warehouse")
 		span.caption Warehouse <small>Page</small>
 		.commands
 			a#poptest.btn.btn-danger(href="") Thêm Sản Phẩm
+			a#popProvider.btn.btn-danger(href="") Thêm Nhà Cung Cấp
 			a.btn.btn-danger.poptest2(href="#") Poptest 2
 	.app-editor
 		.sl2.field(style="width: 250px;")
@@ -17,6 +18,7 @@ template(name="warehouse")
 
 	+productAside
 	+productPopover
+	+providerPopover
 
 template(name="productSearch")
 	h4 #{name} (#{productCode})
