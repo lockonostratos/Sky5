@@ -1,9 +1,20 @@
-_.extend Template.productPopover,
+#Deps.autorun ->
+
+#  Sess = Schema.sales.find({status: true}).fetch()
+
+Sky.template.extends Template.productPopover,
+  ui:
+    selectSkull: '.sl2'
+
   error: -> Session.get 'errorProductPopover'
   products: -> Sky.global.personalNewProducts
+  selectNewProduct: -> Template.warehouse.ui.selectBox.select2("open")
+  formatSearchSkull: (item) -> "#{item.value}"
 
+  currentProduct: {}
   events:
     'click .create': (event, template)->
+      console.log template.find(".skull").value
       if template.find(".productCode").value.length < 1 || template.find(".productCode").value.length > 15
         Session.set 'errorProductPopover', 'Mã sản phẩm có từ 10 đến 13 ký tự '; return
       else
@@ -23,7 +34,7 @@ _.extend Template.productPopover,
         creator          : Meteor.userId()
         productCode      : template.find(".productCode").value
         name             : template.find(".name").value
-        skulls           : [template.find(".skull").value]
+        skulls           : ['ĐƠN VỊ TÍNH', '1L', 'QUI CÁCH', 'Thùng']
         totalQuality     : 0
         availableQuality : 0
         instockQuality   : 0
@@ -44,5 +55,25 @@ _.extend Template.productPopover,
         console.log 'Loi, Khong The Xoa Duoc'
 
   rendered: ->
-#    if !template.find(".productCode").value and !template.find(".name").value and !template.find(".skull").value then Session.set 'errorProductPopover'
-    console.log Sky.global.personalNewProducts
+    $(@ui.selectSkull).select2
+      placeholder: 'CHỌN PHIẾU Mã Loai'
+      query: (query) -> query.callback
+        results: _.filter Session.get('skullList'), (item) ->
+          item.value.indexOf(query.term) > -1
+        text: 'name'
+      initSelection: (element, callback) -> callback(Session.get 'currentSkulls');
+      id: '_id'
+      formatSelection : Template.productPopover.formatSearchSkull
+      formatResult    : Template.productPopover.formatSearchSkull
+      multiple: true
+    .on "change", (e) ->
+      if e.added
+        currentSkulls = []; if Session.get 'currentSkulls' then currentSkulls = Session.get 'currentSkulls'
+        currentSkulls.push e.added
+      if e.removed
+        currentSkulls = _.filter(Session.get('currentSkulls'), (item) -> item._id isnt e.removed._id)
+      Session.set 'currentSkulls', currentSkulls
+      console.log _.chain(Session.get('currentSkulls')).map((group, key) -> return { name: key}).value()
+    $(@ui.selectSkull).select2 "val", Session.get 'currentSkulls'
+
+#    console.log Sky.global.personalNewProducts

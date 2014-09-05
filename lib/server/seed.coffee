@@ -71,7 +71,7 @@ seedProvidersFor = (merchant, creator) ->
     "MEKONG"
     "SHIP OIL"
   ]
-  merchant.addProvider { name: "DẦU NHỚT #{provider}", creator: creator } for provider in providers
+  merchant.addProvider { name: "DẦU NHỚT #{provider}", creator: creator , status: false} for provider in providers
 
 seedSkullsFor = (merchant, creator) ->
   skulls = [

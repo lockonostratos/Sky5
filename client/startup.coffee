@@ -14,12 +14,17 @@ Meteor.startup ->
     Session.set "currentMerchant", Schema.merchants.findOne({})
     root.currentMerchant = Session.get "currentMerchant"
 
+    if root.currentMerchant
+      Session.set "currentWarehouse", Schema.warehouses.findOne({merchant: root.currentMerchant._id}); root.currentWarehouse = Session.get "currentWarehouse"
+      Session.set 'skullList', Schema.skulls.find({merchant: root.currentMerchant._id}).fetch()
+      Session.set 'currentProviders', Schema.providers.find({merchant: root.currentMerchant._id, status: false}).fetch()
+
+
+
 #    Session.set "personalNewProducts",
     Sky.global.personalNewProducts = Schema.products.find({creator: Meteor.userId(), totalQuality: 0},sort: {version:{createdAt: -1}})
 
-    if root.currentMerchant
-      Session.set "currentWarehouse", Schema.warehouses.findOne({merchant: root.currentMerchant._id})
-      root.currentWarehouse = Session.get "currentWarehouse"
+
 
     Sky.global.sellers = Meteor.users.find({}).fetch()
     Session.set 'orderHistory', Schema.orders.find({}).fetch()

@@ -8,4 +8,8 @@ Schema2.skulls = new SimpleSchema
   name:
     type: String
 
+  value:
+    type: String
+    optional: true
+
   version: { type: Schema.Version }
