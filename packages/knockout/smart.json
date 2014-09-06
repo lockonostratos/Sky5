@@ -1,8 +1,0 @@
-{
-  "name": "knockout",
-  "description": "Data bindings and form validation for Meteor. http://knockoutjs.com",
-  "homepage": "https://github.com/bevanhunt/meteor-knockout",
-  "author": "Bevan Hunt <bevan@bevanhunt.com> (http://www.bevanhunt.com)",
-  "version": "0.3.2",
-  "git": "https://github.com/bevanhunt/meteor-knockout.git"
-}

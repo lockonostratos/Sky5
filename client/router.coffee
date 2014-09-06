@@ -1,13 +1,40 @@
 Router.configure
   layoutTemplate: 'layout'
 
+#  path: "/posts/:_id"
+#  data: ->
+#    Posts.findOne @params._id
+#
+#  waitOn: postsSub
+#  loading: "loadingTemplate"
+#  notFound: "notFoundTemplate"
+#  onAfterRun: ->
+#    $("#newPage").addClass "slide.in"
+#    $("#newPage").addClass "visible"
+#    return
+#
+#  onAfterRerun: ->
+#    $("#newPage").addClass "visible"
+#    return
+
+class @skyRouter
+  constructor: (@path, authRequired = true) ->
+    if authRequired
+      @onBeforeAction = -> AccountsEntry.signInRequired(this)
+
+  onAfterAction: ->
+    $('#right-side').removeClass()
+     .addClass("animated fadeIn")
+     .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', -> $(@).removeClass())
+
 Router.map ->
-  @route 'metroHome', { path: '/', onBeforeAction: -> AccountsEntry.signInRequired(this) }
-  @route 'home', { path: '/home', onBeforeAction: -> AccountsEntry.signInRequired(this) }
-  @route 'warehouse', { path: '/warehouse' }
-  @route 'sales', { path: '/sales' }
-  @route 'import', { path: '/import' }
-  @route 'delivery', { path: '/delivery' }
-  @route 'returns', { path: '/returns' }
-  @route 'report', { path: '/report' }
-  @route 'roleManager', { path: '/roleManager' }
+  @route 'metroHome', new skyRouter('/')
+  @route 'home', new skyRouter('home')
+  @route 'warehouse', new skyRouter('warehouse')
+  @route 'sales', new skyRouter('sales')
+  @route 'import', new skyRouter('import')
+  @route 'delivery', new skyRouter('delivery')
+  @route 'returns', new skyRouter('returns')
+  @route 'report', new skyRouter('report')
+  @route 'roleManager', new skyRouter('roleManager')
+

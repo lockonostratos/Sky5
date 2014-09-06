@@ -18,7 +18,6 @@ iron-router
 iron-router-active
 iron-router-progress
 
-knockout
 collection2
 reactive-table
 select2

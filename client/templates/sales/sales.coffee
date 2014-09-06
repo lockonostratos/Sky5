@@ -1,10 +1,13 @@
 #  orderCollection: Schema.orders.find({})
 #  orderDetailCollection: Schema.orderDetails.find({})
 #  currentOrderDetails: -> Session.get 'currentOrderDetails'
+Session.setDefault('lastName', 'Le')
+Session.setDefault('firstName', 'Cloud')
 
 Sky.template.extends Template.sales,
   orderDetails: -> Session.get('currentOrderDetails')
-  iClasses: -> ' asdad'
+  fullName: -> Session.get('firstName') + ' ' + Session.get('lastName')
+  firstName: -> Session.get('firstName')
   tabOptions:
     source: 'orderHistory'
     currentSource: 'currentOrder'
@@ -18,13 +21,13 @@ Sky.template.extends Template.sales,
     productSelection: ".product-select2"
 
   rendered: ->
-    jProductSelection = $(@ui.productSelection)
+    $productSelection = $(@ui.productSelection)
 
     @autoSelectProduct = Deps.autorun ->
-      jProductSelection.select2("val", Session.get('currentOrder').currentProduct) if Session.get('currentOrder')
+      $productSelection.select2("val", Session.get('currentOrder').currentProduct) if Session.get('currentOrder')
 
-    $(document).bind 'keyup', 'return', -> jProductSelection.select2("open")
-    jProductSelection.select2
+    $(document).bind 'keyup', 'return', -> $productSelection.select2("open")
+    $productSelection.select2
       placeholder: "CHỌN SẢN PHẨM"
       query: (query) -> query.callback
         results: _.filter Session.get('availableProducts'), (item) ->
@@ -42,11 +45,12 @@ Sky.template.extends Template.sales,
       Schema.orders.update(Session.get('currentOrder')._id, {$set: {currentProduct: e.added._id}})
       Session.set('currentOrder', Schema.orders.findOne(Session.get('currentOrder')._id))
 
-    jProductSelection.select2("val", Session.get('currentOrder').currentProduct) if Session.get('currentOrder')
-    jProductSelection.find('.select2-results').slimScroll({height: '200px'})
+    $productSelection.select2("val", Session.get('currentOrder').currentProduct) if Session.get('currentOrder')
+    $productSelection.find('.select2-results').slimScroll({height: '200px'})
 
-  destroyed: -> @autoSelectProduct.stop()
-
+  destroyed: -> @autoSelectProduct.stop(); $(@ui.productSelection).select2('destroy')
+  events:
+    "input input": (e) -> Session.set('firstName', e.target.value)
 
 orderCreator = (merchantId, warehouseId)->
   newOrder =

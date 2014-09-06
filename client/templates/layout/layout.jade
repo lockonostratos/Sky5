@@ -4,9 +4,9 @@ template(name="layout")
 			+navigation
 		if currentUser
 			.content.wrapper.metro
-				.left-side
+				#left-side
 					+sidebar
-				.right-side()
+				#right-side
 					+yield
 		else
 			.wrapper
