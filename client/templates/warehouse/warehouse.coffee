@@ -67,6 +67,7 @@ _.extend Template.warehouse,
   destroyed: ->
     $(document).unbind 'keyup', Template.warehouse.selectNewProduct
     $(document).unbind 'keyup', Template.warehouse.addNewProduct
+    $(@find '.sl2').select2('destroy')
 
   events:
     "click .tile": (event, template) -> $(template.find '#productAside').modal()

@@ -76,4 +76,6 @@ Sky.template.extends Template.productPopover,
       console.log _.chain(Session.get('currentSkulls')).map((group, key) -> return { name: key}).value()
     $(@ui.selectSkull).select2 "val", Session.get 'currentSkulls'
 
+  destroy: ->
+    $(@ui.selectSkull).select2('destroy')
 #    console.log Sky.global.personalNewProducts
