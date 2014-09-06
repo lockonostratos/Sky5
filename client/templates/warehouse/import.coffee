@@ -314,6 +314,12 @@ addOrderDetail = (template, orderDetails) ->
       discountPercent     : template.find(".orderDetail-discountPercent").value
       tempDiscountPercent : template.find(".orderDetail-discountPercent").value
       finalPrice          : template.find(".orderDetail-finalPrice").value
+
+
+
+
+
+
   if _.findWhere(Session.get('currentOrderDetails'), {product: Template.createOrder.currentProduct._id}) then countProduct = 0 else countProduct = 1
   saleProduct  = parseInt(template.find(".orderDetailQuality").value)
   price        = parseInt(template.find(".orderDetailPrice").value)
