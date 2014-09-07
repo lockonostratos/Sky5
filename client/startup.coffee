@@ -5,7 +5,7 @@ root.getFood = -> root.foodDep.depend(); root.food
 root.setFood = (val) ->
   foodDep.changed() if val isnt root.food
   root.food = val
-
+root.test = new Tracker.Dependency
 Sky.global.salesDep = new Deps.Dependency
 Meteor.startup ->
   Deps.autorun ->
@@ -25,20 +25,20 @@ Meteor.startup ->
 #    Session.set "personalNewProducts",
     Sky.global.personalNewProducts = Schema.products.find({creator: Meteor.userId(), totalQuality: 0},sort: {version:{createdAt: -1}})
 
+    if Session.get('currentMerchant')
+      Session.set('availableProducts', Schema.products.find(merchant: Session.get('currentMerchant')._id).fetch())
 
-
-    Session.set('availableProducts', Schema.products.find(merchant: Session.get('currentMerchant')._id).fetch()) if Session.get('currentMerchant')
-
-#   Session.set "personalNewProducts",
+    #   Session.set "personalNewProducts",
     Sky.global.personalNewProducts = Schema.products.find({creator: Meteor.userId(), totalQuality: 0},sort: {version:{createdAt: -1}})
 
     Sky.global.sellers = Meteor.users.find({}).fetch()
 
   Deps.autorun ->
     Session.set('orderHistory', Schema.orders.find({}).fetch())
-    Session.set('currentOrder', Session.get('orderHistory')[0]) if !Session.get('currentOrder') and Session.get('orderHistory')
-    Session.set('currentOrderDetails', Schema.orderDetails.find({order: Session.get('currentOrder')._id})) if !Session.get('currentOrderDetails') and Session.get('currentOrder')
-
+    if Session.get('orderHistory')
+      Session.setDefault('currentOrder', Session.get('orderHistory')[0])
+    if Session.get('currentOrder')
+      Session.setDefault('currentOrderDetails', Schema.orderDetails.find({order: Session.get('currentOrder')._id}))
 
   Deps.autorun ->
     console.log "Your food is #{root.getFood()}"

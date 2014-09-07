@@ -3,14 +3,5 @@
     <option name="myName" value="Project Default" />
     <option name="myLocal" value="false" />
     <inspection_tool class="BadExpressionStatementJS" enabled="false" level="WARNING" enabled_by_default="false" />
-    <inspection_tool class="TaskInspection" enabled="true" level="INFO" enabled_by_default="true">
-      <option name="suppressedTasks">
-        <set>
-          <option value="CoffeeScript" />
-          <option value="Jade" />
-          <option value="LESS" />
-        </set>
-      </option>
-    </inspection_tool>
   </profile>
 </component>

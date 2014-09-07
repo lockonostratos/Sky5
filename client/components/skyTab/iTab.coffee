@@ -2,9 +2,6 @@ Sky.template.extends Template.iTab,
   allTabs: -> Session.get(@options.source)
   getCaption: -> @[UI._templateInstance().data.options.caption ? 'caption']
   activeClass: -> generateActiveClass(UI._templateInstance(), @)
-#    key = UI._templateInstance().data.options.key
-#    currentSource = Session.get(UI._templateInstance().data.options.currentSource)
-#    if !currentSource || @[key] isnt currentSource[key] then '' else 'active'
 
   events:
     "click li:not(.new-button,.active)": (event, template) ->
