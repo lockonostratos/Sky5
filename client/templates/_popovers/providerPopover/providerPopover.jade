@@ -10,10 +10,10 @@ template(name="providerPopover")
                 input.form-control.representative( type='text' placeholder='Người Đại Diện Công')
                 input.form-control.address(        type='text' placeholder='Địa Chỉ Công Ty')
                 input.form-control.phone(          type='text' placeholder='Số Điện Thoại Công Ty')
-                //.sl2.field(style="width: 250px;")
-            .wrapper.bottom(align="right"): a.btn.btn-danger.create Tạo mới
+
+                div(align="right"):  a.btn.btn-danger.createProvider Tạo mới
             ul.grid
-                each providers
+                each providerList
                     li
                         | #{name}
-                        a.btn.btn-danger.providerRemove xóa
+                        a.btn.btn-danger.removeProvider xóa
